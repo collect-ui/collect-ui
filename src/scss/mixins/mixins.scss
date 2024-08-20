@@ -1,0 +1,38 @@
+@forward "_var.scss";
+@use "./config" as *;
+/**
+基础样式组件
+ */
+@mixin b($block) {
+  $B: $namespace + $common-separator + $block !global;
+  .#{$B} {
+    @content;
+  }
+}
+/**
+将组件分一个组，比如input 是一个组，icon 是一个组件，方式样式重复
+ */
+@mixin project($group) {
+  $B: $project-name + $common-separator + $group !global;
+  .#{$B} {
+    @content;
+  }
+}
+
+@mixin m($modifier) {
+  $selector: &;
+  $currentSelector: '';
+  @each $unit in $modifier {
+    $currentSelector: #{$currentSelector +
+      $selector +
+      $modifier-separator +
+      $unit +
+      ','};
+  }
+
+  @at-root {
+    #{$currentSelector} {
+      @content;
+    }
+  }
+}

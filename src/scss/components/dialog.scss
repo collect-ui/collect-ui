@@ -1,0 +1,35 @@
+
+@use '../common/var' as *;
+@use '../mixins/mixins' as *;
+// project(分组名称)
+@include project(dialog){
+  &.ant-modal {
+    .ant-modal-content{
+      padding: 0px 0px 20px 0px;
+      border-radius: 8px;
+    }
+    .ant-modal-header{
+      padding-top: 0px;
+      overflow:hidden;
+    }
+
+    .ant-modal-body{
+      padding: 4px 24px 0px 14px
+    }
+   .ant-modal-footer {
+     padding: 0px 10px;
+   }
+
+  }
+
+  .dialog-title {
+    padding: 16px 0px 12px 20px;
+    width: 100%;
+    cursor: move;
+    background: #409eff;
+    color: white;
+    font-weight: bold;
+    border-bottom: 1px solid #d7d7d7;
+  }
+}
+

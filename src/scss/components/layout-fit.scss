@@ -1,0 +1,48 @@
+@use '../common/var' as *;
+@use '../mixins/mixins' as *;
+// project(分组名称)
+@include project(layout-fit){
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  .top-header{
+    border-bottom: $border;
+    display: flex;
+    padding: 10px;
+    .top-title{
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+    .top-right{
+
+    }
+
+  }
+  .bar{
+    padding: 10px 0px 0px 10px;
+    display: flex;
+    .search-left{
+      flex: 1;
+    }
+  }
+  .layout-content{
+    flex: 1;
+    overflow: auto;
+  }
+  .bottom-tool-bar{
+    padding: 6px;
+    &.right{
+      text-align: right;
+    }
+    &.center{
+      text-align: center;
+    }
+    &.center{
+      text-align: left;
+    }
+  }
+
+}
+

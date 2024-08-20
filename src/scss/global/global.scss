@@ -1,0 +1,16 @@
+@use '../common/var' as *;
+.h100{
+  height: 100%;
+}
+.border-right{
+  border-right: $border
+}
+.flex1{
+  flex: 1 !important;
+}
+.pointer{
+  cursor: pointer;
+}
+.margin-right10{
+  margin-right: 10px;
+}

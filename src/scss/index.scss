@@ -1,6 +1,19 @@
-.test{
-  color: aqua;
-  .test2{
-    color: red;
-  }
-}
+@import "./global/global.scss";
+@import "./components/button.scss";
+@import "./components/form-item.scss";
+@import "./components/app.scss";
+@import "./components/sider.scss";
+@import "./components/router-tab.scss";
+@import "./components/layout.scss";
+@import "./components/layout-footer.scss";
+@import "./components/outlet.scss";
+@import "./components/title.scss";
+@import "./components/layout-fit.scss";
+@import "./components/table.scss";
+@import "./components/dialog.scss";
+@import "./components/date.scss";
+@import "./components/input.scss";
+@import "./components/tabs.scss";
+@import "./components/tree.scss";
+@import "./components/panel-resize.scss";
+@import 'react-contexify/dist/ReactContexify.css';

@@ -1,0 +1,9 @@
+@use '../common/var' as *;
+@use '../mixins/mixins' as *;
+// project(分组名称)
+@include project(table){
+  height: 100%;
+  --ag-wrapper-border-radius:2px ;
+  --ag-odd-row-background-color: #fafafa;
+}
+

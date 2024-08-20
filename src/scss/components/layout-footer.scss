@@ -1,0 +1,7 @@
+@use '../common/var' as *;
+@use '../mixins/mixins' as *;
+
+@include project(layout-footer){
+  background: #ffffff;
+}
+

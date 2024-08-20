@@ -1,0 +1,25 @@
+@use '../common/var' as *;
+@use '../mixins/mixins' as *;
+// project(分组名称)
+@include project(form-item){
+
+ &.ant-form-item{
+   margin-bottom: 12px ;
+   margin-inline-end: 12px;
+ }
+
+ .ant-form-item-explain-error {
+    display: inline-block;
+    color: #f12727;
+    background-color: #ffe1e1;
+    top: 50%;
+    left: 5px;
+    border: 1px solid #eee;
+    line-height: 20px;
+    padding: 0 5px;
+    white-space: nowrap;
+    z-index: 10;
+    position: absolute;
+  }
+}
+

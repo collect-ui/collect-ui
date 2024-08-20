@@ -1,0 +1,13 @@
+@use '../common/var' as *;
+@use '../mixins/mixins' as *;
+// project(分组名称)
+@include project(button){
+
+ &.ant-btn  + &.ant-btn {
+  margin-left: 6px;
+ }
+ &.ant-btn {
+  transition: all 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+ }
+}
+

@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-
+import commonjs from "vite-plugin-commonjs"
 export default defineConfig({
-    plugins: [react()],
+    plugins: [react(),commonjs()],
     css: {
         preprocessorOptions: {
             scss: {
@@ -12,7 +12,7 @@ export default defineConfig({
     },
     build: {
         lib: {
-            entry: './src/index.js',
+            entry: './src/index.tsx',
             name: 'CollectUI',
             fileName: (format) => `collect-ui.${format}.js`,
         },

@@ -1,0 +1,20 @@
+@use '../common/var' as *;
+@use '../mixins/mixins' as *;
+// project(分组名称)
+@include project(sider){
+  $trigger-height: 38px;
+  .ant-layout-sider-children{
+    overflow: auto;
+  }
+  &.ant-layout-sider-has-trigger {
+    padding-bottom: $trigger-height;
+  }
+
+  .ant-layout-sider-trigger {
+    position: relative;
+    height: $trigger-height;
+    line-height: $trigger-height;
+    transform: translateX(-1px);
+  }
+}
+

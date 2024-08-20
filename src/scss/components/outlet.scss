@@ -1,0 +1,11 @@
+@use '../common/var' as *;
+@use '../mixins/mixins' as *;
+// project(分组名称)
+@include project(outlet){
+  & > div{
+    height: 100%;
+    background: #ffffff;
+    overflow: hidden;
+  }
+}
+
