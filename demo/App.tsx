@@ -1,9 +1,22 @@
 // src/demo/App.js
 import React from 'react';
 import { Render } from "../src/index"
+// const config={
+//     "tag":"div",
+//     "children":[
+//         {
+//             "tag":"label",
+//             "children":"低代码测试"
+//         },
+//         {
+//             "tag":"input",
+//             "className":"ui-input",
+//             "placeholder":"请输入用户名"
+//         }
+//     ]
+// }
 const config={
     tag: "app",
-
     className: "home-page",
     children: [
         {tag:"h1",children:" Collect UI Demo"},
@@ -701,13 +714,7 @@ const config={
     ],
 }
 const App = () => {
-    return (
-
-            <Render {...config}>
-
-            </Render>
-
-    );
+    return <Render {...config}/>
 };
 
 export default App;

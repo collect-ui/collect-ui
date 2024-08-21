@@ -42,7 +42,7 @@ const reg = /\$\{(.+?)\}/
 // }
 
 function isArrayVar(name: string): boolean {
-  return name.indexOf("[") >= 0 && name.indexOf("]") > 0
+  return name.indexOf("[") >= 0 && name.indexOf("]") > 0 && !(name.indexOf("?")>=0 || name.indexOf(":")>=0)
 }
 export default function (name: string, store: any, targetValue?: any): any {
   if (!store) {

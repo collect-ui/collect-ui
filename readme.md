@@ -4,18 +4,59 @@
   1. 保留原始组件风格：通过配置 JSON，保留了原始组件的 API 风格，使得开发者可以轻松地迁移和扩展。
   2. 支持复杂交互：支持通过配置实现复杂的交互逻辑，如表单提交、数据请求、对话框管理等。
   3. 易于扩展：通过定义新的 tag，可以轻松扩展新的组件和功能。
+  4. 支持无限层级嵌套
+
+# 如何安装依赖
+## 安装collect-ui
+```shell
+npm i collect-ui
+```
+## 低代码组件：通过 JSON 配置实现动态页面生成
+传统的页面开发方式通常需要编写大量的原生代码，例如：
+```html
+const App=()=>{
+    return (
+        <div>
+            <label>低代码测试</label>
+            <input class="ui-input" placeholder="请输入用户名"/>
+        </div>
+    )
+}
+```
+而使用低代码组件，可以通过简洁的 JSON 配置实现相同的功能：
+```javascript
+import { Render } from "collect-ui/src/index"
+const config={
+    "tag":"div",
+    "children":[
+        {
+            "tag":"label",
+            "children":"低代码测试"
+        },
+        {
+            "tag":"input",
+            "className":"ui-input",
+            "placeholder":"请输入用户名"
+        }
+    ]
+}
+const App = () => {
+    return <Render {...config}/>
+};
+```
+尽管 JSON 配置看起来可能比原生代码更冗长，但低代码组件的优势在于其灵活性和可维护性。通过后台返回的 JSON 配置，可以轻松实现页面的动态改动和新建，无需深入了解复杂的代码逻辑，从而大大提升了开发效率和灵活性。
 
 # 示例
 在 demo 目录下的 App.tsx 文件中，提供了一个用户增删改查的示例。该示例展示了如何通过配置 JSON 来生成一个完整的用户管理界面。
 
 ## 示例配置
 以下是一个简化的示例配置，展示了如何通过 JSON 配置生成一个输入框组件：
-```
+```html
 <input placeholder="请输入用户名" style="background:blue" className="ui-input"/>
 ```
 对应配置，只有标签名input 需要写成tag:"input", 其他属性字段名称都不变。
 
-```
+```json
 {
     "tag":"input",
     "className":"ui-input",
@@ -25,22 +66,34 @@
     }
 }
 ```
+```javascript
+import { Render } from "collect-ui/src/index"
+const App = () => {
+    return <Render {...config}/>
+};
+
+```
 这样就基本保证原始组件的风味，可以完成之前原始组件的任何事情。这些配置可以通过前端配置生成，以后也可以后台返回。如果后台返回改一个页面可能就不需要重新打包了
 
 另外 像tag 里面的注册input标签，是ant组件二次封装的input标签
-# 如何运行起来
+# 如何本项目运行起来
 ## 安装
-```npm i```
+```shell
+npm i
+```
 ## 运行
-```npm run dev```
+``` shell
+npm run dev
+```
+
+
 # 示例
-demo 下 App.tsx,这个是一个用户增删改查，后端没有对接，造了点数据
+demo 下 App.tsx,这个是一个用户增删改查，后端对接collect（golang写的后台低代码），造了点数据
 ![image](https://github.com/user-attachments/assets/b2cee440-b930-45d1-bc7e-a12b03684379)
 
 ```
 {
     tag: "app",
-
     className: "home-page",
     children: [
         {tag:"h1",children:" Collect UI Demo"},
