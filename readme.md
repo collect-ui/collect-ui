@@ -35,8 +35,6 @@
 ```npm run dev```
 # 示例
 demo 下 App.tsx,这个是一个用户增删改查，后端没有对接，造了点数据
-```
-  {
 ![image](https://github.com/user-attachments/assets/b2cee440-b930-45d1-bc7e-a12b03684379)
 
 ```{
