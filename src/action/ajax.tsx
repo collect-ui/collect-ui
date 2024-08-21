@@ -56,16 +56,18 @@ export default async function (
   }
 
   const res = await axios.post(apiObj.url, formValue)
-  // 解析结果集合
-  if (adapt) {
+  const { msg, success } = res.data
+  if (showResultMsg && success) {
+    useApp?.message?.success(msg)
+  }
+
+  // 请求成功 解析结果集合
+  if (success && adapt) {
     for (const key in adapt) {
       const field = varName(adapt[key])
       store.setValue(key, res.data[field])
     }
   }
-  const { msg, success } = res.data
-  if (showResultMsg && success) {
-    useApp?.message?.success(msg)
-  }
+
   return res.data
 }

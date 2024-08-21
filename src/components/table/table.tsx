@@ -71,6 +71,20 @@ export default function (props: any) {
       handlerActions(rowClickAction, store, rootStore, useApp)
     }
   }, [])
+  useEffect(() => {
+    const handleResize = () => {
+      if (gridRef.current && gridRef.current.api) {
+        gridRef.current.api.sizeColumnsToFit();
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <Suspense fallback={<Loading></Loading>}>
