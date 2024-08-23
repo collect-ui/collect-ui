@@ -96,6 +96,57 @@ npm i
 npm run dev
 ```
 
+# 如何自定义组件
+自定义代码高亮组件指南
+本文档将指导您如何在项目中自定义一个代码高亮组件，并使用 react-syntax-highlighter 作为底层实现。我们将通过以下步骤完成这一任务：
+
+  1. **注册自定义组件**：在应用层注册 coder 标签。
+  2. **实现自定义组件** ：创建一个 Coder 组件，利用 utils.transferProp 将字符串变量转换为实际的 store 变量。
+  3. **配置组件**：在实际配置中使用自定义组件。
+
+
+## 1.注册自定义组件
+   首先，在应用层注册 coder 标签。以下是 App 组件的代码：
+```javascript
+import React from 'react';
+import gateway from "./data/gateway.json"
+import { Render,setRegister } from "collect-ui"
+import Coder from "./components/coder"
+setRegister('coder',Coder)
+const App = () => {
+    return (
+        <Render {...gateway}/>
+    );
+};
+export default App;
+```
+
+##  2.实现自定义组件
+接下来，创建一个 Coder 组件。该组件将使用 react-syntax-highlighter 来实现代码高亮，并利用 utils.transferProp 将字符串变量转换为实际的 store 变量。以下是 Coder 组件的代码：
+```javascript
+import React from 'react';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import {utils} from "collect-ui"
+const CoderComponent = (props) => {
+    const {...rest}=props;
+    const newProps =utils.transferProp(rest,"coder")
+    return <SyntaxHighlighter  language="nginx" style={tomorrow} className="h100" {...newProps}/>
+};
+export default CoderComponent;
+```
+## 3.配置组件
+最后，在实际配置中使用自定义组件。以下是配置示例，其中 config.router_path 对应 initStore 的变量：
+```json
+ {
+  "tag": "coder",
+  "customStyle": {
+    "height": "100%"
+  },
+  "children": "${config.router_path}"
+}
+```
+通过以上步骤，您已经成功地在项目中自定义了一个代码高亮组件，并将其集成到应用中
 
 # 用户管理低代码示例
 在 demo 目录下的 App.tsx 文件中，我们实现了一个用户管理的低代码示例。该示例展示了如何通过 JSON 配置与后端（使用 Go 语言编写的 collect 低代码后台）进行对接，实现用户的增删改查功能。为了简化演示，我们预先造了一些数据。
