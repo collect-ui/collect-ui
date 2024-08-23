@@ -2,6 +2,7 @@
 import "./scss/index.scss"
 import Render from "./components/render/render"
 import { observer } from "mobx-react-lite"
+import utils from "./utils/index"
 // 扫描组件
 const componentContext: any = import.meta.glob("./components/**/*.tsx", {
   eager: true,
@@ -34,7 +35,7 @@ for (const item in componentContext) {
   let frame = filename.substring(0, filename.indexOf("."))
   const name = pascal2Kebab(frame)
   // 注册组件名称
-  registerMap[name] = observer(componentContext[item].default)
+  setRegister(name,componentContext[item].default)
 }
 //处理store
 for (const item in storeContext) {
@@ -43,6 +44,7 @@ for (const item in storeContext) {
   const name = pascal2Kebab(frame)
   // 注册store名称
   registerStoreMap[name] = storeContext[item].default
+
 }
 // 处理action
 for (const item in actionContext) {
@@ -75,6 +77,15 @@ function getRegister(name: string) {
  */
 function hasRegister(name: string) {
   return !!registerMap[name]
+}
+
+/**
+ * 设置组件
+ * @param name
+ * @param component
+ */
+function setRegister(name:string,component:any) {
+  registerMap[name] = observer(component)
 }
 
 /**
@@ -114,10 +125,22 @@ export function ajaxAction() {
 export default {
   getRegister,
   hasRegister,
+  setRegister,
   hasStore,
   getStore,
   ajaxAction,
   Render,
+  utils,
 
 }
-export { getRegister, hasRegister, getStore, hasStore ,hasInitPlugin,getInitPlugin,Render}
+export {
+  getRegister,
+  hasRegister,
+  setRegister,
+  getStore,
+  hasStore ,
+  hasInitPlugin,
+  getInitPlugin,
+  Render,
+  utils,
+}

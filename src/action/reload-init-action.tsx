@@ -19,6 +19,6 @@ export default async function (
   const { group } = action
   let targetStoreObj = actionStore(action, store, rootStore)
   const actions = targetStoreObj.getInitAction(group)
-  handlerActions(actions, targetStoreObj, rootStore, useApp)
-  return getResult(true)
+  return await handlerActions(actions, targetStoreObj, rootStore, useApp)
+  // return getResult(true)
 }

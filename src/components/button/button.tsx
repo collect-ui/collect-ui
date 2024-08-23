@@ -3,11 +3,13 @@ import transferProp from "../../utils/transferProp"
 import { useCallback } from "react"
 import handlerActions from "../../utils/handlerActions"
 import Icon from "../icon/icon"
+import getVisible from "../../utils/getVisible";
 
 export default function (props: any) {
-  const { icon, action, confirm, ...rest } = props
+  const { icon,visible, action, confirm, ...rest } = props
   const store = props["store"]
   const useApp = App.useApp()
+
   const newProps = transferProp(rest, "button")
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const onClick = useCallback(async () => {
@@ -15,6 +17,10 @@ export default function (props: any) {
       handlerActions(action, store, props.rootStore, useApp, rest._target)
     }
   }, [])
+  const show = getVisible(props)
+  if(!show) {
+    return null
+  }
   // 将confirm 和button 合并
   let IconRender = icon ? <Icon icon={icon} /> : null
   if (confirm) {

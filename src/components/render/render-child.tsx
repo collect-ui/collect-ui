@@ -164,14 +164,7 @@ export default function renderChild(props: any) {
   }
   let Tag = tag
   const key = uuid()
-  // 处理显示隐藏
-  let visible = schema["visible"]
-  if (visible) {
-    const show = varValue(visible, localStore, schema["_target"])
-    if (!show) {
-      return null
-    }
-  }
+  // // 处理显示隐藏
 
   return (
     <Tag key={key} store={localStore} rootStore={rootStore} {...rest}>

@@ -46,7 +46,7 @@ export default function (props: any) {
   const onGridReady = useCallback((params) => {
     setTimeout(() => {
       params.api.sizeColumnsToFit()
-    }, 0)
+    }, 10)
   }, [])
   // 处理排序后，排序号不跟着变
   const onSortChanged = useCallback((params) => {
@@ -61,7 +61,6 @@ export default function (props: any) {
     }
   }, [])
   const onRowClicked = useCallback((event) => {
-    console.log(event)
     //设置行绑定对象
     if (rowClick) {
       const rowClickName = varName(rowClick)
@@ -74,7 +73,10 @@ export default function (props: any) {
   useEffect(() => {
     const handleResize = () => {
       if (gridRef.current && gridRef.current.api) {
-        gridRef.current.api.sizeColumnsToFit();
+        setTimeout(()=>{
+          gridRef.current.api.sizeColumnsToFit();
+        },10)
+
       }
     };
 

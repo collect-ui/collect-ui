@@ -1,5 +1,7 @@
 
 import { Api, ApiObject, ApiString, PlainObject } from "../types/api"
+import transferProp from "./transferProp";
+
 export function projectName(name: string) {
   return {
     className: `co-ui-${name}`,
@@ -45,5 +47,11 @@ export function toApiObj(api: Api): ApiObject {
 }
 export function getConfig(props: any, store: any, rootStore?: any): any {
   return { schema: props, store: store, rootStore: rootStore }
+}
+export default {
+  transferProp
+}
+export {
+  transferProp
 }
 

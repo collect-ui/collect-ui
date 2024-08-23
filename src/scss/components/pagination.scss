@@ -1,0 +1,9 @@
+@use '../common/var' as *;
+@use '../mixins/mixins' as *;
+// project(分组名称)
+@include project(pagination){
+  &.ant-pagination-right{
+    justify-content: right;
+  }
+}
+

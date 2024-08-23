@@ -30,6 +30,8 @@
   .layout-content{
     flex: 1;
     overflow: auto;
+    display: flex;
+    flex-direction: column;
   }
   .bottom-tool-bar{
     padding: 6px;

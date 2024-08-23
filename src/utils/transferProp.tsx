@@ -22,14 +22,14 @@ export default function transferProp(props: any, name: string, useApp?: any) {
 
   // 处理变量初始化
 
-  if (initAction && store) {
-    for (let i = 0; i < initAction.length; i++) {
-      let action = initAction[i]
-      if (action.tag !== "ajax") {
-        handlerAction(action, store, useApp)
-      }
-    }
-  }
+  // if (initAction && store) {
+  //   for (let i = 0; i < initAction.length; i++) {
+  //     let action = initAction[i]
+  //     if (action.tag !== "ajax") {
+  //       handlerAction(action, store, useApp)
+  //     }
+  //   }
+  // }
   // 动态处理store和变量
   for (let key in rest) {
     let str = rest[key]

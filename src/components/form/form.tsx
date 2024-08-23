@@ -11,6 +11,8 @@ export default function (props: any) {
     valueRule,
     api,
     action,
+    // 回车提交
+    submitOnEnter,
     // visible,
     submitOnChange, // 字段改变就提交
     ...rest
@@ -31,7 +33,8 @@ export default function (props: any) {
     }
   }, [])
   const onFinish = useCallback(async (values: any) => {
-    if (action) {
+    // 开了submitOnEnter 导致死循环，因为action 里面有个submit
+    if (action && !submitOnEnter) {
       handlerActions(action, store, props.rootStore, useApp)
     }
   }, [])
@@ -55,12 +58,19 @@ export default function (props: any) {
   //     return null
   //   }
   // }
+  const handleKeyDown = useCallback((event) => {
+    if (event.key === 'Enter' && submitOnEnter && action) {
+        handlerActions(action, store, props.rootStore, useApp)
+    }
+  },[]);
   return (
-    <Form
-      form={form}
-      onFinish={onFinish}
-      onValuesChange={onValuesChange}
-      {...transferProp(rest, "form")}
-    ></Form>
+      <div onKeyDown={handleKeyDown} >
+        <Form
+          form={form}
+          onFinish={onFinish}
+          onValuesChange={onValuesChange}
+          {...transferProp(rest, "form")}
+        ></Form>
+      </div>
   )
 }
