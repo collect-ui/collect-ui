@@ -6,9 +6,11 @@ import isArray from "./isArray"
 import isExpression from "./isExpression"
 import convertStringToFunction from "./convertStringToFunction"
 import getVariablesFromExpression from "../utils/getVariablesFromExpression"
+import { getSnapshot } from 'mobx-state-tree';
 import { v4 as uuid } from "uuid"
 const reg_g = /\$\{(.+?)\}/g
 const reg = /\$\{(.+?)\}/
+
 // function getVariablesFromExpression(expression) {
 //   const ast = espree.parse(expression, { ecmaVersion: 2020 })
 //   const variables = new Set()
@@ -59,10 +61,38 @@ export default function (name: string, store: any, targetValue?: any): any {
   // 处理行自定义渲染
   if (targetValue) {
     const expression = expression_name(name)
-    const value = convertStringToFunction(expression, { ...targetValue })
+    // 获取表达式里面有哪些变量
+    let vars = []
+    try {
+      vars = getVariablesFromExpression(expression)
+    } catch (e) {
+      return value
+    }
+    let p = {...targetValue }
+    // 如果target 里面没有这变量，就重store 里面取
+    // {
+    //   "event_id":"${row.event_id}",
+    //   "server_ip":"${selection[0].server_ip}",
+    //   "port":"${selection[0].port}"
+    // }
+    // 比如server_ip 中selection[0] 就是从store 里面取
+    // row.event_id 是行数据，从target 里面取
+    const targetKeys = Object.keys(targetValue)
+    for(let i=0;i<vars.length;i++){
+      const varName = vars[i]
+      // 如果targetValue没有varName 字段，才从store 里面取
+      // 这里体现了优先从targetValue 取，然后从store 里面取
+      if(targetKeys.indexOf(varName)<0){
+        const storeValue = store.getValue(varName)
+        if(storeValue){
+          p[varName] = storeValue
+        }
+      }
+    }
+    const value = convertStringToFunction(expression, p)
     return value
   }
-  const [firstName, secondName] = varNameList(name)
+  const [firstName, secondName,thirdName] = varNameList(name)
   let value = store.getValue(firstName)
   // 如果是单一的数组变量
   if (isArrayVar(firstName)) {
@@ -76,6 +106,11 @@ export default function (name: string, store: any, targetValue?: any): any {
   if (secondName && value) {
     value = value[secondName]
   }
+  // 如果是三级变量
+  if(thirdName && value){
+    value = value[thirdName]
+  }
+
 
   // 如是表单或者数组，必须从store 里面取toJSON
   if (value && typeof value == "object" && value.toJSON) {
