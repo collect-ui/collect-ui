@@ -3,7 +3,7 @@ import transferProp from "../../utils/transferProp";
 import {
     createBrowserRouter,
     RouterProvider,
-    redirect
+    redirect, createHashRouter
 
 } from "react-router-dom"
 import Render from "../render/render";
@@ -23,7 +23,10 @@ function resolvePath(basePath, relativePath) {
             }catch(err){
                 console.error(`load router ${p} error`,err)
             }
+
             return { element:<Render {...dataJson}/>}
+
+
         }
         const newItem = {
             lazy: undefined,
@@ -44,6 +47,7 @@ function resolvePath(basePath, relativePath) {
                     console.error(`load router ${p} error`,err)
                 }
                 return { element:<Render {...dataJson}/>}
+                // return { element:<div>test</div>}}
             }
             //@ts-ignore
             newItem.lazy=lazy
@@ -65,9 +69,16 @@ export default function(props:any){
     const {hash, router,basename,data_home,...rest } = props
     const newProps = transferProp(rest, "router")
     const list = handlerRouter(router,data_home)
-    let  newRouter =createBrowserRouter(list,{
+    let  newRouter =null
+    if(hash){
+        newRouter = createHashRouter(list,{
+            // basename: basename,
+        })
+    }else{
+        newRouter = createBrowserRouter(list,{
             basename: basename,
-    })
+        })
+    }
     // return <div>test</div>
     return <RouterProvider {...newProps} router={newRouter}></RouterProvider>
 }
