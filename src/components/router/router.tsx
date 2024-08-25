@@ -17,8 +17,9 @@ function resolvePath(basePath, relativePath) {
             const p =resolvePath(home,item.data);
             let dataJson=null;
             try{
-                dataJson = await import(p)
-                dataJson= dataJson.default
+                const response = await fetch(p)
+                dataJson = await response.json();
+                // dataJson= dataJson.default
             }catch(err){
                 console.error(`load router ${p} error`,err)
             }
@@ -37,8 +38,8 @@ function resolvePath(basePath, relativePath) {
                 const p =resolvePath(home,item.data);
                 let dataJson=null;
                 try{
-                    dataJson = await import(p)
-                    dataJson= dataJson.default
+                    const response = await fetch(p)
+                    dataJson = await response.json();
                 }catch(err){
                     console.error(`load router ${p} error`,err)
                 }
@@ -61,11 +62,11 @@ function resolvePath(basePath, relativePath) {
 }
 
 export default function(props:any){
-    const { router,basename,data_home,...rest } = props
+    const {hash, router,basename,data_home,...rest } = props
     const newProps = transferProp(rest, "router")
     const list = handlerRouter(router,data_home)
-    const  newRouter = createBrowserRouter(list,{
-        basename: basename,
+    let  newRouter =createBrowserRouter(list,{
+            basename: basename,
     })
     // return <div>test</div>
     return <RouterProvider {...newProps} router={newRouter}></RouterProvider>
