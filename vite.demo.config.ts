@@ -4,6 +4,7 @@ import commonjs from "vite-plugin-commonjs";
 
 export default defineConfig({
     plugins: [react(), commonjs()],
+    base: '/collect-ui/',
     build: {
         outDir: 'docs', // 输出目录
         rollupOptions: {
