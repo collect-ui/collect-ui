@@ -6,7 +6,7 @@
   "module": "src/index.tsx",
   "scripts": {
     "dev": "vite",
-    "demo:build": "vite build --config vite.demo.config.ts && robocopy demo\\data docs\\data /E",
+    "demo:build": "vite build --config vite.demo.config.ts && robocopy demo\\data docs\\demo\\data /E",
     "build": "vite build",
     "publish": "npm publish",
     "test": "echo \"Error: no test specified\" && exit 1"
