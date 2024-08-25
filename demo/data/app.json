@@ -1,6 +1,7 @@
 {
   "tag": "router",
   "data_home": "/demo/data",
+  "basename":"/collect-ui",
   "router": [
     {
        "path": "/",

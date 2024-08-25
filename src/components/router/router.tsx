@@ -61,10 +61,12 @@ function resolvePath(basePath, relativePath) {
 }
 
 export default function(props:any){
-    const { router,data_home,...rest } = props
+    const { router,basename,data_home,...rest } = props
     const newProps = transferProp(rest, "router")
     const list = handlerRouter(router,data_home)
-    const  newRouter = createBrowserRouter(list)
+    const  newRouter = createBrowserRouter(list,{
+        basename: basename,
+    })
     // return <div>test</div>
     return <RouterProvider {...newProps} router={newRouter}></RouterProvider>
 }
