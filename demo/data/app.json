@@ -1,6 +1,6 @@
 {
   "tag": "router",
-  "data_home": "/demo/data",
+  "data_home": "/collect-ui/demo/data",
   "basename":"/collect-ui",
   "router": [
     {
