@@ -1,0 +1,99 @@
+{
+  "tag": "div",
+  "style": {
+    "height": "100%",
+    "overflow": "auto"
+  },
+  "className": "padding10",
+  "children": [
+    {
+      "tag": "h1",
+      "className": "border-bottom",
+      "children":"基于 React 和 Ant Design 的低代码平台"
+    },
+    {
+      "tag": "p",
+      "children": "本项目是一个基于 React 和 Ant Design 的低代码平台，旨在通过配置 JSON 来生成复杂的用户界面和交互逻辑。保留了原始组件的 API 风格，支持通过配置 JSON 来生成目标组件，标签名需要写成 tag，其他属性字段名称保持不变。"
+    },
+    {
+      "tag": "h2",
+      "children": "特点",
+      "className": "border-bottom"
+    },
+    {
+      "tag": "ol",
+      "children": [
+        {
+          "tag": "li",
+          "children":[
+            {
+              "tag": "strong",
+              "children": "保留原始组件风格"
+            },
+            "：通过配置 JSON，保留了原始组件的 API 风格，使得开发者可以轻松地迁移和扩展。"]
+        },
+
+        {
+          "tag": "li",
+          "children":[
+            {
+              "tag": "strong",
+              "children": "支持复杂交互"
+            },
+            "：支持通过配置实现复杂的交互逻辑，如表单提交、数据请求、对话框管理等。"]
+        },
+
+        {
+          "tag": "li",
+          "children":[
+            {
+              "tag": "strong",
+              "children": "易于扩展"
+            },
+            "：通过定义新的 tag，可以轻松扩展新的组件和功能。"]
+        },
+
+        {
+          "tag": "li",
+          "children":[
+            {
+              "tag": "strong",
+              "children": "支持无限层级嵌套"
+            }]
+        }
+      ]
+
+    },
+    {
+      "tag": "h2",
+      "children": "低代码组件：通过 JSON 配置实现动态页面生成",
+      "className": "border-bottom"
+    },
+    {
+      "tag": "p",
+      "children": "传统的页面开发方式通常需要编写大量的原生代码，例如："
+    },
+    {
+      "tag":"coder",
+      "language":"javascript",
+      "children": "<div>\n    <label/>低代码测试</label>\n    <input class=\"ui-input\" placeholder=\"请输入用户名\"/>\n</div>"
+    },
+    {
+      "tag": "p",
+      "children": "而使用低代码组件，可以通过简洁的 JSON 配置实现相同的功能：（ps 由于ant 组件库的限制，原生部分属性会调整，比如class=>className）"
+    },
+    {
+      "tag":"coder",
+      "language":"javascript",
+      "children": "import { Render } from \"collect-ui/src/index\"\nconst config={\n    \"tag\":\"div\",\n    \"children\":[\n        {\n            \"tag\":\"label\",\n            \"children\":\"低代码测试\"\n        },\n        {\n            \"tag\":\"input\",\n            \"className\":\"ui-input\",\n            \"placeholder\":\"请输入用户名\"\n        }\n    ]\n}\nconst App = () => {\n    return <Render {...config}/>\n};"
+    },
+    {
+      "tag": "p",
+      "children": "尽管 JSON 配置看起来可能比原生代码更冗长，但低代码组件的优势在于其灵活性和可维护性。通过后台返回的 JSON 配置，可以轻松实现页面的动态改动和新建，无需深入了解复杂的代码逻辑，从而大大提升了开发效率和灵活性。"
+    },
+    {
+      "tag": "strong",
+      "children": "整个页面只用一个render组件"
+    }
+  ]
+}

@@ -6,6 +6,7 @@
   "module": "src/index.tsx",
   "scripts": {
     "dev": "vite",
+    "demo:build": "vite build --config vite.demo.config.ts",
     "build": "vite build",
     "publish": "npm publish",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "react-syntax-highlighter": "^15.5.0",
     "ag-grid-react": "^32.0.2",
     "ahooks": "^3.8.0",
     "antd": "^5.18.0",

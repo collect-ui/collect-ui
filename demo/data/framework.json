@@ -1,0 +1,191 @@
+{
+  "tag": "app",
+  "children": [
+    {
+      "tag": "layout",
+      "children": [
+        {
+          "tag": "header",
+          "children": [
+            {
+              "tag": "label",
+              "style": {
+                "fontSize": "20px",
+                "fontWeight": "bold",
+                "color": "#fff"
+              },
+              "children": ["collect"]
+            }
+          ],
+          "style": {
+            "color": "#fff",
+            "height": 44,
+            "paddingInline": 48,
+            "lineHeight": "44px",
+            "backgroundColor": "#4096ff",
+            "padding": "0 20px"
+          }
+        },
+        {
+          "tag": "layout",
+          "children": [
+            {
+              "tag": "sider",
+              "width": "220px",
+              "collapsible": true,
+              "collapsedWidth": "40",
+              "children": [
+                {
+                  "tag": "form",
+                  "name": "framework-form",
+                  "children": [
+                    {
+                      "tag": "form-item",
+                      "name": "search",
+                      "style": {
+                        "textAlign": "center",
+                        "margin": "4px 0px 4px 0px"
+                      },
+                      "children": [
+                        {
+                          "tag": "input",
+                          "style": {
+                            "width": "96%"
+                          },
+                          "placeholder": "搜索菜单"
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "form-item",
+                      "name": "menu",
+                      "children": [
+                        {
+                          "tag": "menu",
+                          "mode": "inline",
+                          "defaultOpenKeys": ["home","sub1"],
+                          "items": [
+                            {
+                              "key": "home",
+                              "name": "入门",
+                              "label": "入门",
+                              "children": [
+                                {
+                                  "key": "first",
+                                  "name": "首页",
+                                  "label":"简介",
+                                  "to": "/framework/"
+                                },
+                                {
+                                  "key": "second",
+                                  "name": "安装",
+                                  "label":"安装",
+                                  "to": "/framework/install"
+                                }
+                              ]
+
+                            },
+                            {
+                              "key": "sub1",
+                              "label": "页面组件",
+                              "children": [
+                                {
+                                  "key": "g1",
+                                  "label": "布局组件",
+                                  "type": "group",
+                                  "children": [
+                                    {
+                                      "key": "1",
+                                      "name": "layout-fit",
+                                      "label": "layout-fit布局",
+                                      "to": "/framework/user"
+                                    }
+
+                                  ]
+                                },
+                                {
+                                  "key": "g2",
+                                  "label": "表单组件",
+                                  "type": "group",
+                                  "children": [
+                                    { "key": "3", "label": "form" },
+                                    { "key": "4", "label": "input" }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "key": "sub2",
+                              "label": "数据绑定",
+                              "children": [
+                                {
+                                  "key": "initStore",
+                                  "label": "initStore 绑定数据",
+                                  "to": "/framework/initStore"
+                                },
+                                {
+                                  "key": "init-action",
+                                  "label": "initAction 初始化",
+                                  "to": "/framework/initAction"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "sub3",
+                              "label": "动作",
+                              "children": [
+                                {
+                                  "key": "ajax",
+                                  "label": "ajax 发送请求",
+                                  "to": "/framework/ajax"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "style": {
+                "backgroundColor": "#fafafa"
+              }
+            },
+
+            {
+              "tag": "content",
+              "style": {
+                "display": "flex",
+                "flexDirection": "column"
+              },
+
+              "children": [
+                {
+                  "tag": "router-tab"
+                },
+                {
+                  "tag": "outlet",
+                  "style": {
+                    "flex": 1,
+                    "padding": "8px",
+                    "overflow": "hidden"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "footer",
+          "children": ["footer"],
+          "style": {
+            "padding": "4px 10px",
+            "display": "flex",
+            "alignItems": "center"
+          }
+        }
+      ]
+    }
+  ]
+}
