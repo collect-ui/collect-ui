@@ -1,10 +1,6 @@
 {
   "tag": "div",
-  "style": {
-    "height": "100%",
-    "overflow": "auto"
-  },
-  "className": "padding10",
+  "className": "padding10 h100 overflow-auto",
   "children": [
     {
       "tag": "h1",
@@ -85,7 +81,7 @@
     {
       "tag":"coder",
       "language":"javascript",
-      "children": "import { Render } from \"collect-ui/src/index\"\nconst config={\n    \"tag\":\"div\",\n    \"children\":[\n        {\n            \"tag\":\"label\",\n            \"children\":\"低代码测试\"\n        },\n        {\n            \"tag\":\"input\",\n            \"className\":\"ui-input\",\n            \"placeholder\":\"请输入用户名\"\n        }\n    ]\n}\nconst App = () => {\n    return <Render {...config}/>\n};"
+      "children": "import { Render } from \"collect-ui\"\nconst config={\n    \"tag\":\"div\",\n    \"children\":[\n        {\n            \"tag\":\"label\",\n            \"children\":\"低代码测试\"\n        },\n        {\n            \"tag\":\"input\",\n            \"className\":\"ui-input\",\n            \"placeholder\":\"请输入用户名\"\n        }\n    ]\n}\nconst App = () => {\n    return <Render {...config}/>\n};"
     },
     {
       "tag": "p",

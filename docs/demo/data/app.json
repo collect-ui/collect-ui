@@ -21,6 +21,10 @@
           "data": "framework/install.json"
         },
         {
+          "path": "/framework/layout-fit",
+          "data": "framework/layout-fit.json"
+        },
+        {
           "path": "/framework/user",
           "data": "framework/user.json"
         },

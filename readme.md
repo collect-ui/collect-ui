@@ -28,7 +28,7 @@ const App=()=>{
 ```
 而使用低代码组件，可以通过简洁的 JSON 配置实现相同的功能：
 ```javascript
-import { Render } from "collect-ui/src/index"
+import { Render } from "collect-ui"
 const config={
     "tag":"div",
     "children":[

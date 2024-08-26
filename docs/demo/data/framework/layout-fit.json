@@ -1,0 +1,72 @@
+{
+  "tag": "div",
+  "className": "padding10 h100 overflow-auto",
+  "children": [
+    {
+      "tag": "h1",
+      "className": "border-bottom",
+      "children":"示例"
+    },
+    {
+      "tag": "h2",
+      "children": "页面布局组件，将页面分成几个区域，每个区域都是可选"
+    },
+    {
+      "tag": "ol",
+      "children": [
+        {
+          "tag": "li",
+          "children":"title-页面标题"
+        },
+        {
+          "tag": "li",
+          "children": "topRight-顶部右侧工具栏"
+        },
+        {
+          "tag": "li",
+          "children": "searchToolBar-搜索区域"
+        },
+        {
+          "tag": "li",
+          "children": "children-内容"
+        },
+        {
+          "tag": "li",
+          "children": "bottomToolBar-底部区域"
+        }
+      ]
+    },
+    {
+      "tag":"row",
+      "children": [
+        {
+          "tag":"col",
+          "span": 12,
+          "style": {
+            "height": "400px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "layout-fit",
+              "className": "border",
+              "title": "页面标题",
+              "topRight": ["顶部右侧工具栏"],
+              "searchToolBar": ["搜索区域"],
+              "searchBarRight": ["搜索右侧区域"],
+              "children":["内容区域"],
+              "bottomToolBar":["底部区域"]
+            }
+
+
+          ]
+        },
+        {
+          "tag":"col",
+          "span": 12
+        }
+
+      ]
+    }
+  ]
+}

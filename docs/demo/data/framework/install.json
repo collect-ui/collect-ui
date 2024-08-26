@@ -1,4 +1,45 @@
 {
   "tag": "div",
-  "children": ["安装"]
+  "className": "padding10 h100 overflow-auto",
+  "children": [
+    {
+      "tag": "h1",
+      "className": "border-bottom",
+      "children":"npm install 安装"
+    },
+    {
+      "tag": "h2",
+      "children": "版本依赖"
+    },
+    {
+      "tag": "ol",
+      "children": [
+        {
+          "tag": "li",
+          "children": "react>=18.3.1"
+        },
+        {
+          "tag": "li",
+          "children": "react-router-dom>=6.24.0"
+        },
+        {
+          "tag": "li",
+          "children": "antd>=5.18.0"
+        },
+        {
+          "tag": "li",
+          "children": "ag-grid-react>=32.0.2"
+        },
+        {
+          "tag": "li",
+          "children": "..."
+        }
+      ]
+    },
+    {
+      "tag":"coder",
+      "language":"shell",
+      "children": "npm i collect-ui"
+    }
+  ]
 }

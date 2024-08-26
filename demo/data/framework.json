@@ -98,7 +98,7 @@
                                       "key": "1",
                                       "name": "layout-fit",
                                       "label": "layout-fit布局",
-                                      "to": "/framework/user"
+                                      "to": "/framework/layout-fit"
                                     }
 
                                   ]
