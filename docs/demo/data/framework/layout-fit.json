@@ -1,6 +1,11 @@
 {
-  "tag": "div",
+  "tag": "layout-fit",
   "className": "padding10 h100 overflow-auto",
+  "initStore": {
+    "example_list": [
+      {}
+    ]
+  },
   "children": [
     {
       "tag": "h1",
@@ -39,31 +44,204 @@
     {
       "tag":"row",
       "children": [
+
         {
           "tag":"col",
-          "span": 12,
+          "span": 8,
           "style": {
-            "height": "400px"
+            "height": "500px"
           },
           "className": "padding10",
           "children": [
             {
-              "tag": "layout-fit",
-              "className": "border",
-              "title": "页面标题",
-              "topRight": ["顶部右侧工具栏"],
-              "searchToolBar": ["搜索区域"],
-              "searchBarRight": ["搜索右侧区域"],
-              "children":["内容区域"],
-              "bottomToolBar":["底部区域"]
+              "tag": "label",
+              "className": "bold",
+              "children": "基础显示"
+            },
+            {
+              "tag": "coder-preview",
+              "coder":{
+                "tag": "layout-fit",
+                "className": "border",
+                "title": "页面标题",
+                "topRight": ["顶部右侧工具栏"],
+                "searchToolBar": ["搜索区域"],
+                "searchBarRight": ["搜索右侧区域"],
+                "children":["内容区域"],
+                "bottomToolBar":["底部区域"]
+              }
             }
-
-
           ]
         },
         {
           "tag":"col",
-          "span": 12
+          "span": 8,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "label",
+              "className": "bold",
+              "children": "增删改查"
+            },
+            {
+              "tag": "coder-preview",
+              "coder":{
+                "tag": "layout-fit",
+                "className": "border",
+                "title": "用户管理",
+                "initStore": {
+                  "selection": [],
+                  "dataList": [
+                    {
+                      "username": "zz",
+                      "nick":"张三"
+                    },
+                    {
+                      "username": "ls",
+                      "nick":"李四"
+                    }
+                  ],
+                  "searchForm": {
+                    "search":"",
+                    "page": 1,
+                    "size": 10
+                  },
+                  "count": 101
+                 },
+                "topRight": [
+                  {
+                    "tag": "button",
+                    "type": "primary",
+                    "icon": "FaPlus",
+                    "children": "新增"
+                  },
+                  {
+                    "tag": "button",
+                    "children": "编辑",
+                    "disabled": "${selection.length !=1 }",
+                    "icon": "FaPencilAlt"
+                  },
+                  {
+                    "tag": "button",
+                    "disabled": "${selection.length <=0 }",
+                    "type": "primary",
+                    "confirm": {
+                      "title": "确认删除吗？",
+                      "description":
+                      "${'确认删除【'+selection.map(item=>item.nick+'（'+item.username+'）').join(',')+'】'+selection.length+'记录吗？'}"
+                    },
+                    "danger": true,
+                    "children": "删除",
+                    "icon": "FaTrashAlt"
+                  }
+                ],
+                "searchToolBar": [
+                  {
+                    "tag": "form",
+                    "name": "user-form",
+                    "initialValues": "${searchForm}",
+                    "labelCol": { "span": 4 },
+                    "wrapperCol": { "span": 19 },
+                    "submitOnChange": true,
+                    "children": [
+                      {
+                        "tag": "row",
+                        "children": [
+                          {
+                            "tag": "col",
+                            "span": 10,
+                            "children": [
+                              {
+                                "tag": "form-item",
+                                "name": "search",
+                                "label": "搜索",
+
+                                "children": [
+                                  {
+                                    "tag": "input",
+                                    "placeholder": "账号/用户名",
+                                    "allowClear": true
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+
+
+                          {
+                            "tag": "col",
+                            "span": 10,
+                            "children": [
+                              {
+                                "tag": "button",
+
+                                "type": "primary",
+                                "children": "搜索",
+                                "icon": "FaSearch"
+                              },
+                              {
+                                "tag": "button",
+                                "action": [
+                                  {
+                                    "tag": "reset-form",
+                                    "formName": "user-form"
+                                  }
+
+                                ],
+                                "icon": "FaUndo",
+                                "children": "重置"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+
+                "children":[
+                  {
+                    "tag": "table",
+                    "selection": "${selection}",
+                    "rowSelection": "multiple",
+                    "rowData": "${dataList}",
+                    "columnDefs": [
+                      {
+                        "headerName": "#",
+                        "width": 60,
+                        "valueGetter": "node.rowIndex + 1",
+                        "sortable": false,
+                        "pinned": "left"
+                      },
+                      {
+                        "pinned": "left",
+                        "checkboxSelection": true,
+                        "headerCheckboxSelection": true,
+                        "headerName": "账号",
+                        "field": "username"
+                      },
+                      {
+                        "headerName": "昵称",
+                        "field": "nick"
+                      }
+                    ]
+                  }
+                ],
+                "bottomToolBar":[{
+                  "tag": "pagination",
+                  "showSizeChanger": true,
+                  "align": "right",
+                  "pageSize": "${searchForm.size}",
+                  "current": "${searchForm.page}",
+                  "total": "${count}",
+                  "showTotal": true
+                }]
+              }
+            }
+          ]
         }
 
       ]

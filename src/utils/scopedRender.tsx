@@ -4,6 +4,6 @@ import { getConfig } from "./index"
 
 const ScopedRender = memo((props: any) => {
   const { store, rootStore, ...rest } = props
-  return <RenderChild {...getConfig(rest, store, rootStore)} />
+  return <RenderChild {...getConfig(rest, store, rootStore,rest.target)} />
 })
 export default ScopedRender

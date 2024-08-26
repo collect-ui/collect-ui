@@ -123,6 +123,8 @@ export default function renderChild(props: any) {
   let initAction = schema["initAction"]
   let localStore = null
   let children = schema["children"]
+  // _target 是一个特殊属性，用于行数据显示，比如listview循环一个列表，_target 是列表的子项item
+  let target = schema["_target"]||props["_target"]
 
   // 获取store,如果组件有store,就用组件的，否则用上层传递的
   // todo 这里看如何改造成层级取，可能也不需要层级取？，将要打数据层级传递还是？
@@ -145,14 +147,15 @@ export default function renderChild(props: any) {
   //将子模块渲染处理放在这里，处理layout-fit 多次渲染的问题
   if (hasInitPlugin(tag)) {
     const initPlugin = getInitPlugin(tag)
-    initPlugin(rest, localStore, rootStore)
+    initPlugin(rest, localStore, rootStore,target)
   }
   // 如果没有类型，就是一个叶子元素
   // 获取子节点
   // 忽略render children 用于layout-fit 自定义render children
   // 主要用于插入useForm ,以便全局能拿到form
   if (children && !isIgnoreRenderChildrenNode(tag) && Array.isArray(children)) {
-    children = renderChildren(children, localStore, rootStore)
+    // 传递target 属性
+    children = renderChildren(children, localStore, rootStore,target)
   }
 
   if (hasRegister(tag)) {
@@ -167,7 +170,7 @@ export default function renderChild(props: any) {
   // // 处理显示隐藏
 
   return (
-    <Tag key={key} store={localStore} rootStore={rootStore} {...rest}>
+    <Tag key={key} store={localStore} rootStore={rootStore} {...rest} _target={target}>
       {children}
     </Tag>
   )

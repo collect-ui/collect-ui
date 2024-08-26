@@ -1,7 +1,8 @@
 
 import { Api, ApiObject, ApiString, PlainObject } from "../types/api"
 import transferProp from "./transferProp";
-
+import ScopedRender from "./scopedRender";
+import clone from "./clone";
 export function projectName(name: string) {
   return {
     className: `co-ui-${name}`,
@@ -45,13 +46,17 @@ export function toApiObj(api: Api): ApiObject {
   }
   return api as ApiObject
 }
-export function getConfig(props: any, store: any, rootStore?: any): any {
-  return { schema: props, store: store, rootStore: rootStore }
+export function getConfig(props: any, store: any, rootStore?: any,_target?:any): any {
+  return { schema: props, store: store, rootStore: rootStore,_target: _target }
 }
 export default {
-  transferProp
+  transferProp,
+  ScopedRender,
+  clone
 }
 export {
-  transferProp
+  transferProp,
+  ScopedRender,
+  clone
 }
 

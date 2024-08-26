@@ -1,17 +1,17 @@
 import renderChildren from "../components/render/render-children"
 import handlerChildrenForm from "../utils/handlerChildrenForm"
-export default function init(props: any, store: any, rootStore: any) {
+export default function init(props: any, store: any, rootStore: any,target?: any) {
   console.log("layout-init", props)
   // 将子模块渲染处理放在这里，处理layout-fit组件中多次渲染的问题
   // 这里只会处理一次
   // 处理子节点的表单引用，主要将form的引用存起来
   if (props.children) {
     handlerChildrenForm(props.children, store)
-    props.childrenRender = renderChildren(props.children, store, rootStore)
+    props.childrenRender = renderChildren(props.children, store, rootStore,target)
   }
   // 设置顶部右侧
   if (props.topRight) {
-    props.topRightRender = renderChildren(props.topRight, store, rootStore)
+    props.topRightRender = renderChildren(props.topRight, store, rootStore,target)
   }
   // 设置底部
   if (props.bottomToolBar) {
@@ -19,6 +19,7 @@ export default function init(props: any, store: any, rootStore: any) {
       props.bottomToolBar,
       store,
       rootStore,
+        target
     )
   }
   if (props.searchToolBar) {
@@ -28,6 +29,7 @@ export default function init(props: any, store: any, rootStore: any) {
       props.searchToolBar,
       store,
       rootStore,
+        target
     )
   }
   if (props.searchBarRight) {
@@ -35,6 +37,7 @@ export default function init(props: any, store: any, rootStore: any) {
       props.searchBarRight,
       store,
       rootStore,
+        target
     )
   }
 }
