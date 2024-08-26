@@ -48,6 +48,7 @@ export function KeepAlive({ children, exclude, include, maxLen = 5,...rest }: Pr
     if (components.current.length >= maxLen) {
       components.current = components.current.slice(1)
     }
+    const beforeSize = components.current.length
     components.current = filter(({ name }) => {
       if (exclude && exclude.includes(name)) {
         return false
@@ -60,9 +61,15 @@ export function KeepAlive({ children, exclude, include, maxLen = 5,...rest }: Pr
       }
       return true
     }, components.current)
+    if(beforeSize!=components.current.length){
+      setTimeout(()=>{
+        update()
+      },100)
+    }
     const component = components.current.find((res) =>
       equals(res.name, pathname),
     )
+
     if (isNil(component)) {
       components.current = [
         ...components.current,

@@ -47,7 +47,6 @@ function resolvePath(basePath, relativePath) {
                     console.error(`load router ${p} error`,err)
                 }
                 return { element:<Render {...dataJson}/>}
-                // return { element:<div>test</div>}}
             }
             //@ts-ignore
             newItem.lazy=lazy

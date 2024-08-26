@@ -72,7 +72,7 @@
                               "children": [
                                 {
                                   "key": "first",
-                                  "name": "首页",
+                                  "name": "简介",
                                   "label":"简介",
                                   "to": "/framework/"
                                 },

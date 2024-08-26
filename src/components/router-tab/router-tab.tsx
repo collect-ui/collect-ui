@@ -1,13 +1,16 @@
-import { Tabs } from "antd"
+import {App, Tabs} from "antd"
 import transferProp from "../../utils/transferProp"
-import { useState, useEffect, useCallback } from "react"
+import React, { useState, useEffect, useCallback } from "react"
 import { useNavigate } from "react-router-dom"
+type TargetKey = React.MouseEvent | React.KeyboardEvent | string;
+
 export default function (props: any) {
   const { rootStore } = props
   const newProps = transferProp(props, "router-tab")
   const [activeKey, setActiveKey] = useState("")
   const [items, setItems] = useState([])
   const navigate = useNavigate()
+  const useApp = App.useApp()
   // 路由和标签改变时，生成tab
   useEffect(() => {
     let l = []
@@ -44,6 +47,22 @@ export default function (props: any) {
       rootStore.addRouterTab(routerTab)
     }
   }
+  const onEdit=useCallback((targetKey: TargetKey, action: 'add' | 'remove') => {
+    if(action==='remove'){
+
+      if(items.length>1){
+        const newCurrent = rootStore.removeRouterTab(targetKey)
+        if(newCurrent){
+          // 如果新路由存在，跳转到新路由
+          navigate(newCurrent.path, {})
+        }
+        setItems(items.filter(item =>item.key!=targetKey))
+      }else{
+        useApp?.message?.error("只剩一个标签不能删除！")
+      }
+
+    }
+  },[items])
   return (
     <>
       <Tabs
@@ -52,6 +71,7 @@ export default function (props: any) {
         size="small"
         {...newProps}
         hideAdd
+        onEdit={onEdit}
         onTabClick={onTabClick}
         items={items}
       />

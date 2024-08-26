@@ -2,6 +2,7 @@
 本项目是一个基于 React 和 Ant Design 的 **低代码平台** ，旨在通过配置 JSON 来生成复杂的用户界面和交互逻辑。保留了原始组件的 API 风格，支持通过配置 JSON 来生成目标组件，标签名需要写成 tag，其他属性字段名称保持不变。
 ## 文档地址
  [在线文档地址](https://selfdown.github.io/collect-ui/)
+
 ## 特点
   1. **保留原始组件风格** ：通过配置 JSON，保留了原始组件的 API 风格，使得开发者可以轻松地迁移和扩展。
   2. **支持复杂交互** ：支持通过配置实现复杂的交互逻辑，如表单提交、数据请求、对话框管理等。
@@ -13,7 +14,7 @@
 ```shell
 npm i collect-ui
 ```
-## 低代码组件：通过 JSON 配置实现动态页面生成
+# 低代码组件：通过 JSON 配置实现动态页面生成
 传统的页面开发方式通常需要编写大量的原生代码，例如：
 ```html
 const App=()=>{
@@ -149,8 +150,29 @@ export default CoderComponent;
 }
 ```
 通过以上步骤，您已经成功地在项目中自定义了一个代码高亮组件，并将其集成到应用中
+## 静态文件部署文档地址
+你可以通过以下步骤在本地部署包含文档内容的静态网站，并确保根路由以 collect-ui 开头：
+1. **创建目录**：在你的Nginx根目录创建一个名为 docs 的目录，然后就collect-ui目录。
+2. **拷贝内容**：将你的 docs 文件夹内容拷贝到 collect-ui 目录中。
+3. **配置Web服务器**：使用你选择的Web服务器（如Nginx）来设置你的静态网站。确保你的Web服务器配置指向 collect-ui 目录，并且根路由以 collect-ui 开头。
 
-# 用户管理低代码示例
+(ps带有collect-ui,是在app.json里面配置的，以及vite.demo.config.ts配置打包路径，为适配github的项目路由)
+### 修改后的Nginx配置
+以下是修改后的Nginx配置，监听8888端口，并且根路由指向 collect-ui 目录：
+```nginx
+server {
+    listen 8888;
+    server_name _;
+    location / {
+        root docs;
+        try_files $uri $uri/ /index.html;
+    }
+}
+```
+可以在在nginx目录下创建collect-ui
+然后 http://127.0.0.1:8888/collect-ui
+
+## 用户管理低代码示例
 在 demo 目录下的 App.tsx 文件中，我们实现了一个用户管理的低代码示例。该示例展示了如何通过 JSON 配置与后端（使用 Go 语言编写的 collect 低代码后台）进行对接，实现用户的增删改查功能。为了简化演示，我们预先造了一些数据。
 ![image](https://github.com/user-attachments/assets/b2cee440-b930-45d1-bc7e-a12b03684379)
 
