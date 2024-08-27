@@ -38,7 +38,7 @@ export default function(props){
                         className:"h100",
                         language:"javascript",
                         transfer:false,
-                        children: JSON.stringify(coder, null, "  ")
+                        children: JSON.stringify(coder, null, "\t")
                     }
                 ]
             }

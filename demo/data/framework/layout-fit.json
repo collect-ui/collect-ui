@@ -1,45 +1,215 @@
 {
   "tag": "layout-fit",
   "className": "padding10 h100 overflow-auto",
+  "initStore": {
+    "apiList": [
+      {
+        "code": "tag",
+        "name": "layout-fit",
+        "type": "string",
+        "description": "页面级布局标签"
+      },
+      {
+        "code": "initStore",
+        "name": "初始化store",
+        "type": "dict",
+        "description": "通过定义和绑定数据。定义 dataList: [] 作为数据源，并通过模板字符串 rowData: '${dataList}' 将该数组绑定至表格的行数据属性，以此实现表格内容的动态更新与用户交互。"
+      },
+      {
+        "code": "initAction",
+        "name": "初始化动作",
+        "type": "array[action]",
+        "description": "页面初始化时。通过请求更新全局状态并创建可复用的分组动作，以模块化方式高效管理数据获取与分组逻辑。"
+      },
+      {
+        "code": "title",
+        "name": "页面标题",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "code": "topRight",
+        "name": "右侧工具栏",
+        "type": "array[configNode]",
+        "description": "页面右侧工具栏，一般放新增、修改、删除"
+      },
+      {
+        "code": "searchToolBar",
+        "name": "搜索栏",
+        "type": "array[configNode]",
+        "description": "页面顶部搜索栏，一般放表单"
+      },
+      {
+        "code": "searchBarRight",
+        "name": "搜索栏右侧",
+        "type": "array[configNode]",
+        "description": "页面顶部搜索栏右侧，一般固定放一下搜索，操作栏等"
+      },
+      {
+        "code": "children",
+        "name": "主体内容区域",
+        "type": "array[configNode]",
+        "description": ""
+      },
+      {
+        "code": "bottomToolBar",
+        "name": "底部区域",
+        "type": "array[configNode]",
+        "description": "一般放分页"
+      }
+
+    ]
+  },
   "children": [
     {
       "tag": "h1",
       "className": "border-bottom",
-      "children":"示例"
+      "children":"layout-fit示例"
     },
     {
-      "tag": "h2",
-      "children": "页面布局组件，将页面分成几个区域，每个区域都是可选"
+      "tag": "label",
+      "className":"padding-left10 padding-bottom10",
+      "children": "设计一个灵活的页面布局组件，通过划分多个可配置区域，使每个区域均可根据需求选择性展示。layout-fit 组件在页面初始化时，通过定义和绑定数据，实现基础页面布局的动态展示与交互。"
     },
     {
-      "tag": "ol",
+      "tag": "row",
       "children": [
         {
-          "tag": "li",
-          "children":"title-页面标题"
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height":"400px",
+            "overflow": "auto"
+          },
+          "children": [
+            {
+              "tag": "h3",
+              "children":"代码配置示例",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "coder",
+              "language": "json",
+              "value": {
+                "tag": "layout-fit",
+                "title": "页面标题",
+                "topRight": ["顶部右侧工具栏"],
+                "searchToolBar": ["搜索区域"],
+                "searchBarRight": ["搜索右侧区域"],
+                "children":["内容区域"],
+                "bottomToolBar":["底部区域"]
+              }
+            }
+          ]
         },
         {
-          "tag": "li",
-          "children": "topRight-顶部右侧工具栏"
-        },
+          "tag": "col",
+          "span": 12,
+          "children":[
+            {
+              "tag": "h3",
+              "children":"配置简述",
+              "className": "border-bottom"
+            },
+            {
+            "tag": "ol",
+            "children": [
+              {
+                "tag": "li",
+                "children":"title-页面标题"
+              },
+              {
+                "tag": "li",
+                "children": "topRight-顶部右侧工具栏"
+              },
+              {
+                "tag": "li",
+                "children": "searchToolBar-搜索区域"
+              },
+              {
+                "tag": "li",
+                "children": "searchBarRight-搜索右侧区域"
+              },
+              {
+                "tag": "li",
+                "children": "children-内容"
+              },
+              {
+                "tag": "li",
+                "children": "bottomToolBar-底部区域"
+              }
+            ]
+          }
+          ]
+        }
+      ]
+    },
+
+    {
+      "tag":"h3",
+      "className": "border-bottom",
+      "children": "API（注意：configNode表示低代码配置，action表示动作配置）"
+    },
+    {
+      "tag": "row",
+      "children": [
         {
-          "tag": "li",
-          "children": "searchToolBar-搜索区域"
-        },
-        {
-          "tag": "li",
-          "children": "children-内容"
-        },
-        {
-          "tag": "li",
-          "children": "bottomToolBar-底部区域"
+          "tag": "layout-fit",
+          "style": {
+            "height": "350px",
+            "width": "100%"
+          },
+          "children": [
+            {
+              "tag": "table",
+              "rowData": "${apiList}",
+              "tooltipShowDelay": 0,
+              "columnDefs": [
+                {
+                  "headerName": "#",
+                  "width": 60,
+                  "suppressSizeToFit": true,
+                  "valueGetter": "node.rowIndex + 1",
+                  "sortable": false,
+                  "pinned": "left"
+                },
+                {
+                  "headerName": "字段",
+                  "field": "code",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "名称",
+                  "field": "name",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "类型",
+                  "field": "type",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "描述",
+                  "field": "description",
+                  "tooltipField": "description"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
     {
+      "tag":"h3",
+      "className": "border-bottom",
+      "children": "展示示例"
+    },
+    {
       "tag":"row",
       "children": [
-
         {
           "tag":"col",
           "span": 8,
@@ -70,7 +240,7 @@
         },
         {
           "tag":"col",
-          "span": 8,
+          "span": 16,
           "style": {
             "height": "500px"
           },
@@ -207,6 +377,7 @@
                       {
                         "headerName": "#",
                         "width": 60,
+                        "suppressSizeToFit": true,
                         "valueGetter": "node.rowIndex + 1",
                         "sortable": false,
                         "pinned": "left"
@@ -238,8 +409,9 @@
             }
           ]
         }
-
       ]
     }
+
+
   ]
 }

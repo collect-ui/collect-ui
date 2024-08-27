@@ -32,6 +32,11 @@
               "menu_code": "1",
               "menu_name": "layout-fit布局",
               "url": "/framework/layout-fit"
+            },
+            {
+              "menu_code": "layout",
+              "menu_name": "layout布局",
+              "url": "/framework/layout"
             }
           ]
         },
