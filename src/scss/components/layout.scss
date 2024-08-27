@@ -3,6 +3,9 @@
 // project(分组名称)
 @include project(layout){
   height: 100%;
+  &.ant-layout [class^="ant-layout"]{
+    position: relative;
+  }
 
 }
 

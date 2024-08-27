@@ -63,6 +63,7 @@
                         {
                           "tag": "menu",
                           "mode": "inline",
+                          "changeRouter": true,
                           "rule": {
                             "key_field": "menu_code",
                             "label_field": "menu_name",

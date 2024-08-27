@@ -77,7 +77,6 @@
                   "tag": "li",
                   "children": "请看ant 的layout 文档"
                 }
-
               ]
             }
           ]
@@ -95,7 +94,7 @@
         {
           "tag": "layout-fit",
           "style": {
-            "height": "350px",
+            "height": "200px",
             "width": "100%"
           },
           "children": [
@@ -158,11 +157,6 @@
           "className": "padding10",
           "children": [
             {
-              "tag": "label",
-              "className": "bold",
-              "children": "基础显示"
-            },
-            {
               "tag": "coder-preview",
               "coder": {
                 "tag": "layout",
@@ -213,11 +207,6 @@
           "className": "padding10",
           "children": [
             {
-              "tag": "label",
-              "className": "bold",
-              "children": "增删改查"
-            },
-            {
               "tag": "coder-preview",
               "coder": {
                 "tag": "layout",
@@ -239,9 +228,9 @@
                     "children": [
                       {
                         "tag": "sider",
-                        "width":"25%",
+                        "width": "25%",
                         "children": "Sider",
-                        "style":  {
+                        "style": {
                           "textAlign": "center",
                           "lineHeight": "120px",
                           "color": "#fff",
@@ -259,16 +248,428 @@
                         },
                         "children": "Content"
                       }
-
                     ]
                   },
-
                   {
                     "tag": "footer",
                     "style": {
                       "textAlign": "center",
                       "color": "#fff",
                       "backgroundColor": "#4096ff"
+                    },
+                    "children": "Footer"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "coder-preview",
+              "coder": {
+                "tag": "layout",
+                "children": [
+                  {
+                    "tag": "header",
+                    "children": "Header",
+                    "style": {
+                      "textAlign": "center",
+                      "color": "#fff",
+                      "height": 64,
+                      "paddingInline": 48,
+                      "lineHeight": "64px",
+                      "backgroundColor": "#4096ff"
+                    }
+                  },
+                  {
+                    "tag": "layout",
+                    "children": [
+                      {
+                        "tag": "content",
+                        "style": {
+                          "textAlign": "center",
+                          "minHeight": 120,
+                          "lineHeight": "120px",
+                          "color": "#fff",
+                          "backgroundColor": "#0958d9"
+                        },
+                        "children": "Content"
+                      },
+                      {
+                        "tag": "sider",
+                        "width": "25%",
+                        "children": "Sider",
+                        "style": {
+                          "textAlign": "center",
+                          "lineHeight": "120px",
+                          "color": "#fff",
+                          "backgroundColor": "#1677ff"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "footer",
+                    "style": {
+                      "textAlign": "center",
+                      "color": "#fff",
+                      "backgroundColor": "#4096ff"
+                    },
+                    "children": "Footer"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "coder-preview",
+              "coder": {
+                "tag": "layout",
+                "children": [
+                  {
+                    "tag": "sider",
+                    "width": "25%",
+                    "children": "Sider",
+                    "style": {
+                      "textAlign": "center",
+                      "lineHeight": "120px",
+                      "color": "#fff",
+                      "backgroundColor": "#1677ff"
+                    }
+                  },
+                  {
+                    "tag": "layout",
+                    "children": [
+                      {
+                        "tag": "header",
+                        "children": "Header",
+                        "style": {
+                          "textAlign": "center",
+                          "color": "#fff",
+                          "height": 64,
+                          "paddingInline": 48,
+                          "lineHeight": "64px",
+                          "backgroundColor": "#4096ff"
+                        }
+                      },
+                      {
+                        "tag": "content",
+                        "style": {
+                          "textAlign": "center",
+                          "minHeight": 120,
+                          "lineHeight": "120px",
+                          "color": "#fff",
+                          "backgroundColor": "#0958d9"
+                        },
+                        "children": "Content"
+                      },
+                      {
+                        "tag": "footer",
+                        "style": {
+                          "textAlign": "center",
+                          "color": "#fff",
+                          "backgroundColor": "#4096ff"
+                        },
+                        "children": "Footer"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "coder-preview",
+              "coder": {
+                "tag": "layout",
+                "children": [
+                  {
+                    "tag": "header",
+                    "style": {
+                      "display": "flex",
+                      "alignItems": "center"
+                    },
+                    "children": [
+                      {
+                        "tag": "div",
+                        "style":  {
+                          "width": "120px",
+                          "minWidth": "120px",
+                          "height": "32px",
+                          "background": "rgba(255, 255, 255, .2)",
+                          "borderRadius": "6px",
+                          "marginInlineEnd": "24px"
+                        }
+                      },
+                      {
+                        "tag": "menu",
+                        "theme": "dark",
+                        "mode": "horizontal",
+                        "defaultSelectedKeys": [
+                          "2"
+                        ],
+                        "rule": {
+                          "key_field": "id",
+                          "label_field":"name"
+                        },
+                        "items": [
+                          {
+                            "id": "1",
+                            "name": "nav 1"
+                          },
+                          {
+                            "id": "2",
+                            "name": "nav 2"
+                          },
+                          {
+                            "id": "3",
+                            "name": "nav 2"
+                          }
+                        ],
+                        "style": {
+                          "flex": 1,
+                          "minWidth": 0
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "content",
+                    "style": {
+                      "padding": "0 48px"
+                    },
+                    "children": [
+                      {
+                        "tag": "breadcrumb",
+                        "style": { "margin": "16px 0" },
+                        "children": [
+                          {
+                            "tag": "breadcrumb-item",
+                            "children": "Home"
+                          },
+                          {
+                            "tag": "breadcrumb-item",
+                            "children": "List"
+                          },
+                          {
+                            "tag": "breadcrumb-item",
+                            "children": "App"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "div",
+                        "style": {
+                          "background": "#fff",
+                          "minHeight": 280,
+                          "padding": 24,
+                          "borderRadius":8
+                        },
+                        "children": "Content"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "footer",
+                    "style": {
+                      "textAlign": "center"
+                    },
+                    "children": "Footer"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "coder-preview",
+              "coder": {
+                "tag": "layout",
+                "children": [
+                  {
+                    "tag": "header",
+                    "style": {
+                      "display": "flex",
+                      "alignItems": "center"
+                    },
+                    "children": [
+                      {
+                        "tag": "div",
+                        "style":  {
+                          "width": "120px",
+                          "minWidth": "120px",
+                          "height": "32px",
+                          "background": "rgba(255, 255, 255, .2)",
+                          "borderRadius": "6px",
+                          "marginInlineEnd": "24px"
+                        }
+                      },
+                      {
+                        "tag": "menu",
+                        "theme": "dark",
+                        "mode": "horizontal",
+                        "defaultSelectedKeys": [
+                          "2"
+                        ],
+                        "rule": {
+                          "key_field": "id",
+                          "label_field":"name"
+                        },
+                        "items": [
+                          {
+                            "id": "1",
+                            "name": "nav 1"
+                          },
+                          {
+                            "id": "2",
+                            "name": "nav 2"
+                          },
+                          {
+                            "id": "3",
+                            "name": "nav 2"
+                          }
+                        ],
+                        "style": {
+                          "flex": 1,
+                          "minWidth": 0
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "content",
+                    "style": {
+                      "padding": "0 48px"
+                    },
+                    "children": [
+                      {
+                        "tag": "breadcrumb",
+                        "style": { "margin": "16px 0" },
+                        "children": [
+                          {
+                            "tag": "breadcrumb-item",
+                            "children": "Home"
+                          },
+                          {
+                            "tag": "breadcrumb-item",
+                            "children": "List"
+                          },
+                          {
+                            "tag": "breadcrumb-item",
+                            "children": "App"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "layout",
+                        "style": {
+                          "background": "#fff",
+                          "borderRadius": "8px",
+                          "padding": "24px 0"
+
+                        },
+                        "children": [
+                          {
+                            "tag": "sider",
+                            "width":200,
+                            "style": {
+                              "background": "#fff"
+                            },
+                            "children": [
+                              {
+                                "tag": "menu",
+                                "mode":"inline",
+                                "rule": {
+                                  "label_field": "label",
+                                  "key_field": "key",
+                                  "icon_field": "icon"
+                                },
+                                "items": [
+                                  {
+                                    "label": "sub nav1",
+                                    "icon": "UserOutlined",
+                                    "key": "1",
+                                    "children": [
+                                      {"key":"1-1","label":"option-1"},
+                                      {"key":"1-2","label":"option-2"}
+
+                                    ]
+                                  },
+                                  {
+                                    "label": "sub nav2",
+                                    "icon":"LaptopOutlined",
+                                    "key": "2",
+                                    "children": [
+                                      {"key":"2-1","label":"option-3"},
+                                      {"key":"2-2","label":"option-4"}
+
+                                    ]
+                                  },
+                                  {
+                                    "icon": "NotificationOutlined",
+                                    "label": "sub nav3",
+                                    "key": "3"
+                                  }
+                                ],
+                                "defaultSelectedKeys":[
+                                  "1-1"
+                                ],
+                                 "defaultOpenKeys":[
+                                   "1"
+                                 ],
+                                 "style":{ "height": "100%" }
+                              }
+                            ]
+                          },
+                          {
+                            "tag": "content",
+                            "style": {
+                              "padding": "0 24px"
+                            },
+                            "children": "Content"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "footer",
+                    "style": {
+                      "textAlign": "center"
                     },
                     "children": "Footer"
                   }
