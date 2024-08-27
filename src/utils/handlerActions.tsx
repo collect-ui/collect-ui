@@ -15,9 +15,15 @@ export default async function handlerActions(
   rootStore: any,
   useApp: App.useApp,
   target?: any,
+  init?:boolean
 ) {
   for (let i = 0; i < actions.length; i++) {
-    let { enable, useStore,fail_action, ...rest } = actions[i]
+    let { enable, useStore,fail_action,before_render, ...rest } = actions[i]
+    // 初始化一次，启动
+    if(before_render && !init){
+      continue
+    }
+    // 未启用
     if (enable) {
       const enableValue = varValue(enable, store, target)
       if (!enableValue) {

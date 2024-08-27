@@ -6,28 +6,13 @@ import {
     redirect, createHashRouter
 
 } from "react-router-dom"
-import Render from "../render/render";
+import ScopedRender from "../../utils/scopedRender";
 function resolvePath(basePath, relativePath) {
     return basePath+"/"+relativePath;
 }
- function handlerRouter(router:any,home:string): any {
+ function handlerRouter(router:any,home:string,store:any,rootStore:any): any {
     const newList = []
     for (const item of router) {
-        const lazy = async () => {
-            const p =resolvePath(home,item.data);
-            let dataJson=null;
-            try{
-                const response = await fetch(p)
-                dataJson = await response.json();
-                // dataJson= dataJson.default
-            }catch(err){
-                console.error(`load router ${p} error`,err)
-            }
-
-            return { element:<Render {...dataJson}/>}
-
-
-        }
         const newItem = {
             lazy: undefined,
             loader:undefined,
@@ -46,7 +31,7 @@ function resolvePath(basePath, relativePath) {
                 }catch(err){
                     console.error(`load router ${p} error`,err)
                 }
-                return { element:<Render {...dataJson}/>}
+                return { element:<ScopedRender {...dataJson} store={store} rootStore={rootStore}/>}
             }
             //@ts-ignore
             newItem.lazy=lazy
@@ -56,7 +41,7 @@ function resolvePath(basePath, relativePath) {
             newItem.loader=() => redirect(item.redirect)
         }
         if(item.children){
-            newItem.children=handlerRouter(item.children,home)
+            newItem.children=handlerRouter(item.children,home,store,rootStore)
         }
         newList.push(newItem)
     }
@@ -65,9 +50,10 @@ function resolvePath(basePath, relativePath) {
 }
 
 export default function(props:any){
-    const {hash, router,basename,data_home,...rest } = props
-    const newProps = transferProp(rest, "router")
-    const list = handlerRouter(router,data_home)
+    const {hash,basename,data_home,...rest } = props
+    const {router,...newProps} = transferProp(rest, "router")
+
+    const list = handlerRouter(router,data_home,props.store,props.rootStore)
     let  newRouter =null
     if(hash){
         newRouter = createHashRouter(list,{

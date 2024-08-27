@@ -1,0 +1,77 @@
+{
+  "code": "0",
+  "success": true,
+  "msg": "这个是模拟后台菜单接口",
+  "data": [
+    {
+      "menu_code": "home",
+      "menu_name": "入门",
+      "children": [
+        {
+          "menu_code": "first",
+          "menu_name":"简介",
+          "url": "/framework/"
+        },
+        {
+          "menu_code": "second",
+          "menu_name":"安装",
+          "url": "/framework/install"
+        }
+      ]
+    },
+    {
+      "menu_code": "sub1",
+      "menu_name": "页面组件",
+      "children": [
+        {
+          "menu_code": "g1",
+          "menu_name": "布局组件",
+          "type": "group",
+          "children": [
+            {
+              "menu_code": "1",
+              "menu_name": "layout-fit布局",
+              "url": "/framework/layout-fit"
+            }
+          ]
+        },
+        {
+          "menu_code": "g2",
+          "menu_name": "表单组件",
+          "type": "group",
+          "children": [
+            { "menu_code": "3", "menu_name": "form" },
+            { "menu_code": "4", "menu_name": "input" }
+          ]
+        }
+      ]
+    },
+    {
+      "menu_code": "sub2",
+      "menu_name": "数据绑定",
+      "children": [
+        {
+          "menu_code": "initSurlre",
+          "menu_name": "initSurlre 绑定数据",
+          "url": "/framework/initSurlre"
+        },
+        {
+          "menu_code": "init-action",
+          "menu_name": "initAction 初始化",
+          "url": "/framework/initAction"
+        }
+      ]
+    },
+    {
+      "menu_code": "sub3",
+      "menu_name": "动作",
+      "children": [
+        {
+          "menu_code": "ajax",
+          "menu_name": "ajax 发送请求",
+          "url": "/framework/ajax"
+        }
+      ]
+    }
+  ]
+}

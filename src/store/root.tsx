@@ -76,6 +76,9 @@ const Root = types
       },
       addRouterTab(tab) {
         let path = tab.path
+        if(self.currentRouterPath==path){
+          return
+        }
         let hasTab = false
         self.routerTabs.forEach((item) => {
           if (item.path === path) {

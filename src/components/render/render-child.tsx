@@ -12,6 +12,8 @@ import renderChildren from "./render-children"
 import { isIgnoreRenderChildrenNode } from "../../utils/rules.tsx"
 import { types } from "mobx-state-tree"
 import varValue from "../../utils/varValue";
+import handlerActions from "../../utils/handlerActions";
+import {App} from "antd";
 
 function genStore(initStore): any {
   const transferType = {
@@ -123,6 +125,7 @@ export default function renderChild(props: any) {
   let initAction = schema["initAction"]
   let localStore = null
   let children = schema["children"]
+  const useApp = App.useApp()
   // _target 是一个特殊属性，用于行数据显示，比如listview循环一个列表，_target 是列表的子项item
   let target = schema["_target"]||props["_target"]
 
@@ -130,19 +133,23 @@ export default function renderChild(props: any) {
   // todo 这里看如何改造成层级取，可能也不需要层级取？，将要打数据层级传递还是？
   if (initStore) {
     localStore = genStore(initStore)
-    // 初始化store
-    if (initAction) {
-      localStore.setInitAction(initAction)
-    }
+
     // 如果存在storeName 则在rootStore,中保存,由于不能直接设置localStore ，所以外面包了一个数组
     if (storeName) {
       rootStore.setStore(storeName, [localStore])
     }
+
   } else if (hasStore(tag)) {
     localStore = getStore(tag).create({})
   } else {
     // 传递store 的引用
     localStore = store
+  }
+
+  // 初始化store
+  if (initAction) {
+    localStore.setInitAction(initAction)
+    handlerActions(initAction,localStore,rootStore,App,null,true)
   }
   //将子模块渲染处理放在这里，处理layout-fit 多次渲染的问题
   if (hasInitPlugin(tag)) {

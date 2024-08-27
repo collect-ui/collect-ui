@@ -1,38 +1,63 @@
 {
-  "tag": "router",
-  "data_home": "/collect-ui/demo/data",
-  "basename":"/collect-ui",
-  "hash": true,
-  "router": [
+  "tag":"app",
+  "children": [
     {
-       "path": "/",
-       "redirect": "/framework/"
-    },
-    {
-      "path": "/framework",
-      "data": "framework.json",
+      "tag": "layout-fit",
+      "initStore": {
+        "router": [
+          {
+            "path": "/",
+            "redirect": "/framework/"
+          },
+          {
+            "path": "/framework",
+            "data": "framework.json",
+            "children": [
+              {
+                "path": "/framework/",
+                "data": "framework/home.json"
+              },
+              {
+                "path": "/framework/install",
+                "data": "framework/install.json"
+              },
+              {
+                "path": "/framework/layout-fit",
+                "data": "framework/layout-fit.json"
+              },
+              {
+                "path": "/framework/user",
+                "data": "framework/user.json"
+              },
+              {
+                "path": "/framework/role",
+                "data": "framework/role.json"
+              }
+            ]
+          }
+        ],
+        "menu_list": []
+      },
+      "initAction": [
+        {
+          "tag": "ajax",
+          "before_render":true,
+          "api": "get:/collect-ui/demo/data/menu/menu.json",
+          "adapt": {
+            "menu_list": "${data}"
+          }
+        }
+      ],
       "children": [
         {
-          "path": "/framework/",
-          "data": "framework/home.json"
-        },
-        {
-          "path": "/framework/install",
-          "data": "framework/install.json"
-        },
-        {
-          "path": "/framework/layout-fit",
-          "data": "framework/layout-fit.json"
-        },
-        {
-          "path": "/framework/user",
-          "data": "framework/user.json"
-        },
-        {
-          "path": "/framework/role",
-          "data": "framework/role.json"
+          "tag": "router",
+          "data_home": "/collect-ui/demo/data",
+          "basename":"/collect-ui",
+          "hash": true,
+          "router": "${router}"
         }
       ]
     }
   ]
 }
+

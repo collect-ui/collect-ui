@@ -1,11 +1,6 @@
 {
   "tag": "layout-fit",
   "className": "padding10 h100 overflow-auto",
-  "initStore": {
-    "example_list": [
-      {}
-    ]
-  },
   "children": [
     {
       "tag": "h1",

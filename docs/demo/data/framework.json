@@ -63,85 +63,13 @@
                         {
                           "tag": "menu",
                           "mode": "inline",
+                          "rule": {
+                            "key_field": "menu_code",
+                            "label_field": "menu_name",
+                            "to_field": "url"
+                          },
                           "defaultOpenKeys": ["home","sub1"],
-                          "items": [
-                            {
-                              "key": "home",
-                              "name": "入门",
-                              "label": "入门",
-                              "children": [
-                                {
-                                  "key": "first",
-                                  "name": "简介",
-                                  "label":"简介",
-                                  "to": "/framework/"
-                                },
-                                {
-                                  "key": "second",
-                                  "name": "安装",
-                                  "label":"安装",
-                                  "to": "/framework/install"
-                                }
-                              ]
-
-                            },
-                            {
-                              "key": "sub1",
-                              "label": "页面组件",
-                              "children": [
-                                {
-                                  "key": "g1",
-                                  "label": "布局组件",
-                                  "type": "group",
-                                  "children": [
-                                    {
-                                      "key": "1",
-                                      "name": "layout-fit",
-                                      "label": "layout-fit布局",
-                                      "to": "/framework/layout-fit"
-                                    }
-
-                                  ]
-                                },
-                                {
-                                  "key": "g2",
-                                  "label": "表单组件",
-                                  "type": "group",
-                                  "children": [
-                                    { "key": "3", "label": "form" },
-                                    { "key": "4", "label": "input" }
-                                  ]
-                                }
-                              ]
-                            },
-                            {
-                              "key": "sub2",
-                              "label": "数据绑定",
-                              "children": [
-                                {
-                                  "key": "initStore",
-                                  "label": "initStore 绑定数据",
-                                  "to": "/framework/initStore"
-                                },
-                                {
-                                  "key": "init-action",
-                                  "label": "initAction 初始化",
-                                  "to": "/framework/initAction"
-                                }
-                              ]
-                            },
-                            {
-                              "key": "sub3",
-                              "label": "动作",
-                              "children": [
-                                {
-                                  "key": "ajax",
-                                  "label": "ajax 发送请求",
-                                  "to": "/framework/ajax"
-                                }
-                              ]
-                            }
-                          ]
+                          "items": "${menu_list}"
                         }
                       ]
                     }

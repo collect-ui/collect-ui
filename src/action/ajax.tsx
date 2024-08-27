@@ -55,7 +55,13 @@ export default async function (
     }
   }
 
-  const res = await axios.post(apiObj.url, formValue)
+  const config = {
+    method: apiObj.method,
+    url:apiObj.url,
+    data,
+  };
+  //@ts-ignore
+  const res = await axios.create({}).request(config)
   const { msg, success } = res.data
   if (showResultMsg && success) {
     useApp?.message?.success(msg)

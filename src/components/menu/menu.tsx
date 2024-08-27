@@ -1,41 +1,52 @@
 import { Menu } from "antd"
 import transferProp from "../../utils/transferProp"
 import tree2Array from "../../utils/tree2Array"
-import { useCallback, useEffect, useState } from "react"
+import {useCallback, useEffect, useMemo, useState} from "react"
 
 import { useNavigate, useLocation } from "react-router-dom"
+function handlerItems(items,rule){
+  return items.map(item => {
+    const tmp={
+      key:item[rule["key_field"]],
+      label: item[rule["label_field"]],
+      to: item[rule["to_field"]],
+    }
+    if (item.children && item.children.length > 0) {
+      return {
+       ...item,
+       ...tmp,
+        children: handlerItems(item.children,rule),
+      }
+    }
+    return {...item,...tmp}
+  })
+}
 export default function (props: any) {
-  const { rootStore, items } = props
-  let newProps = transferProp(props, "menu")
+  const { rootStore, rule} = props
+  const newProps = useMemo(() => transferProp(props, "menu"), [props]);
+  const items = useMemo(() => handlerItems(newProps.items, rule), [newProps.items, rule]);
   let navigate = useNavigate()
-  // const rootStore = useContext(rootProvider)
   const location = useLocation()
   const [current, setCurrent] = useState("")
   // 初始化进来的时候添加当前路由
-  // todo 这里考虑items 必须加载完成
+  //
   useEffect(() => {
     const tmp = tree2Array(items).find((item) => item.to === location.pathname)
     // 根据当前路径找到当前的菜单，然后添加到router tab
     if (tmp) {
       rootStore.addRouterTab({
         path: location.pathname,
-        name: tmp.name,
+        name: tmp.label,
         key: tmp.key,
       })
-    } else {
-      rootStore.addRouterTab({
-        path: location.pathname,
-        name: "未知",
-        key: "unknown",
-      })
     }
-  }, [])
+  },  [location.pathname, items])
   // 点击跳转路由
   const onClick = useCallback(({ item, key, keyPath, domEvent }) => {
     item.props.to && navigate(item.props.to, {})
     rootStore.addRouterTab({
-      path: item.props.to,
-      name: item.props.name,
+      path: item.props[rule['to_field']],
+      name: item.props[rule['label_field']],
       key: key,
     })
     // 设置当前激活的菜单
@@ -51,7 +62,7 @@ export default function (props: any) {
 
   return (
     <>
-      <Menu selectedKeys={[current]} {...newProps} onClick={onClick}></Menu>
+      <Menu selectedKeys={[current]} {...newProps} items={items} onClick={onClick}></Menu>
     </>
   )
 }
