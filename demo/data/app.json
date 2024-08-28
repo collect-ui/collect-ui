@@ -4,46 +4,7 @@
     {
       "tag": "layout-fit",
       "initStore": {
-        "router": [
-          {
-            "path": "/",
-            "redirect": "/framework/"
-          },
-          {
-            "path": "/framework",
-            "data": "framework.json",
-            "children": [
-              {
-                "path": "/framework/",
-                "data": "framework/home.json"
-              },
-              {
-                "path": "/framework/install",
-                "data": "framework/install.json"
-              },
-              {
-                "path": "/framework/layout-fit",
-                "data": "framework/layout-fit.json"
-              },
-              {
-                "path": "/framework/layout",
-                "data": "framework/layout.json"
-              },
-              {
-                "path": "/framework/divider",
-                "data": "framework/divider.json"
-              },
-              {
-                "path": "/framework/user",
-                "data": "framework/user.json"
-              },
-              {
-                "path": "/framework/role",
-                "data": "framework/role.json"
-              }
-            ]
-          }
-        ],
+        "router":[],
         "menu_list": []
       },
       "initAction": [
@@ -54,6 +15,12 @@
           "adapt": {
             "menu_list": "${data}"
           }
+        },
+        {
+          "tag": "menu2router",
+          "before_render":true,
+          "from":"menu_list",
+          "to": "router"
         }
       ],
       "children": [

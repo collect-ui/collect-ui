@@ -5,7 +5,7 @@ import {useCallback, useEffect, useMemo, useState} from "react"
 import Icon from "../icon/icon"
 import { useNavigate, useLocation } from "react-router-dom"
 function handlerItems(items,rule){
-  return items.map(item => {
+  return items.map(({...item}) => {
     const iconName = rule["icon_field"]
     const tmp={
       key:item[rule["key_field"]],
