@@ -1,0 +1,422 @@
+{
+  "tag": "layout-fit",
+  "className": "padding10 h100 overflow-auto",
+  "initStore": {
+    "apiList": [
+      {
+        "code": "row",
+        "name": "行",
+        "type": "string",
+        "description": "行"
+      },
+      {
+        "code": "align",
+        "name": "垂直对齐方式",
+        "type": "string",
+        "description": "top | middle | bottom | stretch | {[key in 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl']: 'top' | 'middle' | 'bottom' | 'stretch'}"
+      },
+      {
+        "code": "row.gutter",
+        "name": "间隔",
+        "type": "string",
+        "description": "栅格间隔，可以写成像素值或支持响应式的对象写法来设置水平间隔 { xs: 8, sm: 16, md: 24}。或者使用数组形式同时设置 [水平间距, 垂直间距]"
+      },
+      {
+        "code": "col",
+        "name": "列",
+        "type": "string",
+        "description": "列"
+      },
+      {
+        "code": "col.span",
+        "name": "24/x",
+        "type": "int",
+        "description": "栅格占位格数，为 0 时相当于 display: none"
+      }
+    ]
+  },
+  "children": [
+    {
+      "tag": "h1",
+      "className": "border-bottom",
+      "children": "row-col示例"
+    },
+    {
+      "tag": "label",
+      "className": "padding-left10 padding-bottom10",
+      "children": [
+        "分割线继承ant的row col。",
+        {
+          "tag": "a",
+          "target": "_blank",
+          "href": "https://ant.design/components/grid-cn",
+          "children": "查看ant row-col文档"
+        }
+      ]
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height": "300px",
+            "overflow": "auto"
+          },
+          "children": [
+            {
+              "tag": "h3",
+              "children": "代码配置示例",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "coder",
+              "language": "json",
+              "value": {
+                "tag": "row",
+                "children": [
+                  {
+                    "tag": "col",
+                    "span": 24
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 12,
+          "children": [
+            {
+              "tag": "h3",
+              "children": "配置简述",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "ol",
+              "children": [
+                {
+                  "tag": "li",
+                  "children": [
+                    "详情请看ant 的grid 文档",
+                    {
+                      "tag": "a",
+                      "target": "_blank",
+                      "href": "https://ant.design/components/grid-cn",
+                      "children": "查看ant row-col文档"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "API（注意：configNode表示低代码配置，action表示动作配置）"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "layout-fit",
+          "style": {
+            "height": "250px",
+            "width": "100%"
+          },
+          "children": [
+            {
+              "tag": "table",
+              "rowData": "${apiList}",
+              "tooltipShowDelay": 0,
+              "columnDefs": [
+                {
+                  "headerName": "#",
+                  "width": 60,
+                  "suppressSizeToFit": true,
+                  "valueGetter": "node.rowIndex + 1",
+                  "sortable": false,
+                  "pinned": "left"
+                },
+                {
+                  "headerName": "字段",
+                  "field": "code",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "名称",
+                  "field": "name",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "类型",
+                  "field": "type",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "描述",
+                  "field": "description",
+                  "tooltipField": "description"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "展示示例"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "coder-preview",
+              "coder": {
+                "tag": "div",
+                "children": [
+                  {
+                    "tag": "row",
+                    "children": [
+                      {
+                        "tag": "col",
+                        "span": 24,
+                        "style": {
+                          "background": "#1677ffbf",
+                          "minHeight": "30px",
+                          "marginTop": "8px",
+                          "marginBottom": "8px",
+                          "color": "#fff",
+                          "textAlign": "center",
+                          "borderRadius": 0,
+                          "padding": "16px 0"
+                        },
+                        "children": "col"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "row",
+                    "children": [
+                      {
+                        "tag": "col",
+                        "span": 12,
+                        "style": {
+                          "background": "#1677ffbf",
+                          "minHeight": "30px",
+                          "marginTop": "8px",
+                          "marginBottom": "8px",
+                          "color": "#fff",
+                          "textAlign": "center",
+                          "borderRadius": 0,
+                          "padding": "16px 0"
+                        },
+                        "children": "col-12"
+                      },
+                      {
+                        "tag": "col",
+                        "span": 12,
+                        "style": {
+                          "background": "#1677ff",
+                          "minHeight": "30px",
+                          "marginTop": "8px",
+                          "marginBottom": "8px",
+                          "color": "#fff",
+                          "textAlign": "center",
+                          "borderRadius": 0,
+                          "padding": "16px 0"
+                        },
+                        "children": "col-12"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "row",
+                    "children": [
+                      {
+                        "tag": "col",
+                        "span": 8,
+                        "style": {
+                          "background": "#1677ffbf",
+                          "minHeight": "30px",
+                          "marginTop": "8px",
+                          "marginBottom": "8px",
+                          "color": "#fff",
+                          "textAlign": "center",
+                          "borderRadius": 0,
+                          "padding": "16px 0"
+                        },
+                        "children": "col-8"
+                      },
+                      {
+                        "tag": "col",
+                        "span": 8,
+                        "style": {
+                          "background": "#1677ff",
+                          "minHeight": "30px",
+                          "marginTop": "8px",
+                          "marginBottom": "8px",
+                          "color": "#fff",
+                          "textAlign": "center",
+                          "borderRadius": 0,
+                          "padding": "16px 0"
+                        },
+                        "children": "col-8"
+                      },
+                      {
+                        "tag": "col",
+                        "span": 8,
+                        "style": {
+                          "background": "#1677ffbf",
+                          "minHeight": "30px",
+                          "marginTop": "8px",
+                          "marginBottom": "8px",
+                          "color": "#fff",
+                          "textAlign": "center",
+                          "borderRadius": 0,
+                          "padding": "16px 0"
+                        },
+                        "children": "col-8"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "row",
+                    "children": [
+                      {
+                        "tag": "col",
+                        "span": 6,
+                        "style": {
+                          "background": "#1677ffbf",
+                          "minHeight": "30px",
+                          "marginTop": "8px",
+                          "marginBottom": "8px",
+                          "color": "#fff",
+                          "textAlign": "center",
+                          "borderRadius": 0,
+                          "padding": "16px 0"
+                        },
+                        "children": "col-6"
+                      },
+                      {
+                        "tag": "col",
+                        "span": 6,
+                        "style": {
+                          "background": "#1677ff",
+                          "minHeight": "30px",
+                          "marginTop": "8px",
+                          "marginBottom": "8px",
+                          "color": "#fff",
+                          "textAlign": "center",
+                          "borderRadius": 0,
+                          "padding": "16px 0"
+                        },
+                        "children": "col-6"
+                      },
+                      {
+                        "tag": "col",
+                        "span": 6,
+                        "style": {
+                          "background": "#1677ffbf",
+                          "minHeight": "30px",
+                          "marginTop": "8px",
+                          "marginBottom": "8px",
+                          "color": "#fff",
+                          "textAlign": "center",
+                          "borderRadius": 0,
+                          "padding": "16px 0"
+                        },
+                        "children": "col-6"
+                      },
+                      {
+                        "tag": "col",
+                        "span": 6,
+                        "style": {
+                          "background": "#1677ff",
+                          "minHeight": "30px",
+                          "marginTop": "8px",
+                          "marginBottom": "8px",
+                          "color": "#fff",
+                          "textAlign": "center",
+                          "borderRadius": 0,
+                          "padding": "16px 0"
+                        },
+                        "children": "col-6"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "coder-preview",
+              "coder":  {
+                "tag": "row",
+                "children": [
+                  {
+                    "tag": "col",
+                    "flex": 2,
+                    "style": {
+                      "background": "#1677ffbf",
+                      "minHeight": "30px",
+                      "marginTop": "8px",
+                      "marginBottom": "8px",
+                      "color": "#fff",
+                      "textAlign": "center",
+                      "borderRadius": 0,
+                      "padding": "16px 0"
+                    },
+                    "children": "按比率2/5"
+                  },
+                  {
+                    "tag": "col",
+                    "flex": 3,
+                    "style": {
+                      "background": "#1677ff",
+                      "minHeight": "30px",
+                      "marginTop": "8px",
+                      "marginBottom": "8px",
+                      "color": "#fff",
+                      "textAlign": "center",
+                      "borderRadius": 0,
+                      "padding": "16px 0"
+                    },
+                    "children": "按比率3/5"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

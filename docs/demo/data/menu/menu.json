@@ -57,6 +57,13 @@
               "router_group": "/framework",
               "url": "/framework/divider",
               "data": "framework/divider.json"
+            },
+            {
+              "menu_code": "grid",
+              "menu_name": "grid栅格",
+              "router_group": "/framework",
+              "url": "/framework/grid",
+              "data": "framework/grid.json"
             }
 
           ]
@@ -66,7 +73,13 @@
           "menu_name": "表单组件",
           "type": "group",
           "children": [
-            { "menu_code": "3", "menu_name": "form" },
+            {
+              "menu_code": "3",
+              "menu_name": "form",
+              "router_group": "/framework",
+              "url": "/framework/form",
+              "data": "framework/form.json"
+            },
             { "menu_code": "4", "menu_name": "input" }
           ]
         }
@@ -80,7 +93,7 @@
         {
           "menu_code": "initStore",
           "menu_name": "initStore 绑定数据",
-          "url": "/framework/initSurlre"
+          "url": "/framework/initStore"
         },
         {
           "menu_code": "init-action",
