@@ -30,6 +30,10 @@
                 "data": "framework/layout.json"
               },
               {
+                "path": "/framework/divider",
+                "data": "framework/divider.json"
+              },
+              {
                 "path": "/framework/user",
                 "data": "framework/user.json"
               },

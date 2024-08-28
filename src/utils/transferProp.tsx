@@ -14,7 +14,13 @@ export default function transferProp(props: any, name: string, useApp?: any) {
   for (let key in props) {
     if (key.startsWith("_")) {
       let newKey = key.substring(1)
-      tmp[newKey] = props[key]
+      // 防止a 标签中target 被替换成行_target。导致target="_bank" 不生效
+      // _target 之前用了，用成表示行数据里面item
+
+      if(!props.hasOwnProperty(newKey)){
+        tmp[newKey] = props[key]
+      }
+
     }
   }
   // // todo 处理模板变量

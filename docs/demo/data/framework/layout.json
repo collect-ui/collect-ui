@@ -8,6 +8,30 @@
         "name": "layout",
         "type": "string",
         "description": "页面级布局标签"
+      },
+      {
+        "code": "tag",
+        "name": "sider",
+        "type": "string",
+        "description": "侧边栏。必须包裹在layout下"
+      },
+      {
+        "code": "tag",
+        "name": "header",
+        "type": "string",
+        "description": "顶部。必须包裹在layout下"
+      },
+      {
+        "code": "tag",
+        "name": "content",
+        "type": "string",
+        "description": "内容。必须包裹在layout下"
+      },
+      {
+        "code": "tag",
+        "name": "footer",
+        "type": "string",
+        "description": "底部。必须包裹在layout下"
       }
     ]
   },
@@ -20,7 +44,15 @@
     {
       "tag": "label",
       "className": "padding-left10 padding-bottom10",
-      "children": "继承ant的layout"
+      "children": [
+        "继承ant的layout,改了部分样式比内容位置固定",
+        {
+          "tag": "a",
+          "target": "_blank",
+          "href": "https://ant.design/components/layout-cn",
+          "children": "查看ant layout文档"
+        }
+      ]
     },
     {
       "tag": "row",
@@ -75,7 +107,31 @@
               "children": [
                 {
                   "tag": "li",
-                  "children": "请看ant 的layout 文档"
+                  "children": "header-头部"
+                },
+                {
+                  "tag": "li",
+                  "children": "content-内容"
+                },
+                {
+                  "tag": "li",
+                  "children": "footer-底部"
+                },
+                {
+                  "tag": "li",
+                  "children": "sider-侧边栏"
+                },
+                {
+                  "tag": "li",
+                  "children": [
+                    "详情请看ant 的layout 文档",
+                    {
+                      "tag": "a",
+                      "target": "_blank",
+                      "href": "https://ant.design/components/layout-cn",
+                      "children": "查看ant layout文档"
+                    }
+                  ]
                 }
               ]
             }
@@ -418,7 +474,7 @@
                     "children": [
                       {
                         "tag": "div",
-                        "style":  {
+                        "style": {
                           "width": "120px",
                           "minWidth": "120px",
                           "height": "32px",
@@ -436,7 +492,7 @@
                         ],
                         "rule": {
                           "key_field": "id",
-                          "label_field":"name"
+                          "label_field": "name"
                         },
                         "items": [
                           {
@@ -467,7 +523,9 @@
                     "children": [
                       {
                         "tag": "breadcrumb",
-                        "style": { "margin": "16px 0" },
+                        "style": {
+                          "margin": "16px 0"
+                        },
                         "children": [
                           {
                             "tag": "breadcrumb-item",
@@ -489,7 +547,7 @@
                           "background": "#fff",
                           "minHeight": 280,
                           "padding": 24,
-                          "borderRadius":8
+                          "borderRadius": 8
                         },
                         "children": "Content"
                       }
@@ -529,7 +587,7 @@
                     "children": [
                       {
                         "tag": "div",
-                        "style":  {
+                        "style": {
                           "width": "120px",
                           "minWidth": "120px",
                           "height": "32px",
@@ -547,7 +605,333 @@
                         ],
                         "rule": {
                           "key_field": "id",
-                          "label_field":"name"
+                          "label_field": "name"
+                        },
+                        "items": [
+                          {
+                            "id": "1",
+                            "name": "nav 1"
+                          },
+                          {
+                            "id": "2",
+                            "name": "nav 2"
+                          },
+                          {
+                            "id": "3",
+                            "name": "nav 2"
+                          }
+                        ],
+                        "style": {
+                          "flex": 1,
+                          "minWidth": 0
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "layout",
+                    "children": [
+                      {
+                        "tag": "sider",
+                        "width": 200,
+                        "style": {
+                          "background": "#fff"
+                        },
+                        "children": [
+                          {
+                            "tag": "menu",
+                            "mode": "inline",
+                            "rule": {
+                              "label_field": "label",
+                              "key_field": "key",
+                              "icon_field": "icon"
+                            },
+                            "items": [
+                              {
+                                "label": "sub nav1",
+                                "icon": "UserOutlined",
+                                "key": "1",
+                                "children": [
+                                  {
+                                    "key": "1-1",
+                                    "label": "option-1"
+                                  },
+                                  {
+                                    "key": "1-2",
+                                    "label": "option-2"
+                                  }
+                                ]
+                              },
+                              {
+                                "label": "sub nav2",
+                                "icon": "LaptopOutlined",
+                                "key": "2",
+                                "children": [
+                                  {
+                                    "key": "2-1",
+                                    "label": "option-3"
+                                  },
+                                  {
+                                    "key": "2-2",
+                                    "label": "option-4"
+                                  }
+                                ]
+                              },
+                              {
+                                "icon": "NotificationOutlined",
+                                "label": "sub nav3",
+                                "key": "3"
+                              }
+                            ],
+                            "defaultSelectedKeys": [
+                              "1-1"
+                            ],
+                            "defaultOpenKeys": [
+                              "1"
+                            ],
+                            "style": {
+                              "height": "100%"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "layout",
+                        "style": {
+                          "padding": "0 24px 24px"
+                        },
+                        "children": [
+                          {
+                            "tag": "breadcrumb",
+                            "style": {
+                              "margin": "16px 0"
+                            },
+                            "children": [
+                              {
+                                "tag": "breadcrumb-item",
+                                "children": "Home"
+                              },
+                              {
+                                "tag": "breadcrumb-item",
+                                "children": "List"
+                              },
+                              {
+                                "tag": "breadcrumb-item",
+                                "children": "App"
+                              }
+                            ]
+                          },
+                          {
+                            "tag": "content",
+                            "style": {
+                              "padding": "24px",
+                              "margin": 0,
+                              "background": "#fff",
+                              "borderRadius": "8px"
+                            },
+                            "children": "Content"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "coder-preview",
+              "coder": {
+                "tag": "layout",
+                "children": [
+                  {
+                    "tag": "sider",
+                    "width": 200,
+                    "collapsible": true,
+
+                    "children": [
+                      {
+                        "tag":"div",
+                        "style": {
+                          "height": "32px",
+                          "margin": "16px",
+                          "background": "rgba(255, 255, 255, .2)",
+                          "borderRadius": "6px"
+                        }
+                      },
+                      {
+                        "tag": "menu",
+                        "theme":"dark",
+                        "rule": {
+                          "label_field": "label",
+                          "key_field": "key",
+                          "icon_field": "icon"
+                        },
+                        "mode":"inline",
+                        "items": [
+                          {
+                            "label": "sub nav1",
+                            "icon": "UserOutlined",
+                            "key": "1",
+                            "children": [
+                              {
+                                "key": "1-1",
+                                "label": "option-1"
+                              },
+                              {
+                                "key": "1-2",
+                                "label": "option-2"
+                              }
+                            ]
+                          },
+                          {
+                            "label": "sub nav2",
+                            "icon": "LaptopOutlined",
+                            "key": "2",
+                            "children": [
+                              {
+                                "key": "2-1",
+                                "label": "option-3"
+                              },
+                              {
+                                "key": "2-2",
+                                "label": "option-4"
+                              }
+                            ]
+                          },
+                          {
+                            "icon": "NotificationOutlined",
+                            "label": "sub nav3",
+                            "key": "3"
+                          }
+                        ],
+                        "defaultSelectedKeys": [
+                          "1-1"
+                        ],
+                        "defaultOpenKeys": [
+                          "1"
+                        ],
+                        "style": {
+                          "height": "100%"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "layout",
+                    "children": [
+                      {
+                        "tag": "header",
+                        "style": {
+                          "padding": 0,
+                          "background": "#fff"
+                        }
+                      },
+                      {
+                        "tag": "content",
+                        "style": {
+                          "margin": "0 16px"
+                        },
+                        "children": [
+                          {
+                            "tag":"breadcrumb",
+                            "style": {
+                              "margin": "16px 0"
+                            },
+                            "children": [
+                              {
+                                "tag": "breadcrumb-item",
+                                "children": "User"
+                              },
+                              {
+                                "tag": "breadcrumb-item",
+                                "children": "bill"
+                              }
+                            ]
+                          },
+                          {
+                            "tag": "div",
+                            "style": {
+                              "padding": 24,
+                              "minHeight": 260,
+                              "background": "#fff",
+                              "borderRadius": "8px"
+                            },
+                            "children": "Bill is a cat"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "footer",
+                        "style":{
+                          "textAlign": "center"
+                        },
+                        "children": [
+                          "footer"
+                        ]
+                      }
+                    ]
+                  }
+
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "coder-preview",
+              "coder": {
+                "tag": "layout",
+                "children": [
+                  {
+                    "tag": "header",
+                    "style": {
+                      "position": "sticky",
+                      "top": 0,
+                      "zIndex": 1,
+                      "width":"100%",
+                      "display": "flex",
+                      "alignItems": "center"
+                    },
+                    "children": [
+                      {
+                        "tag": "div",
+                        "style": {
+                          "width": "120px",
+                          "minWidth": "120px",
+                          "height": "32px",
+                          "background": "rgba(255, 255, 255, .2)",
+                          "borderRadius": "6px",
+                          "marginInlineEnd": "24px"
+                        }
+                      },
+                      {
+                        "tag": "menu",
+                        "theme": "dark",
+                        "mode": "horizontal",
+                        "defaultSelectedKeys": [
+                          "2"
+                        ],
+                        "rule": {
+                          "key_field": "id",
+                          "label_field": "name"
                         },
                         "items": [
                           {
@@ -578,7 +962,9 @@
                     "children": [
                       {
                         "tag": "breadcrumb",
-                        "style": { "margin": "16px 0" },
+                        "style": {
+                          "padding": "16px 0"
+                        },
                         "children": [
                           {
                             "tag": "breadcrumb-item",
@@ -595,74 +981,14 @@
                         ]
                       },
                       {
-                        "tag": "layout",
+                        "tag": "div",
                         "style": {
+                          "padding": 24,
+                          "minHeight": 480,
                           "background": "#fff",
-                          "borderRadius": "8px",
-                          "padding": "24px 0"
-
+                          "borderRadius": "8px"
                         },
-                        "children": [
-                          {
-                            "tag": "sider",
-                            "width":200,
-                            "style": {
-                              "background": "#fff"
-                            },
-                            "children": [
-                              {
-                                "tag": "menu",
-                                "mode":"inline",
-                                "rule": {
-                                  "label_field": "label",
-                                  "key_field": "key",
-                                  "icon_field": "icon"
-                                },
-                                "items": [
-                                  {
-                                    "label": "sub nav1",
-                                    "icon": "UserOutlined",
-                                    "key": "1",
-                                    "children": [
-                                      {"key":"1-1","label":"option-1"},
-                                      {"key":"1-2","label":"option-2"}
-
-                                    ]
-                                  },
-                                  {
-                                    "label": "sub nav2",
-                                    "icon":"LaptopOutlined",
-                                    "key": "2",
-                                    "children": [
-                                      {"key":"2-1","label":"option-3"},
-                                      {"key":"2-2","label":"option-4"}
-
-                                    ]
-                                  },
-                                  {
-                                    "icon": "NotificationOutlined",
-                                    "label": "sub nav3",
-                                    "key": "3"
-                                  }
-                                ],
-                                "defaultSelectedKeys":[
-                                  "1-1"
-                                ],
-                                 "defaultOpenKeys":[
-                                   "1"
-                                 ],
-                                 "style":{ "height": "100%" }
-                              }
-                            ]
-                          },
-                          {
-                            "tag": "content",
-                            "style": {
-                              "padding": "0 24px"
-                            },
-                            "children": "Content"
-                          }
-                        ]
+                        "children": "Content"
                       }
                     ]
                   },
@@ -671,8 +997,9 @@
                     "style": {
                       "textAlign": "center"
                     },
-                    "children": "Footer"
+                    "children": ["Footer"]
                   }
+
                 ]
               }
             }
