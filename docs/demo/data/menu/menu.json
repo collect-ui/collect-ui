@@ -10,12 +10,19 @@
         {
           "menu_code": "first",
           "menu_name":"简介",
+          "is_index": "1",
+          "router_group": "",
+          "group_path": "/framework",
+          "group_data": "framework.json",
+          "data": "framework/home.json",
           "url": "/framework/"
         },
         {
           "menu_code": "second",
           "menu_name":"安装",
-          "url": "/framework/install"
+          "router_group": "/framework",
+          "url": "/framework/install",
+          "data": "framework/install.json"
         }
       ]
     },
@@ -31,17 +38,23 @@
             {
               "menu_code": "layout",
               "menu_name": "layout布局",
-              "url": "/framework/layout"
+              "router_group": "/framework",
+              "url": "/framework/layout",
+              "data": "framework/layout.json"
             },
             {
               "menu_code": "1",
               "menu_name": "layout-fit布局",
-              "url": "/framework/layout-fit"
+              "router_group": "/framework",
+              "url": "/framework/layout-fit",
+              "data": "framework/layout-fit.json"
             },
             {
               "menu_code": "divider",
               "menu_name": "divider分割线",
-              "url": "/framework/divider"
+              "router_group": "/framework",
+              "url": "/framework/divider",
+              "data": "framework/divider.json"
             }
 
           ]
