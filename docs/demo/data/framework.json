@@ -67,6 +67,8 @@
                           "rule": {
                             "key_field": "menu_code",
                             "label_field": "menu_name",
+                            "icon_field": "icon",
+
                             "to_field": "url"
                           },
                           "defaultOpenKeys": ["home","sub1"],
