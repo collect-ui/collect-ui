@@ -126,7 +126,9 @@ export default function (name: string, store: any, targetValue?: any): any {
     // 获取表达式里面有哪些变量
     let vars = []
     try {
-      vars = getVariablesFromExpression(expression)
+      // 忽略变量对象
+      const ignore=["JSON","stringify"]
+      vars = getVariablesFromExpression(expression).filter(item=>ignore.indexOf(item)<0)
     } catch (e) {
       return value
     }

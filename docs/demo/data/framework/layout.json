@@ -45,13 +45,49 @@
       "tag": "label",
       "className": "padding-left10 padding-bottom10",
       "children": [
-        "继承ant的layout,改了部分样式比内容位置固定",
+        "继承自Ant Design的布局组件，并进行了部分样式调整。",
         {
           "tag": "a",
           "target": "_blank",
           "href": "https://ant.design/components/layout-cn",
           "children": "查看ant layout文档"
+        },
+        {
+          "tag": "ul",
+          "children": [
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"继承来源"
+                },
+                "：基于Ant Design的布局组件（Layout）进行扩展和定制。"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"样式调整"
+                },
+                "：主要对内容位置进行了固定处理，确保在不同屏幕尺寸和布局变化下，内容显示位置的一致性和稳定性"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"使用指南"
+                },
+                "：为了更好地理解和应用这些调整，建议详细阅读Ant Design的官方Layout组件文档，以获取更多关于布局结构和样式的信息。"
+              ]
+            }
+          ]
         }
+
       ]
     },
     {
@@ -150,7 +186,7 @@
         {
           "tag": "layout-fit",
           "style": {
-            "height": "200px",
+            "height": "300px",
             "width": "100%"
           },
           "children": [

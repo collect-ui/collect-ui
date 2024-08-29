@@ -93,12 +93,8 @@
         {
           "menu_code": "initStore",
           "menu_name": "initStore 绑定数据",
-          "url": "/framework/initStore"
-        },
-        {
-          "menu_code": "init-action",
-          "menu_name": "initAction 初始化",
-          "url": "/framework/initAction"
+          "url": "/framework/initStore",
+          "data": "/framework/initStore.json"
         }
       ]
     },
@@ -110,7 +106,8 @@
         {
           "menu_code": "ajax",
           "menu_name": "ajax 发送请求",
-          "url": "/framework/ajax"
+          "url": "/framework/ajax",
+          "data": "action/ajax.json"
         }
       ]
     }

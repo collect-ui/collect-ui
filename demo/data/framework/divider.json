@@ -51,12 +51,47 @@
       "tag": "label",
       "className": "padding-left10 padding-bottom10",
       "children": [
-        "分割线继承ant的divider。也可以使用className:'border-bottom'",
+        "继承自Ant Design的分割线组件，并针对底部分割线提供了一种通过自定义类名进行样式替换的选项。",
         {
           "tag": "a",
           "target": "_blank",
           "href": "https://ant.design/components/divider-cn",
           "children": "查看ant divider文档"
+        },
+        {
+          "tag": "ul",
+          "children": [
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"继承来源"
+                },
+                "：基于Ant Design的官方分割线组件（Divider）进行扩展。"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"样式替换"
+                },
+                "：对于底部或则右侧分割线，用户可以选择使用默认的分割线样式，或者通过设置目标组件`className`为`'border-bottom'`或者`border-right`来替代默认样式，实现更符合特定设计需求的底部分割线效果。"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"灵活应用"
+                },
+                "：这种设计允许用户在保持组件功能一致性的同时，灵活调整底部分割线的外观，以适应不同的页面布局和设计风格。"
+              ]
+            }
+          ]
         }
       ]
     },

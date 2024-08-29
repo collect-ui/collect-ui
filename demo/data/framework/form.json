@@ -39,12 +39,37 @@
       "tag": "label",
       "className": "padding-left10 padding-bottom10",
       "children": [
-        "表单继承ant的form。表单项增加itemVisible,其他和官方文档一致",
+        "继承自Ant Design的表单组件，并在表单项中增加了`itemVisible`属性。",
         {
           "tag": "a",
           "target": "_blank",
           "href": "https://ant.design/components/form-cn",
           "children": "查看ant form文档"
+        },
+        {
+          "tag": "ul",
+          "children": [
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"继承来源"
+                },
+                "：基于Ant Design的官方表单组件进行扩展。"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"新增属性"
+                },
+                "：在表单项中引入了`itemVisible`属性，用于控制表单项的显示与隐藏，增强了表单的动态展示能力。"
+              ]
+            }
+          ]
         }
       ]
     },

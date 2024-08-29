@@ -1,0 +1,322 @@
+{
+  "tag": "layout-fit",
+  "className": "padding10 h100 overflow-auto",
+  "initStore": {
+    "apiList": [
+      {
+        "code": "tag",
+        "name": "ajax",
+        "type": "string",
+        "description": "发送http请求"
+      },
+      {
+        "code": "api",
+        "name": "http地址",
+        "type": "string",
+        "description": "请求方法[get|post|...]:url地址？参数1=a&参数2=b。url 上接少量get参数"
+      },
+      {
+        "code": "appendFormFields",
+        "name": "拼接表单字段",
+        "type": "string",
+        "description": "填form表单的值，拼接顺序appendFormFields大于appendFields"
+      },
+      {
+        "code": "appendFields",
+        "name": "拼接字段",
+        "type": "string",
+        "description": "${你的字典变量}，变量是initStore中声明"
+      },
+      {
+        "code": "adapt",
+        "name": "适配",
+        "type": "dict",
+        "description": "字典中key，对应initStore的变量，value对应返回数据"
+      },
+      {
+        "code": "showResultMsg",
+        "name": "是否显示成功的消息",
+        "type": "boolean",
+        "description": "默认不显示"
+      },
+      {
+        "code": "before_render",
+        "name": "注意只在initAction有用",
+        "type": "boolean",
+        "description": "在页面加载前的动作"
+      }
+    ]
+  },
+  "children": [
+    {
+      "tag": "h1",
+      "className": "border-bottom",
+      "children": "ajax示例"
+    },
+    {
+      "tag": "label",
+      "className": "padding-left10 padding-bottom10",
+      "children": [
+        "标签 `tag=ajax` 用于标识发送HTTP请求的操作。",
+        {
+          "tag": "ul",
+          "children": [
+
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"应用场景"
+                },
+                "：该标签可应用于`layout-fit`组件的`initAction`方法中，以及按钮组件的`action`事件处理中"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"功能描述"
+                },
+                "：通过设置 `tag=ajax`，可以触发异步HTTP请求，实现数据的动态加载或提交，从而提升用户体验和应用的交互性。"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"具体用途"
+                },
+                "：在页面初始化时，通过`layout-fit`的`initAction`方法发送请求以获取初始数据；在用户与界面交互（如点击按钮）时，通过按钮的`action`事件发送请求以执行特定操作或更新数据。"
+              ]
+            }
+          ]
+        }
+
+      ]
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 8,
+          "style": {
+            "height": "300px",
+            "overflow": "auto"
+          },
+          "children": [
+            {
+              "tag": "h3",
+              "children": "代码配置示例",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "coder",
+              "language": "json",
+              "value": {
+                "tag": "ajax",
+                "api": "post:/template_data/data?service=project.my_env_tree",
+                "appendFormFields": "server-search-form",
+                "appendFields": "${updateNodeForm}",
+                "adapt": {
+                  "server_env_data": "${data}"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 8,
+          "style": {
+            "height": "300px",
+            "overflow": "auto"
+          },
+          "children": [
+            {
+              "tag": "h3",
+              "children": "响应格式",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "coder",
+              "language": "json",
+              "value": {
+                "code": "0",
+                "success": true,
+                "count": 1,
+                "msg": "这个是模拟接口，success 为false 显示错误消息",
+                "data": "数组或者对象"
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 8,
+          "children": [
+            {
+              "tag": "h3",
+              "children": "配置简述",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "ol",
+              "children": [
+                {
+                  "tag": "li",
+                  "children": "tag-ajax 请求标志"
+                },
+                {
+                  "tag": "li",
+                  "children": "api-请求方法：url地址？部分参数"
+                },
+                {
+                  "tag": "li",
+                  "children": "appendFormFields-添加表单字段"
+                },
+                {
+                  "tag": "li",
+                  "children": "appendFields-添加其他字段"
+                },
+                {
+                  "tag": "li",
+                  "children": [
+                    "adapt 适配，key 适配initStore里面的字段，value是返回到结果字段"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "API（注意：configNode表示低代码配置，action表示动作配置）"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "layout-fit",
+          "style": {
+            "height": "250px",
+            "width": "100%"
+          },
+          "children": [
+            {
+              "tag": "table",
+              "rowData": "${apiList}",
+              "tooltipShowDelay": 0,
+              "columnDefs": [
+                {
+                  "headerName": "#",
+                  "width": 60,
+                  "suppressSizeToFit": true,
+                  "valueGetter": "node.rowIndex + 1",
+                  "sortable": false,
+                  "pinned": "left"
+                },
+                {
+                  "headerName": "字段",
+                  "field": "code",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "名称",
+                  "field": "name",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "类型",
+                  "field": "type",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "描述",
+                  "field": "description",
+                  "tooltipField": "description"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "展示示例"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 24,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "coder-preview",
+              "coder": {
+                "tag": "layout",
+                "initStore":{
+                  "result": [{"key": "模拟返回http对象,点击按钮发送请求"}],
+                  "msg": "http返回消息"
+                },
+                "children": [
+
+                  {
+                    "tag":"div",
+                    "style": {
+                      "padding": "20px"
+                    },
+                    "children": [
+                      {
+                        "tag":"button",
+                        "type": "primary",
+                        "children": "按钮测试http",
+                        "action": [
+                          {
+                            "tag": "ajax",
+                            "api": "get:/collect-ui/demo/data/menu/menu.json",
+                            "showResultMsg": true,
+                            "adapt": {
+                              "result": "${data}",
+                              "msg": "${msg}"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag":"div",
+                    "children": "${msg}"
+                  },
+                  {
+                    "tag":"div",
+                    "children": "${JSON.stringify(result)}"
+                  }
+
+
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -45,13 +45,49 @@
       "tag": "label",
       "className": "padding-left10 padding-bottom10",
       "children": [
-        "分割线继承ant的row col。",
+        "继承自Ant Design的栅格系统（Grid）中的Row和Col组件，用于实现灵活的布局分割。",
         {
           "tag": "a",
           "target": "_blank",
           "href": "https://ant.design/components/grid-cn",
           "children": "查看ant row-col文档"
+        },
+        {
+          "tag": "ul",
+          "children": [
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"继承来源"
+                },
+                "：基于Ant Design的官方栅格系统（Grid）中的Row和Col组件进行扩展。"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"布局灵活性"
+                },
+                "：通过继承Row和Col组件，用户可以利用Ant Design的栅格系统来创建复杂的页面布局，实现内容的分栏和分割，提升页面的结构性和可读性。"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"应用场景"
+                },
+                "：适用于需要精细控制页面布局的场景，如管理后台、数据展示页面等，帮助用户高效地管理和调整页面内容。"
+              ]
+            }
+          ]
         }
+
       ]
     },
     {

@@ -1,0 +1,475 @@
+{
+  "tag": "layout-fit",
+  "className": "padding10 h100 overflow-auto",
+  "initStore": {
+    "apiList": [
+      {
+        "code": "tag",
+        "name": "initStore",
+        "type": "dict",
+        "description": "初始化页面数据"
+      }
+
+    ]
+  },
+  "children": [
+    {
+      "tag": "h1",
+      "className": "border-bottom",
+      "children":"initStore示例"
+    },
+    {
+      "tag": "label",
+      "className":"padding-left10 padding-bottom10",
+      "children": [
+        "`initStore` 是一个用于页面初始化数据的机制，必须与目标组件紧密结合。一般设置在layout-fit上和initAction配合使用",
+        {
+          "tag": "ul",
+          "children": [
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"功能描述"
+                },
+                "：`initStore` 主要用于在页面加载时初始化数据，通过控制变量来实现表格数据的动态更新、对话框的显示与隐藏等交互效果。"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"依赖关系"
+                },
+                "：`initStore` 必须依附于特定的目标组件，以确保数据初始化和交互操作的正确执行。"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"数据更新机制"
+                },
+                "：通过配合 `action` 和 `update-store`，用户可以触发数据更新操作，从而实现表格数据的实时修改和页面状态的动态调整。同时，结合 `action ajax` 中的 `adapt` 功能，可以进一步优化数据更新的流程和效率。"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"传递与优先级"
+                },
+                "：initStore` 可以被传递和覆盖，如果有多个 `initStore` 存在，系统将优先采用最近设置的 `initStore` 来执行初始化操作。"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height":"300px",
+            "overflow": "auto"
+          },
+          "children": [
+            {
+              "tag": "h3",
+              "children":"代码配置示例",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "coder",
+              "language": "json",
+              "value": {
+                "tag": "layout-fit",
+                "initStore": {
+                  "dialogOpen": false,
+                   "op": "add"
+                },
+                "children":"页面内容"
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 12,
+          "children":[
+            {
+              "tag": "h3",
+              "children":"配置简述",
+              "className": "border-bottom"
+            },
+            {
+            "tag": "ol",
+            "children": [
+              {
+                "tag": "li",
+                "children":"initStore-初始化页面变量"
+              }
+            ]
+          }
+          ]
+        }
+      ]
+    },
+
+    {
+      "tag":"h3",
+      "className": "border-bottom",
+      "children": "API（注意：configNode表示低代码配置，action表示动作配置）"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "layout-fit",
+          "style": {
+            "height": "100px",
+            "width": "100%"
+          },
+          "children": [
+            {
+              "tag": "table",
+              "rowData": "${apiList}",
+              "tooltipShowDelay": 0,
+              "columnDefs": [
+                {
+                  "headerName": "#",
+                  "width": 60,
+                  "suppressSizeToFit": true,
+                  "valueGetter": "node.rowIndex + 1",
+                  "sortable": false,
+                  "pinned": "left"
+                },
+                {
+                  "headerName": "字段",
+                  "field": "code",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "名称",
+                  "field": "name",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "类型",
+                  "field": "type",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "描述",
+                  "field": "description",
+                  "tooltipField": "description"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag":"h3",
+      "className": "border-bottom",
+      "children": "展示示例"
+    },
+    {
+      "tag":"row",
+      "children": [
+        {
+          "tag":"col",
+          "span": 8,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "label",
+              "className": "bold",
+              "children": "基础显示"
+            },
+            {
+              "tag": "coder-preview",
+              "coder":{
+                "tag": "layout-fit",
+                "initStore": {
+                  "dialogOpen": false,
+                  "op": "add",
+                  "result": [{"key": "模拟返回http对象,点击按钮发送请求"}],
+                  "msg": "http返回消息"
+                },
+                "children":[
+                  {
+                    "tag":"row",
+                    "children": [
+                      {
+                        "type": "primary",
+                        "tag":"button",
+                        "children":"打开-新增对话框",
+                        "action": [
+                          {
+                            "tag": "update-store",
+                            "value": {
+                              "dialogOpen": true,
+                              "op": "add"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "tag":"button",
+                        "children":"打开-编辑对话框",
+                        "action": [
+                          {
+                            "tag": "update-store",
+                            "value": {
+                              "dialogOpen": true,
+                              "op": "edit"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag":"div",
+                    "style": {
+                      "paddingTop": "20px"
+                    },
+                    "children": [
+                      {
+                        "tag":"button",
+                        "type": "primary",
+                        "children": "按钮测试http",
+                        "action": [
+                          {
+                            "tag": "ajax",
+                            "api": "get:/collect-ui/demo/data/menu/menu.json",
+                            "showResultMsg": true,
+                            "adapt": {
+                              "result": "${data}",
+                              "msg": "${msg}"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag":"div",
+                    "children": "${msg}"
+                  },
+                  {
+                    "tag":"div",
+                    "children": "${JSON.stringify(result)}"
+                  },
+                  {
+                    "tag": "dialog",
+                    "open": "${dialogOpen}",
+                    "title": "${op=='add'?'新增对话框':'修改对话框'}",
+                    "children": [
+                      {
+                        "tag": "div",
+                        "children": "对话框内容"
+                      },
+                      {
+                        "tag": "label",
+                        "children": "${'当前操作：'+op}"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "tag":"col",
+          "span": 16,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "label",
+              "className": "bold",
+              "children": "增删改查,支持控制按钮状态，删除的二次确认"
+            },
+            {
+              "tag": "coder-preview",
+              "coder":{
+                "tag": "layout-fit",
+                "className": "border",
+                "title": "用户管理",
+                "initStore": {
+                  "selection": [],
+                  "dataList": [
+                    {
+                      "username": "zz",
+                      "nick":"张三"
+                    },
+                    {
+                      "username": "ls",
+                      "nick":"李四"
+                    }
+                  ],
+                  "searchForm": {
+                    "search":"",
+                    "page": 1,
+                    "size": 10
+                  },
+                  "count": 101
+                 },
+                "topRight": [
+                  {
+                    "tag": "button",
+                    "type": "primary",
+                    "icon": "FaPlus",
+                    "children": "新增"
+                  },
+                  {
+                    "tag": "button",
+                    "children": "编辑",
+                    "disabled": "${selection.length !=1 }",
+                    "icon": "FaPencilAlt"
+                  },
+                  {
+                    "tag": "button",
+                    "disabled": "${selection.length <=0 }",
+                    "type": "primary",
+                    "confirm": {
+                      "title": "确认删除吗？",
+                      "description":
+                      "${'确认删除【'+selection.map(item=>item.nick+'（'+item.username+'）').join(',')+'】'+selection.length+'记录吗？'}"
+                    },
+                    "danger": true,
+                    "children": "删除",
+                    "icon": "FaTrashAlt"
+                  }
+                ],
+                "searchToolBar": [
+                  {
+                    "tag": "form",
+                    "name": "user-form",
+                    "initialValues": "${searchForm}",
+                    "labelCol": { "span": 4 },
+                    "wrapperCol": { "span": 19 },
+                    "submitOnChange": true,
+                    "children": [
+                      {
+                        "tag": "row",
+                        "children": [
+                          {
+                            "tag": "col",
+                            "span": 10,
+                            "children": [
+                              {
+                                "tag": "form-item",
+                                "name": "search",
+                                "label": "搜索",
+
+                                "children": [
+                                  {
+                                    "tag": "input",
+                                    "placeholder": "账号/用户名",
+                                    "allowClear": true
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+
+
+                          {
+                            "tag": "col",
+                            "span": 10,
+                            "children": [
+                              {
+                                "tag": "button",
+
+                                "type": "primary",
+                                "children": "搜索",
+                                "icon": "FaSearch"
+                              },
+                              {
+                                "tag": "button",
+                                "action": [
+                                  {
+                                    "tag": "reset-form",
+                                    "formName": "user-form"
+                                  }
+
+                                ],
+                                "icon": "FaUndo",
+                                "children": "重置"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+
+                "children":[
+                  {
+                    "tag": "table",
+                    "selection": "${selection}",
+                    "rowSelection": "multiple",
+                    "rowData": "${dataList}",
+                    "columnDefs": [
+                      {
+                        "headerName": "#",
+                        "width": 60,
+                        "suppressSizeToFit": true,
+                        "valueGetter": "node.rowIndex + 1",
+                        "sortable": false,
+                        "pinned": "left"
+                      },
+                      {
+                        "pinned": "left",
+                        "checkboxSelection": true,
+                        "headerCheckboxSelection": true,
+                        "headerName": "账号",
+                        "field": "username"
+                      },
+                      {
+                        "headerName": "昵称",
+                        "field": "nick"
+                      }
+                    ]
+                  }
+                ],
+                "bottomToolBar":[{
+                  "tag": "pagination",
+                  "showSizeChanger": true,
+                  "align": "right",
+                  "pageSize": "${searchForm.size}",
+                  "current": "${searchForm.page}",
+                  "total": "${count}",
+                  "showTotal": true
+                }]
+              }
+            }
+          ]
+        }
+      ]
+    }
+
+
+  ]
+}
