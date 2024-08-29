@@ -31,7 +31,7 @@
           "children": [
             {
               "tag": "sider",
-              "width": "220px",
+              "width": "240px",
               "collapsible": true,
               "collapsedWidth": "40",
               "children": [

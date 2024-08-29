@@ -108,6 +108,12 @@
           "menu_name": "ajax 发送请求",
           "url": "/framework/ajax",
           "data": "action/ajax.json"
+        },
+        {
+          "menu_code": "update-store",
+          "menu_name": "update-store更新数据",
+          "url": "/framework/update-store",
+          "data": "action/update-store.json"
         }
       ]
     }
