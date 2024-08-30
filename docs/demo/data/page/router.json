@@ -1,0 +1,258 @@
+{
+  "tag": "layout-fit",
+  "className": "padding10 h100 overflow-auto",
+  "initStore": {
+    "apiList": [
+      {
+        "code": "tag",
+        "name": "router",
+        "type": "string",
+        "description": "路由容器"
+      },
+      {
+        "code": "basename",
+        "name": "路由前缀",
+        "type": "string",
+        "description": "打包整个项目的前缀。影响data_home"
+      },
+      {
+        "code": "data_home",
+        "name": "前端配置文件夹的路由",
+        "type": "string",
+        "description": "/ 表示项目的根路径"
+      },
+      {
+        "code": "hash",
+        "name": "hash 路由默认",
+        "type": "boolean",
+        "description": "true 表示hash 路由，false 表示history模式"
+      },
+      {
+        "code": "data",
+        "name": "请求的相对路径，全路径data_home+data",
+        "type": "boolean",
+        "description": "当前配置中，data_home 路径为 /collect-ui/demo/data，而 data 路径为 framework/home.json。因此，请求的全路径为 /collect-ui/demo/data/framework/home.json。目前，该路径的数据由前端直接获取，以方便开发。未来，我们将支持通过HTTP请求从后台返回数据。"
+      }
+    ]
+  },
+  "children": [
+    {
+      "tag": "h1",
+      "className": "border-bottom",
+      "children": "router示例"
+    },
+    {
+      "tag": "label",
+      "className": "padding-left10 padding-bottom10",
+      "children": [
+        "标签 tag=router 作为页面的路由容器，负责管理和控制页面的跳转逻辑，是实现页面导航的核心组件",
+        {
+          "tag": "a",
+          "target": "_blank",
+          "href": "https://baimingxuan.github.io/react-router6-doc/start/overview",
+          "children": "查看router-v6文档"
+        },
+        {
+          "tag": "ul",
+          "children": [
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children": "功能描述"
+                },
+                "：tag=router 标签通过定义和处理路由规则，控制用户在不同页面之间的跳转，确保用户能够根据需要访问相应的功能模块"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children": "使用方法"
+                },
+                "：开发者通过配置 tag=router 标签，定义路由路径及其对应的页面组件，实现页面间的无缝切换"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children": "应用场景"
+                },
+                "：此功能适用于需要复杂页面导航的应用程序，如多模块的管理系统、内容丰富的网站等，通过 tag=router 标签，可以构建出结构清晰、易于维护的页面导航系统。"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height": "800px",
+            "overflow": "auto"
+          },
+          "children": [
+            {
+              "tag": "h3",
+              "children": "代码配置示例",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "coder",
+              "language": "json",
+              "value": {
+                "tag": "router",
+                "basename": "/collect-ui",
+                "data_home": "/collect-ui/demo/data",
+                "hash": true,
+                "children": [
+                  {
+                    "path": "/",
+                    "redirect": "/framework/"
+                  },
+                  {
+                    "path": "/framework",
+                    "data": "framework.json",
+                    "children": [
+                      {
+                        "path": "/framework/",
+                        "data": "framework/home.json"
+                      },
+                      {
+                        "path": "/framework/install",
+                        "data": "framework/install.json"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 12,
+          "children": [
+            {
+              "tag": "h3",
+              "children": "配置简述",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "ol",
+              "children": [
+                {
+                  "tag": "li",
+                  "children": "router-路由页面"
+                },
+                {
+                  "tag": "li",
+                  "children": "basename 路由前缀，需要配合vite打包中base。"
+                },
+                {
+                  "tag": "li",
+                  "children": "data_home,配置文件的目录。如果有路由前缀需要加上前缀。"
+                },
+                {
+                  "tag": "li",
+                  "children": "hash，hash=true hash 默认，否则history模式"
+                },
+                {
+                  "tag": "li",
+                  "children": "data 前端模式下前期的路径，全路径data_home+data路径"
+                },
+                {
+                  "tag": "li",
+                  "children": "有一个menu2router的action,专门请求的菜单转路由。如果是后台可以和权限绑定"
+                },
+                {
+                  "tag": "li",
+                  "children": [
+                    "详情请看router-v6 文档",
+                    {
+                      "tag": "a",
+                      "target": "_blank",
+                      "href": "https://baimingxuan.github.io/react-router6-doc/start/overview",
+                      "children": "查看router-v6文档"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "API（注意：configNode表示低代码配置，action表示动作配置）"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "layout-fit",
+          "style": {
+            "height": "400px",
+            "width": "100%"
+          },
+          "children": [
+            {
+              "tag": "table",
+              "rowData": "${apiList}",
+              "tooltipShowDelay": 0,
+              "columnDefs": [
+                {
+                  "headerName": "#",
+                  "width": 60,
+                  "suppressSizeToFit": true,
+                  "valueGetter": "node.rowIndex + 1",
+                  "sortable": false,
+                  "pinned": "left"
+                },
+                {
+                  "headerName": "字段",
+                  "field": "code",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "名称",
+                  "field": "name",
+                  "width": 200,
+                  "suppressSizeToFit": true,
+                  "wrapText": true,
+                  "autoHeight": true,
+                  "cellClass": "line-height2"
+                },
+                {
+                  "headerName": "类型",
+                  "field": "type",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "描述",
+                  "field": "description",
+                  "wrapText": true,
+                  "autoHeight": true,
+                  "cellClass": "line-height2",
+                  "tooltipField": "description"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

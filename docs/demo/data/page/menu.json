@@ -1,0 +1,371 @@
+{
+  "tag": "layout-fit",
+  "className": "padding10 h100 overflow-auto",
+  "initStore": {
+    "apiList": [
+      {
+        "code": "tag",
+        "name": "menu",
+        "type": "string",
+        "description": "菜单栏"
+      },
+      {
+        "code":"changeRouter",
+        "name": "是否改变路由",
+        "type": "boolean",
+        "description": "是否改变路由,需要配合router-tab"
+      },
+      {
+        "code":"rule",
+        "name": "字段转换规则，必须传",
+        "type": "dict",
+        "description": "字段转换规则，必须传"
+      },
+      {
+        "code":"rule.key_field",
+        "name": "key的取值字段",
+        "type": "string",
+        "description": "必须"
+      },
+      {
+        "code":"rule.label_field",
+        "name": "label的取值字段",
+        "type": "string",
+        "description": "必须"
+      },
+      {
+        "code":"rule.icon_field",
+        "name": "icon的取值字段",
+        "type": "string",
+        "description": "非必须"
+      },
+      {
+        "code":"rule.to_field",
+        "name": "url跳转的取值字段",
+        "type": "string",
+        "description": "非必须。支持ant图标"
+      }
+
+
+    ]
+  },
+  "children": [
+    {
+      "tag": "h1",
+      "className": "border-bottom",
+      "children":"menu示例"
+    },
+    {
+      "tag": "label",
+      "className":"padding-left10 padding-bottom10",
+      "children": [
+        "menu 组件作为Ant Design菜单组件的继承者，不仅支持展示菜单栏，还能与 router-tab 组件协同工作，实现通过菜单栏控制页面路由跳转的功能。",
+
+        {
+          "tag": "a",
+          "target": "_blank",
+          "href": "https://ant.design/components/menu-cn",
+          "children": "查看ant menu文档"
+        },
+        {
+          "tag": "ul",
+          "children": [
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"功能描述"
+                },
+                "：menu 组件继承了Ant Design菜单组件的丰富特性，提供了灵活的菜单展示功能。通过与 router-tab 组件的集成，用户点击菜单项时，系统能够自动触发相应的路由跳转，导航到指定的页面。"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"使用方法"
+                },
+                "：开发者需要在 menu 组件中配置菜单项，并将其与 router-tab 组件的路由路径关联，确保菜单项的点击能够准确地触发页面跳转。"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"应用场景"
+                },
+                "：此功能适用于需要通过菜单栏进行页面导航的应用程序，如多模块的管理系统、内容丰富的网站等，通过 menu 组件与 router-tab 组件的配合，可以构建出直观、高效的页面导航系统。"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height":"400px",
+            "overflow": "auto"
+          },
+          "children": [
+            {
+              "tag": "h3",
+              "children":"代码配置示例",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "coder",
+              "language": "json",
+              "value":  {
+                "tag": "menu",
+                "theme": "dark",
+                "mode": "horizontal",
+                "defaultSelectedKeys": [
+                  "2"
+                ],
+                "rule": {
+                  "key_field": "id",
+                  "label_field": "name"
+                },
+                "items": [
+                  {
+                    "id": "1",
+                    "name": "nav 1"
+                  },
+                  {
+                    "id": "2",
+                    "name": "nav 2"
+                  },
+                  {
+                    "id": "3",
+                    "name": "nav 2"
+                  }
+                ],
+                "style": {
+                  "flex": 1,
+                  "minWidth": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 12,
+          "children": [
+            {
+              "tag": "h3",
+              "children": "配置简述",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "ol",
+              "children": [
+                {
+                  "tag": "li",
+                  "children": "changeRouter-是否改变路由，跳转to_field的地址"
+                },
+                {
+                  "tag": "li",
+                  "children": "rule-规则转字段"
+                },
+                {
+                  "tag": "li",
+                  "children": [
+                    "rule.icon 支持ant的图标和fa 的图标",
+                    {
+                      "tag": "a",
+                      "target": "_blank",
+                      "href": "https://ant.design/components/icon-cn",
+                      "children": "查看ant icon文档",
+                      "style": {
+                        "marginRight": "10px",
+                        "marginLeft": "10px"
+                      }
+                    },
+                    {
+                      "tag": "a",
+                      "target": "_blank",
+                      "href": "http://react-icons.github.io/react-icons/icons/fa/",
+                      "children": "查看react-icon fa文档"
+                    }
+                  ]
+                },
+                {
+                  "tag": "li",
+                  "children": "mode-内联模式"
+                },
+                {
+                  "tag": "li",
+                  "children": "items-数据源。 表示取initStore中menu_list"
+                },
+                {
+                  "tag": "li",
+                  "children": [
+                    "其他字段请看官方文档",
+                    {
+                      "tag": "a",
+                      "target": "_blank",
+                      "href": "https://ant.design/components/menu-cn",
+                      "children": "查看ant menu文档"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+        ]
+    },
+
+    {
+      "tag":"h3",
+      "className": "border-bottom",
+      "children": "API（注意：configNode表示低代码配置，action表示动作配置）"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "layout-fit",
+          "style": {
+            "height": "350px",
+            "width": "100%"
+          },
+          "children": [
+            {
+              "tag": "table",
+              "rowData": "${apiList}",
+              "tooltipShowDelay": 0,
+              "columnDefs": [
+                {
+                  "headerName": "#",
+                  "width": 60,
+                  "suppressSizeToFit": true,
+                  "valueGetter": "node.rowIndex + 1",
+                  "sortable": false,
+                  "pinned": "left"
+                },
+                {
+                  "headerName": "字段",
+                  "field": "code",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "名称",
+                  "field": "name",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "类型",
+                  "field": "type",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "描述",
+                  "field": "description",
+                  "tooltipField": "description"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag":"h3",
+      "className": "border-bottom",
+      "children": "展示示例"
+    },
+    {
+      "tag":"row",
+      "children": [
+        {
+          "tag":"col",
+          "span": 8,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "label",
+              "className": "bold",
+              "children": "基础显示"
+            },
+            {
+              "tag": "coder-preview",
+              "coder":  {
+                "tag": "menu",
+                "mode": "inline",
+                "rule": {
+                  "label_field": "label",
+                  "key_field": "key",
+                  "icon_field": "icon"
+                },
+                "items": [
+                  {
+                    "label": "sub nav1",
+                    "icon": "UserOutlined",
+                    "key": "1",
+                    "children": [
+                      {
+                        "key": "1-1",
+                        "label": "option-1"
+                      },
+                      {
+                        "key": "1-2",
+                        "label": "option-2"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "sub nav2",
+                    "icon": "LaptopOutlined",
+                    "key": "2",
+                    "children": [
+                      {
+                        "key": "2-1",
+                        "label": "option-3"
+                      },
+                      {
+                        "key": "2-2",
+                        "label": "option-4"
+                      }
+                    ]
+                  },
+                  {
+                    "icon": "NotificationOutlined",
+                    "label": "sub nav3",
+                    "key": "3"
+                  }
+                ],
+                "defaultSelectedKeys": [
+                  "1-1"
+                ],
+                "defaultOpenKeys": [
+                  "1"
+                ],
+                "style": {
+                  "height": "100%"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+
+
+  ]
+}

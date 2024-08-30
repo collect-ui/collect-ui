@@ -58,7 +58,7 @@ export default async function (
   const config = {
     method: apiObj.method,
     url:apiObj.url,
-    data,
+    data:formValue
   };
   //@ts-ignore
   const res = await axios.create({}).request(config)

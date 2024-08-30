@@ -1,0 +1,490 @@
+{
+  "tag": "layout-fit",
+  "className": "padding10 h100 overflow-auto",
+  "initStore": {
+    "apiList": [
+      {
+        "code": "tag",
+        "name": "table",
+        "type": "string",
+        "description": "页面级布局标签"
+      },
+      {
+        "code": "initStore",
+        "name": "初始化store",
+        "type": "dict",
+        "description": "通过定义和绑定数据。定义 dataList: [] 作为数据源，并通过模板字符串 rowData: '${dataList}' 将该数组绑定至表格的行数据属性，以此实现表格内容的动态更新与用户交互。"
+      },
+      {
+        "code": "initAction",
+        "name": "初始化动作",
+        "type": "array[action]",
+        "description": "页面初始化时。通过请求更新全局状态并创建可复用的分组动作，以模块化方式高效管理数据获取与分组逻辑。可以设置group,以便reload-group-action调用"
+      },
+      {
+        "code": "title",
+        "name": "页面标题",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "code": "topRight",
+        "name": "右侧工具栏",
+        "type": "array[configNode]",
+        "description": "页面右侧工具栏，一般放新增、修改、删除"
+      },
+      {
+        "code": "searchToolBar",
+        "name": "搜索栏",
+        "type": "array[configNode]",
+        "description": "页面顶部搜索栏，一般放表单"
+      },
+      {
+        "code": "searchBarRight",
+        "name": "搜索栏右侧",
+        "type": "array[configNode]",
+        "description": "页面顶部搜索栏右侧，一般固定放一下搜索，操作栏等"
+      },
+      {
+        "code": "children",
+        "name": "主体内容区域",
+        "type": "array[configNode]",
+        "description": ""
+      },
+      {
+        "code": "bottomToolBar",
+        "name": "底部区域",
+        "type": "array[configNode]",
+        "description": "一般放分页"
+      }
+    ]
+  },
+  "children": [
+    {
+      "tag": "h1",
+      "className": "border-bottom",
+      "children": "table示例"
+    },
+    {
+      "tag": "label",
+      "className": "padding-left10 padding-bottom10",
+      "children": [
+        "标签 tag=table 作为 ag-Grid 组件的继承者，不仅支持 ag-Grid 的所有属性，还提供了灵活的自定义列展示功能，使用户能够根据需求定制表格的显示效果。",
+        {
+          "tag": "a",
+          "target": "_blank",
+          "href": "https://www.ag-grid.com/react-data-grid/getting-started/",
+          "children": "查看ag-grid文档"
+        },
+        {
+          "tag": "ul",
+          "children": [
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children": "功能描述"
+                },
+                "：tag=table 标签继承了 ag-Grid 组件的强大功能，包括数据排序、筛选、分页等，同时允许用户通过自定义列配置，灵活地控制表格中各列的显示方式和顺序。"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children": "使用方法"
+                },
+                "：用户可以在 tag=table 标签中定义列属性，通过设置 field、headerName、width、cellRenderer 等参数，实现对列的个性化展示。"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children": "应用场景"
+                },
+                "：此功能适用于需要高度定制表格显示的应用程序，如数据报表、复杂的数据管理系统等，通过 tag=table 标签，可以构建出既强大又灵活的表格组件。"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height": "400px",
+            "overflow": "auto"
+          },
+          "children": [
+            {
+              "tag": "h3",
+              "children": "代码配置示例",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "coder",
+              "language": "json",
+              "value": {
+                "tag": "table",
+                "selection": "${selection}",
+                "rowSelection": "multiple",
+                "rowData": "${dataList}",
+                "columnDefs": [
+                  {
+                    "headerName": "#",
+                    "width": 60,
+                    "valueGetter": "node.rowIndex + 1",
+                    "sortable": false,
+                    "suppressSizeToFit": true,
+                    "pinned": "left"
+                  },
+                  {
+                    "pinned": "left",
+                    "checkboxSelection": true,
+                    "headerCheckboxSelection": true,
+                    "headerName": "账号",
+                    "field": "username"
+                  },
+                  {
+                    "headerName": "工号",
+                    "field": "work_code"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 12,
+          "children": [
+            {
+              "tag": "h3",
+              "children": "配置简述",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "ol",
+              "children": [
+                {
+                  "tag": "li",
+                  "children": "tag=table-表格"
+                },
+                {
+                  "tag": "li",
+                  "children": "selection-选中的绑定对象"
+                },
+                {
+                  "tag": "li",
+                  "children": "rowData-行数据"
+                },
+                {
+                  "tag": "li",
+                  "children": "rowSelection-选中模式"
+                },
+                {
+                  "tag": "li",
+                  "children": "columnDefs-表头"
+                },
+                {
+                  "tag": "li",
+                  "children": [
+                    {
+                      "tag": "a",
+                      "target": "_blank",
+                      "href": "https://www.ag-grid.com/react-data-grid/getting-started/",
+                      "children": "查看ag-grid文档"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "API（注意：configNode表示低代码配置，action表示动作配置）"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "layout-fit",
+          "style": {
+            "height": "350px",
+            "width": "100%"
+          },
+          "children": [
+            {
+              "tag": "table",
+              "rowData": "${apiList}",
+              "tooltipShowDelay": 0,
+              "columnDefs": [
+                {
+                  "headerName": "#",
+                  "width": 60,
+                  "suppressSizeToFit": true,
+                  "valueGetter": "node.rowIndex + 1",
+                  "sortable": false,
+                  "pinned": "left"
+                },
+                {
+                  "headerName": "字段",
+                  "field": "code",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "名称",
+                  "field": "name",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "类型",
+                  "field": "type",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "描述",
+                  "field": "description",
+                  "tooltipField": "description"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "展示示例"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 8,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "label",
+              "className": "bold",
+              "children": "基础显示"
+            },
+            {
+              "tag": "coder-preview",
+              "coder": {
+                "tag": "layout-fit",
+                "className": "border",
+                "title": "页面标题",
+                "topRight": [
+                  "顶部右侧工具栏"
+                ],
+                "searchToolBar": [
+                  "搜索区域"
+                ],
+                "searchBarRight": [
+                  "搜索右侧区域"
+                ],
+                "children": [
+                  "内容区域"
+                ],
+                "bottomToolBar": [
+                  "底部区域"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 16,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "label",
+              "className": "bold",
+              "children": "增删改查"
+            },
+            {
+              "tag": "coder-preview",
+              "coder": {
+                "tag": "layout-fit",
+                "className": "border",
+                "title": "用户管理",
+                "initStore": {
+                  "selection": [],
+                  "dataList": [
+                    {
+                      "username": "zz",
+                      "nick": "张三"
+                    },
+                    {
+                      "username": "ls",
+                      "nick": "李四"
+                    }
+                  ],
+                  "searchForm": {
+                    "search": "",
+                    "page": 1,
+                    "size": 10
+                  },
+                  "count": 101
+                },
+                "topRight": [
+                  {
+                    "tag": "button",
+                    "type": "primary",
+                    "icon": "FaPlus",
+                    "children": "新增"
+                  },
+                  {
+                    "tag": "button",
+                    "children": "编辑",
+                    "disabled": "${selection.length !=1 }",
+                    "icon": "FaPencilAlt"
+                  },
+                  {
+                    "tag": "button",
+                    "disabled": "${selection.length <=0 }",
+                    "type": "primary",
+                    "confirm": {
+                      "title": "确认删除吗？",
+                      "description": "${'确认删除【'+selection.map(item=>item.nick+'（'+item.username+'）').join(',')+'】'+selection.length+'记录吗？'}"
+                    },
+                    "danger": true,
+                    "children": "删除",
+                    "icon": "FaTrashAlt"
+                  }
+                ],
+                "searchToolBar": [
+                  {
+                    "tag": "form",
+                    "name": "user-form",
+                    "initialValues": "${searchForm}",
+                    "labelCol": {
+                      "span": 4
+                    },
+                    "wrapperCol": {
+                      "span": 19
+                    },
+                    "submitOnChange": true,
+                    "children": [
+                      {
+                        "tag": "row",
+                        "children": [
+                          {
+                            "tag": "col",
+                            "span": 10,
+                            "children": [
+                              {
+                                "tag": "form-item",
+                                "name": "search",
+                                "label": "搜索",
+                                "children": [
+                                  {
+                                    "tag": "input",
+                                    "placeholder": "账号/用户名",
+                                    "allowClear": true
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "tag": "col",
+                            "span": 10,
+                            "children": [
+                              {
+                                "tag": "button",
+                                "type": "primary",
+                                "children": "搜索",
+                                "icon": "FaSearch"
+                              },
+                              {
+                                "tag": "button",
+                                "action": [
+                                  {
+                                    "tag": "reset-form",
+                                    "formName": "user-form"
+                                  }
+                                ],
+                                "icon": "FaUndo",
+                                "children": "重置"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "children": [
+                  {
+                    "tag": "table",
+                    "selection": "${selection}",
+                    "rowSelection": "multiple",
+                    "rowData": "${dataList}",
+                    "columnDefs": [
+                      {
+                        "headerName": "#",
+                        "width": 60,
+                        "suppressSizeToFit": true,
+                        "valueGetter": "node.rowIndex + 1",
+                        "sortable": false,
+                        "pinned": "left"
+                      },
+                      {
+                        "pinned": "left",
+                        "checkboxSelection": true,
+                        "headerCheckboxSelection": true,
+                        "headerName": "账号",
+                        "field": "username"
+                      },
+                      {
+                        "headerName": "昵称",
+                        "field": "nick"
+                      }
+                    ]
+                  }
+                ],
+                "bottomToolBar": [
+                  {
+                    "tag": "pagination",
+                    "showSizeChanger": true,
+                    "align": "right",
+                    "pageSize": "${searchForm.size}",
+                    "current": "${searchForm.page}",
+                    "total": "${count}",
+                    "showTotal": true
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

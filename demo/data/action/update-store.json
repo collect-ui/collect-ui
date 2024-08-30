@@ -31,13 +31,12 @@
         {
           "tag": "ul",
           "children": [
-
             {
               "tag": "li",
               "children": [
                 {
                   "tag": "strong",
-                  "children":"功能描述"
+                  "children": "功能描述"
                 },
                 "：当使用 `tag=update-store` 时，系统会接收一个 `value` 对象作为参数，该对象包含需要更新的数据键值对。系统将根据这些键值对更新 `initStore` 中对应的数据，而其他未指定的变量将保持不变。"
               ]
@@ -47,7 +46,7 @@
               "children": [
                 {
                   "tag": "strong",
-                  "children":"使用方法"
+                  "children": "使用方法"
                 },
                 "：用户只需传递一个包含更新数据键值对的 `value` 对象，系统会自动处理数据的合并和更新，确保 `initStore` 中的数据始终保持最新状态。"
               ]
@@ -57,14 +56,13 @@
               "children": [
                 {
                   "tag": "strong",
-                  "children":"应用场景"
+                  "children": "应用场景"
                 },
                 "：适用于需要动态更新页面数据而不影响其他状态的场景，如表格数据的实时刷新、对话框内容的动态调整等。"
               ]
             }
           ]
         }
-
       ]
     },
     {
@@ -87,39 +85,10 @@
               "tag": "coder",
               "language": "json",
               "value": {
-                "tag": "ajax",
-                "api": "post:/template_data/data?service=project.my_env_tree",
-                "appendFormFields": "server-search-form",
-                "appendFields": "${updateNodeForm}",
-                "adapt": {
-                  "server_env_data": "${data}"
+                "tag": "update-store",
+                "value": {
+                  "dialogVisible": true
                 }
-              }
-            }
-          ]
-        },
-        {
-          "tag": "col",
-          "span": 8,
-          "style": {
-            "height": "300px",
-            "overflow": "auto"
-          },
-          "children": [
-            {
-              "tag": "h3",
-              "children": "响应格式",
-              "className": "border-bottom"
-            },
-            {
-              "tag": "coder",
-              "language": "json",
-              "value": {
-                "code": "0",
-                "success": true,
-                "count": 1,
-                "msg": "这个是模拟接口，success 为false 显示错误消息",
-                "data": "数组或者对象"
               }
             }
           ]
@@ -138,25 +107,11 @@
               "children": [
                 {
                   "tag": "li",
-                  "children": "tag-ajax 请求标志"
+                  "children": "tag-`update-store` 更新数据"
                 },
                 {
                   "tag": "li",
-                  "children": "api-请求方法：url地址？部分参数"
-                },
-                {
-                  "tag": "li",
-                  "children": "appendFormFields-添加表单字段"
-                },
-                {
-                  "tag": "li",
-                  "children": "appendFields-添加其他字段"
-                },
-                {
-                  "tag": "li",
-                  "children": [
-                    "adapt 适配，key 适配initStore里面的字段，value是返回到结果字段"
-                  ]
+                  "children": "value-更新数据对象"
                 }
               ]
             }
@@ -241,30 +196,39 @@
               "tag": "coder-preview",
               "coder": {
                 "tag": "layout",
-                "initStore":{
-                  "result": [{"key": "模拟返回http对象,点击按钮发送请求"}],
-                  "msg": "http返回消息"
+                "initStore": {
+                  "msg": "http返回消息",
+                  "dialogShow": false
                 },
                 "children": [
-
                   {
-                    "tag":"div",
+                    "tag": "div",
                     "style": {
                       "padding": "20px"
                     },
                     "children": [
                       {
-                        "tag":"button",
+                        "tag": "button",
                         "type": "primary",
-                        "children": "按钮测试http",
+                        "children": "手动修改字段",
                         "action": [
                           {
-                            "tag": "ajax",
-                            "api": "get:/collect-ui/demo/data/menu/menu.json",
-                            "showResultMsg": true,
-                            "adapt": {
-                              "result": "${data}",
-                              "msg": "${msg}"
+                            "tag": "update-store",
+                            "value": {
+                              "msg": "这个是修改后的数据"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "button",
+                        "type": "primary",
+                        "children": "打开对话框",
+                        "action": [
+                          {
+                            "tag": "update-store",
+                            "value": {
+                              "dialogShow": true
                             }
                           }
                         ]
@@ -272,15 +236,23 @@
                     ]
                   },
                   {
-                    "tag":"div",
+                    "tag": "div",
                     "children": "${msg}"
                   },
                   {
-                    "tag":"div",
-                    "children": "${JSON.stringify(result)}"
+                    "tag": "dialog",
+                    "open": "${dialogShow}",
+                    "title": "对话框显示",
+                    "children": "对话框显示内容",
+                    "action": [
+                      {
+                        "tag": "update-store",
+                        "value": {
+                          "dialogShow": false
+                        }
+                      }
+                    ]
                   }
-
-
                 ]
               }
             }

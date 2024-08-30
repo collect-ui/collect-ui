@@ -19,6 +19,9 @@ export default async function (
   const { group } = action
   let targetStoreObj = actionStore(action, store, rootStore)
   const actions = targetStoreObj.getInitAction(group)
-  return await handlerActions(actions, targetStoreObj, rootStore, useApp)
+  const res =  await handlerActions(actions, targetStoreObj, rootStore, useApp)
+  //@ts-ignore
+  res.showMsg=false
+  return res
   // return getResult(true)
 }

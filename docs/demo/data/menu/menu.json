@@ -33,6 +33,34 @@
       "icon":"FaStoreAlt",
       "children": [
         {
+          "menu_code":"app_level",
+          "menu_name": "应用级别组件",
+          "type": "group",
+          "children": [
+            {
+              "menu_code": "app",
+              "menu_name": "app 应用",
+              "router_group": "/framework",
+              "url": "/framework/app",
+              "data": "page/app.json"
+            },
+            {
+              "menu_code": "router",
+              "menu_name": "router 路由",
+              "router_group": "/framework",
+              "url": "/framework/router",
+              "data": "page/router.json"
+            },
+            {
+              "menu_code": "menu",
+              "menu_name": "menu 菜单栏",
+              "router_group": "/framework",
+              "url": "/framework/menu",
+              "data": "page/menu.json"
+            }
+          ]
+        },
+        {
           "menu_code": "g1",
           "menu_name": "布局组件",
           "type": "group",
@@ -82,6 +110,21 @@
             },
             { "menu_code": "4", "menu_name": "input" }
           ]
+        },
+        {
+          "menu_code": "g3",
+          "menu_name": "页面元素",
+          "type": "group",
+          "children": [
+            {
+              "menu_code": "table",
+              "menu_name": "table表格",
+              "router_group": "/framework",
+              "url": "/framework/table",
+              "data": "ele/table.json"
+            }
+
+          ]
         }
       ]
     },
@@ -114,6 +157,12 @@
           "menu_name": "update-store更新数据",
           "url": "/framework/update-store",
           "data": "action/update-store.json"
+        },
+        {
+          "menu_code": "menu2router",
+          "menu_name": "menu2router菜单转路由",
+          "url": "/framework/menu2router",
+          "data": "action/menu2router.json"
         }
       ]
     }
