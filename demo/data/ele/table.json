@@ -10,52 +10,82 @@
         "description": "页面级布局标签"
       },
       {
-        "code": "initStore",
-        "name": "初始化store",
-        "type": "dict",
-        "description": "通过定义和绑定数据。定义 dataList: [] 作为数据源，并通过模板字符串 rowData: '${dataList}' 将该数组绑定至表格的行数据属性，以此实现表格内容的动态更新与用户交互。"
+        "code": "selection",
+        "name": "多选，选中的对象",
+        "type": "array",
+        "description": "当选中发生变化，会动态绑定到selection对应的对象${你的变量}"
       },
       {
-        "code": "initAction",
-        "name": "初始化动作",
-        "type": "array[action]",
-        "description": "页面初始化时。通过请求更新全局状态并创建可复用的分组动作，以模块化方式高效管理数据获取与分组逻辑。可以设置group,以便reload-group-action调用"
-      },
-      {
-        "code": "title",
-        "name": "页面标题",
+        "code": "rowSelection",
+        "name": "复选框的模式",
         "type": "string",
+        "description": " 'single'，启用单选模式；'multiple'，启用多选模式；必须在列上配置 checkboxSelection: true,    headerCheckboxSelection: true,"
+      },
+      {
+        "code": "rowData",
+        "name": "页面数据列表",
+        "type": "array",
         "description": ""
       },
       {
-        "code": "topRight",
-        "name": "右侧工具栏",
-        "type": "array[configNode]",
-        "description": "页面右侧工具栏，一般放新增、修改、删除"
+        "code": "columnDefs",
+        "name": "列信息",
+        "type": "array",
+        "description": "columnDefs"
       },
       {
-        "code": "searchToolBar",
-        "name": "搜索栏",
-        "type": "array[configNode]",
-        "description": "页面顶部搜索栏，一般放表单"
+        "code": "columnDefs[headerName]",
+        "name": "表头名称",
+        "type": "string",
+        "description": "表头名称"
       },
       {
-        "code": "searchBarRight",
-        "name": "搜索栏右侧",
-        "type": "array[configNode]",
-        "description": "页面顶部搜索栏右侧，一般固定放一下搜索，操作栏等"
+        "code": "columnDefs[width]",
+        "name": "宽度",
+        "type": "int",
+        "description": "配合suppressSizeToFit，页面宽度发生变化，也不会适应页面比率"
       },
       {
-        "code": "children",
-        "name": "主体内容区域",
-        "type": "array[configNode]",
+        "code": "columnDefs[valueGetter]",
+        "name": "显示内容，表达式形式",
+        "type": "string",
+        "description": "node 表示当前节点"
+      },
+      {
+        "code": "columnDefs[sortable]",
+        "name": "是否支持排序",
+        "type": "boolean",
+        "description": "是否支持排序"
+      },
+      {
+        "code": "columnDefs[suppressSizeToFit]",
+        "name": "是否固定宽度",
+        "type": "boolean",
+        "description": "页面宽度变化调用了，列宽适应宽度。如果为false则不是适应宽度变化"
+      },
+      {
+        "code": "columnDefs[pinned]",
+        "name": "固定位置",
+        "type": "string",
+        "description": "left，左边。right右边"
+      },
+      {
+        "code": "columnDefs[checkboxSelection]",
+        "name": "列是否复选宽",
+        "type": "boolean",
+        "description": "不像element-ui ，单独有一列是复选宽。这里的复选框是依附于某一个列"
+      },
+      {
+        "code": "columnDefs[headerCheckboxSelection]",
+        "name": "列头是否复选宽",
+        "type": "boolean",
         "description": ""
       },
       {
-        "code": "bottomToolBar",
-        "name": "底部区域",
-        "type": "array[configNode]",
-        "description": "一般放分页"
+        "code": "columnDefs[cellRender]",
+        "name": "自定义渲染cell",
+        "type": "configNode",
+        "description": "支持传一个低代码配置。直接传了行数据,显示的时候直接可以用行数据变量。支持里面按钮处理action。但是行数据包裹在row里面"
       }
     ]
   },
@@ -242,7 +272,7 @@
                 {
                   "headerName": "字段",
                   "field": "code",
-                  "width": 150,
+                  "width": 250,
                   "suppressSizeToFit": true
                 },
                 {
@@ -276,44 +306,7 @@
     {
       "tag": "row",
       "children": [
-        {
-          "tag": "col",
-          "span": 8,
-          "style": {
-            "height": "500px"
-          },
-          "className": "padding10",
-          "children": [
-            {
-              "tag": "label",
-              "className": "bold",
-              "children": "基础显示"
-            },
-            {
-              "tag": "coder-preview",
-              "coder": {
-                "tag": "layout-fit",
-                "className": "border",
-                "title": "页面标题",
-                "topRight": [
-                  "顶部右侧工具栏"
-                ],
-                "searchToolBar": [
-                  "搜索区域"
-                ],
-                "searchBarRight": [
-                  "搜索右侧区域"
-                ],
-                "children": [
-                  "内容区域"
-                ],
-                "bottomToolBar": [
-                  "底部区域"
-                ]
-              }
-            }
-          ]
-        },
+
         {
           "tag": "col",
           "span": 16,
@@ -338,12 +331,15 @@
                   "dataList": [
                     {
                       "username": "zz",
-                      "nick": "张三"
+                      "nick": "张三",
+                      "create_ldap": "1"
                     },
                     {
                       "username": "ls",
-                      "nick": "李四"
+                      "nick": "李四",
+                      "create_ldap": "0"
                     }
+
                   ],
                   "searchForm": {
                     "search": "",
@@ -465,6 +461,73 @@
                       {
                         "headerName": "昵称",
                         "field": "nick"
+                      },
+                      {
+                        "headerName": "创建LDAP",
+                        "field": "create_ldap",
+                        "cellRender": {
+                          "tag": "icon",
+                          "visible": "${create_ldap==='1'}",
+                          "icon": "FaCheck",
+                          "color": "green"
+                        }
+                      },
+                      {
+                        "headerName": "操作",
+                        "field": "op",
+                        "cellRender": [
+                          {
+                            "tag": "button",
+                            "action": [
+                              {
+                                "tag": "update-store",
+                                "value": {
+                                  "dialogVisible": true,
+                                  "op": "edit"
+                                }
+                              },
+                              {
+                                "tag": "reset-form",
+                                "formName": "opForm"
+                              },
+                              {
+                                "tag": "update-form",
+                                "formName": "opForm",
+                                "value": "${row}"
+                              }
+                            ],
+                            "type": "primary",
+                            "size": "small",
+                            "children": "编辑"
+                          },
+                          {
+                            "tag": "button",
+                            "danger": true,
+                            "size": "small",
+                            "children": [
+                              "删除"
+                            ],
+                            "confirm": {
+                              "title": "确认删除吗？",
+                              "description": "${'确认删除【'+row.nick+'（'+row.username+'）】记录吗？'}"
+                            },
+                            "action": [
+                              {
+                                "tag": "ajax",
+                                "description": "删除用户",
+                                "api": "post:/template_data/data?service=hrm.delete_user_by_user_id_list",
+                                "data": {
+                                  "user_id_list": "${[row.user_id]}"
+                                }
+                              },
+                              {
+                                "tag": "reload-init-action",
+                                "group": "dataList",
+                                "description": "页面初始化请求"
+                              }
+                            ]
+                          }
+                        ]
                       }
                     ]
                   }

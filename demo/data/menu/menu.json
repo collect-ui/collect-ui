@@ -122,6 +122,13 @@
               "router_group": "/framework",
               "url": "/framework/table",
               "data": "ele/table.json"
+            },
+            {
+              "menu_code": "dialog",
+              "menu_name": "dialog对话框",
+              "router_group": "/framework",
+              "url": "/framework/dialog",
+              "data": "ele/dialog.json"
             }
 
           ]

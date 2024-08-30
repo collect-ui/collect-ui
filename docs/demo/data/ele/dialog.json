@@ -1,0 +1,403 @@
+{
+  "tag": "layout-fit",
+  "className": "padding10 h100 overflow-auto",
+  "initStore": {
+    "apiList": [
+      {
+        "code": "tag",
+        "name": "dialog",
+        "type": "string",
+        "description": "对话框，支持拖动"
+      },
+      {
+        "code": "title",
+        "name": "标题",
+        "type": "array",
+        "description": "可以通过控制表达式，动态控制标题，必须op=add `新增用户`；op=edit`修改用户`"
+      },
+      {
+        "code": "width",
+        "name": "宽度",
+        "type": "string",
+        "description": "对话框的宽度"
+      },
+      {
+        "code": "open",
+        "name": "对话框的打开状态。通过控制open，可以控制对话框打开与关闭",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "code": "action",
+        "name": "确定后的动作",
+        "type": "array",
+        "description": "action 一般，接对话框提交，发送ajax请求，关闭对话框等"
+      },
+      {
+        "code": "children",
+        "name": "主体内容",
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  "children": [
+    {
+      "tag": "h1",
+      "className": "border-bottom",
+      "children": "dialog示例"
+    },
+    {
+      "tag": "label",
+      "className": "padding-left10 padding-bottom10",
+      "children": [
+        "标签 tag=dialog 作为 Ant Design 对话框组件的继承者，不仅支持 Ant Design 对话框的所有属性，还提供了额外的自定义功能，使用户能够根据需求定制对话框的显示效果和行为。",
+        {
+          "tag": "a",
+          "target": "_blank",
+          "href": "https://ant.design/components/modal-cn",
+          "children": "查看modal文档"
+        },
+        {
+          "tag": "ul",
+          "children": [
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children": "功能描述"
+                },
+                "：tag=dialog 标签继承了 Ant Design 对话框组件的丰富特性，包括模态框、非模态框、自定义内容、按钮配置等，同时允许用户通过自定义属性，灵活地控制对话框的外观和交互逻辑"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children": "使用方法"
+                },
+                "：用户可以在 tag=dialog 标签中定义对话框属性，通过设置 title、open、width、action 等参数，实现对对话框的个性化展示和行为控制。"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children": "应用场景"
+                },
+                "：此功能适用于需要高度定制对话框显示的应用程序，如表单提交、信息确认、操作提示等，通过 tag=dialog 标签，可以构建出既美观又灵活的对话框组件。"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height": "400px",
+            "overflow": "auto"
+          },
+          "children": [
+            {
+              "tag": "h3",
+              "children": "代码配置示例",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "coder",
+              "language": "json",
+              "value":   {
+                "tag": "dialog",
+                "title": "${op=='add'?'新增用户':'修改用户'}",
+                "width": "50%",
+                "open": "${dialogVisible}",
+                "action": [
+                  {
+                    "tag": "submit-form",
+                    "description": "提交表单",
+                    "formName": "opForm"
+                  },
+                  {
+                    "tag": "update-store",
+                    "description": "关闭对话框",
+                    "value": {
+                      "dialogVisible": false
+                    }
+                  }
+                ],
+                "children": [
+                  {
+                    "tag": "form",
+                    "name": "opForm",
+                    "initialValues": "${opForm}",
+
+                    "labelCol": {
+                      "span": 4
+                    },
+                    "children": [
+                      "表单内容"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 12,
+          "children": [
+            {
+              "tag": "h3",
+              "children": "配置简述",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "ol",
+              "children": [
+                {
+                  "tag": "li",
+                  "children": "tag=dialog-对话框"
+                },
+                {
+                  "tag": "li",
+                  "children": "title-对话框标题"
+                },
+                {
+                  "tag": "li",
+                  "children": "width-表格宽度"
+                },
+                {
+                  "tag": "li",
+                  "children": "open-打开状态"
+                },
+                {
+                  "tag": "li",
+                  "children": "action-确定后的动作"
+                },
+                {
+                  "tag": "li",
+                  "children": "children-渲染的内容"
+                },
+                {
+                  "tag": "li",
+                  "children": [
+                    {
+                      "tag": "a",
+                      "target": "_blank",
+                      "href": "https://ant.design/components/modal-cn",
+                      "children": "查看modal文档"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "API（注意：configNode表示低代码配置，action表示动作配置）"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "layout-fit",
+          "style": {
+            "height": "300px",
+            "width": "100%"
+          },
+          "children": [
+            {
+              "tag": "table",
+              "rowData": "${apiList}",
+              "tooltipShowDelay": 0,
+              "columnDefs": [
+                {
+                  "headerName": "#",
+                  "width": 60,
+                  "suppressSizeToFit": true,
+                  "valueGetter": "node.rowIndex + 1",
+                  "sortable": false,
+                  "pinned": "left"
+                },
+                {
+                  "headerName": "字段",
+                  "field": "code",
+                  "width": 250,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "名称",
+                  "field": "name",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "类型",
+                  "field": "type",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "描述",
+                  "field": "description",
+                  "tooltipField": "description"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "展示示例"
+    },
+    {
+      "tag": "row",
+      "children": [
+
+        {
+          "tag": "col",
+          "span": 16,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "label",
+              "className": "bold",
+              "children": "对话框"
+            },
+            {
+              "tag": "coder-preview",
+              "coder": {
+                "tag": "layout-fit",
+                "className": "border",
+                "initStore": {
+                  "dialogVisible": false,
+                  "addForm": {
+                    "username": "",
+                    "nick":""
+                  }
+                },
+                "children": [
+                  {
+                    "tag": "row",
+                    "className": "padding10",
+                    "children":[
+                      {
+                        "tag": "button",
+                        "type": "primary",
+                        "children": "新增",
+                        "action": [
+                          {
+                            "tag": "reset-form",
+                            "formName": "addForm"
+                          },
+                          {
+                            "tag": "update-store",
+                            "description": "打开对话框",
+                            "value": {
+                              "dialogVisible": true
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+
+                  {
+                    "tag": "dialog",
+                    "title": "新增用户",
+                    "width": "50%",
+                    "open": "${dialogVisible}",
+                    "action": [
+                      {
+                        "tag": "submit-form",
+                        "description": "提交表单",
+                        "formName": "addForm"
+                      },
+
+                      {
+                        "tag": "update-store",
+                        "description": "关闭对话框",
+                        "value": {
+                          "dialogVisible": false
+                        }
+                      }
+
+                    ],
+                    "children": [
+                      {
+                        "tag": "form",
+                        "name": "addForm",
+                        "initialValues": "${opForm}",
+                        "valueRule": {},
+                        "labelCol": {
+                          "span": 4
+                        },
+                        "children": [
+                          {
+                            "tag": "form-item",
+                            "name": "username",
+                            "rules": [
+                              {
+                                "required": true,
+                                "message": "请输入用户名!"
+                              }
+                            ],
+                            "label": "用户名",
+                            "children": [
+                              {
+                                "tag": "input",
+                                "placeholder": "请输入用户名"
+                              }
+                            ]
+                          },
+                          {
+                            "tag": "form-item",
+                            "name": "nick",
+                            "rules": [
+                              {
+                                "required": true,
+                                "message": "请输入昵称!"
+                              }
+                            ],
+                            "label": "昵称",
+                            "children": [
+                              {
+                                "tag": "input",
+                                "placeholder": "请输入昵称"
+                              }
+                            ]
+                          }
+
+                        ]
+                      }
+                    ]
+                  }
+                ]
+
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
