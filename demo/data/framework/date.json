@@ -27,7 +27,7 @@
       "tag": "label",
       "className": "padding-left10 padding-bottom10",
       "children": [
-        "扩展 Ant Design 日期选择组件：功能增强、样式定制、代码继承。",
+        "扩展 Ant Design 日期选择组件：功能增强、样式定制、代码继承。必须包在form中",
         {
           "tag": "a",
           "target": "_blank",
@@ -68,7 +68,7 @@
           "tag": "col",
           "span": 12,
           "style": {
-            "height": "400px",
+            "height": "300px",
             "overflow": "auto"
           },
           "children": [
@@ -194,12 +194,80 @@
           "children": [
             {
               "tag": "coder-preview",
-              "coder":  {
-                "tag": "date",
-                "format": "YYYY-MM-DD",
-                "valueFormat": "YYYY-MM-DD",
-                "placeholder": "请选择入职时间"
-              }
+              "coder": {
+                  "tag": "form",
+                  "name": "form-demo",
+                "labelCol": {
+                  "span": 8
+                },
+                "wrapperCol": {
+                  "span": 16
+                },
+                  "children": [
+                    {
+                      "tag": "form-item",
+                      "label": "日期",
+                      "name": "date",
+                      "children": [
+                        {
+                          "tag": "date",
+                          "format": "YYYY-MM-DD",
+                          "valueFormat": "YYYY-MM-DD",
+                          "placeholder": "请选择入职时间"
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "form-item",
+                      "label": "周",
+                      "name": "week",
+                      "children": [
+                        {
+                          "tag": "date",
+                          "picker":"week",
+                          "placeholder": "请选择入职时间"
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "form-item",
+                      "label": "月",
+                      "name": "month",
+                      "children": [
+                        {
+                          "tag": "date",
+                          "picker":"month",
+                          "placeholder": "请选择入职时间"
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "form-item",
+                      "label": "季度",
+                      "name": "quarter",
+                      "children": [
+                        {
+                          "tag": "date",
+                          "picker":"quarter",
+                          "placeholder": "请选择入职时间"
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "form-item",
+                      "label": "年",
+                      "name": "year",
+                      "children": [
+                        {
+                          "tag": "date",
+                          "picker":"year",
+                          "placeholder": "请选择入职时间"
+                        }
+                      ]
+                    }
+                  ]
+                }
+
             }
           ]
         }

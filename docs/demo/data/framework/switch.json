@@ -1,0 +1,209 @@
+{
+  "tag": "layout-fit",
+  "className": "padding10 h100 overflow-auto",
+  "initStore": {
+    "apiList": [
+      {
+        "code": "switch",
+        "name": "开关",
+        "type": "string",
+        "description": "开关"
+      },
+      {
+        "code": "activeValue",
+        "name": "true 转换'1'",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "code": "inactiveValue",
+        "name": "false 转换'0'",
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  "children": [
+    {
+      "tag": "h1",
+      "className": "border-bottom",
+      "children": "switch示例"
+    },
+    {
+      "tag": "label",
+      "className": "padding-left10 padding-bottom10",
+      "children": [
+        "扩展 Ant Design switch。必须包在form中",
+        {
+          "tag": "a",
+          "target": "_blank",
+          "href": "https://ant.design/components/switch-cn",
+          "children": "查看ant switch文档"
+        }
+      ]
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height": "250px",
+            "overflow": "auto"
+          },
+          "children": [
+            {
+              "tag": "h3",
+              "children": "代码配置示例",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "coder",
+              "language": "json",
+              "value":    {
+                "tag": "switch",
+                "activeValue": "1",
+                "inactiveValue": "0"
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 12,
+          "children": [
+            {
+              "tag": "h3",
+              "children": "配置简述",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "ol",
+              "children": [
+                {
+                  "tag": "li",
+                  "children": [
+                    "详情请看ant 的switch 文档",
+                    {
+                      "tag": "a",
+                      "target": "_blank",
+                      "href": "https://ant.design/components/switch-cn",
+                      "children": "查看ant switch文档"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "API（注意：configNode表示低代码配置，action表示动作配置）"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "layout-fit",
+          "style": {
+            "height": "200px",
+            "width": "100%"
+          },
+          "children": [
+            {
+              "tag": "table",
+              "rowData": "${apiList}",
+              "tooltipShowDelay": 0,
+              "columnDefs": [
+                {
+                  "headerName": "#",
+                  "width": 60,
+                  "suppressSizeToFit": true,
+                  "valueGetter": "node.rowIndex + 1",
+                  "sortable": false,
+                  "pinned": "left"
+                },
+                {
+                  "headerName": "字段",
+                  "field": "code",
+                  "width": 200,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "名称",
+                  "field": "name",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "类型",
+                  "field": "type",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "描述",
+                  "field": "description",
+                  "tooltipField": "description"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "展示示例"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "coder-preview",
+              "coder": {
+                "tag": "form",
+                "name": "form-switch-demo",
+                "labelCol": {
+                  "span": 8
+                },
+                "wrapperCol": {
+                  "span": 16
+                },
+                "children": [
+                  {
+                    "tag": "form-item",
+                    "label": "开关",
+                    "name": "open",
+                    "children": [
+                      {
+                        "tag": "switch",
+                        "activeValue": "1",
+                        "inactiveValue": "0"
+                      }
+                    ]
+                  }
+
+                ]
+              }
+
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

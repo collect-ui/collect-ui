@@ -125,6 +125,12 @@
               "menu_name": "date日期",
               "url": "/framework/date",
               "data": "framework/date.json"
+            },
+            {
+              "menu_code": "switch",
+              "menu_name": "switch开关",
+              "url": "/framework/switch",
+              "data": "framework/switch.json"
             }
           ]
         },
