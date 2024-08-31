@@ -6,22 +6,50 @@ import handlerActions from "../../utils/handlerActions";
 export default function (props: any) {
   const {
     isNumber,
+    isTextarea,
+    isSearch,
+    showPassword,
     addonAfterTitle,
     addonAfterIcon,
     addonAfterAction,
-    showPassword,
+    onSearchAction,
+    prefixIcon,
+    prefixTitle,
+    prefixAction,
     ...rest
   } = props
   let newProps = transferProp(rest, "input")
   const useApp = App.useApp()
-  const addonAfterClick = useCallback(() => {
-    if (addonAfterAction) {
+  const prefixClick = useCallback(() => {
+    if (prefixAction) {
       handlerActions(
-        addonAfterAction,
+          prefixAction,
         props.store,
         props.rootStore,
         useApp,
         rest._target,
+      )
+    }
+  }, [])
+  const addonAfterClick = useCallback(() => {
+    if (addonAfterAction) {
+      handlerActions(
+          addonAfterAction,
+          props.store,
+          props.rootStore,
+          useApp,
+          rest._target,
+      )
+    }
+  }, [])
+  const onSearchClick = useCallback(() => {
+    if (onSearchAction) {
+      handlerActions(
+          onSearchAction,
+          props.store,
+          props.rootStore,
+          useApp,
+          rest._target,
       )
     }
   }, [])
@@ -36,10 +64,17 @@ export default function (props: any) {
       />
     )
   }
+  if(prefixIcon){
+    newProps.prefix = <Icon icon={prefixIcon} onClick={prefixClick}  title={prefixTitle} />
+  }
   if (isNumber) {
     return <InputNumber {...newProps}></InputNumber>
   } else if (showPassword) {
     return <Input.Password {...newProps}></Input.Password>
+  } else if (isTextarea) {
+    return <Input.TextArea {...newProps}></Input.TextArea>
+  } else if (isSearch){
+    return <Input.Search {...newProps} onSearch={onSearchClick}></Input.Search>
   }
   return <Input {...newProps}></Input>
 }
