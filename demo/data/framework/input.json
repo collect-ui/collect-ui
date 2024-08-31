@@ -1,0 +1,641 @@
+{
+  "tag": "layout-fit",
+  "className": "padding10 h100 overflow-auto",
+  "initStore": {
+    "apiList": [
+      {
+        "code": "input",
+        "name": "输入框",
+        "type": "string",
+        "description": "输入框"
+      },
+      {
+        "code": "isNumber",
+        "name": "是否是数字框",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "code": "showPassword",
+        "name": "是否是密码框",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "code": "submitOnChange",
+        "name": "有输入就提交",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "code": "action",
+        "name": "提交后的事件",
+        "type": "array[action]",
+        "description": "比如提交后，发ajax请求获取数据"
+      },
+      {
+        "code": "form-item",
+        "name": "表单项",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "code": "form-item.itemVisible",
+        "name": "表单项是否下显示",
+        "type": "string",
+        "description": "${type==='1'} 根据form表单的值type等于1才显示。可以控制一个区域显示和不显示"
+      },
+      {
+        "code": "form-item.rules",
+        "name": "校验规则",
+        "type": "array[JSON]",
+        "description": "校验规则，设置字段的校验逻辑。"
+      }
+    ]
+  },
+  "children": [
+    {
+      "tag": "h1",
+      "className": "border-bottom",
+      "children": "input示例"
+    },
+    {
+      "tag": "label",
+      "className": "padding-left10 padding-bottom10",
+      "children": [
+        "tag=input 继承 Ant Design 的输入组件，扩展功能与样式。",
+        {
+          "tag": "a",
+          "target": "_blank",
+          "href": "https://ant.design/components/input-cn",
+          "children": "查看ant input文档"
+        },
+        {
+          "tag": "ul",
+          "children": [
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"继承来源"
+                },
+                "：tag=input 继承 Ant Design 的输入组件基础功能。"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"新增属性"
+                },
+                "：在此基础上进行功能扩展，满足更多定制需求。"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"样式一致"
+                },
+                "：保持与 Ant Design 设计风格一致，便于集成使用。"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height": "200px",
+            "overflow": "auto"
+          },
+          "children": [
+            {
+              "tag": "h3",
+              "children": "代码配置示例",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "coder",
+              "language": "json",
+              "value": {
+                "tag": "input"
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 12,
+          "children": [
+            {
+              "tag": "h3",
+              "children": "配置简述",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "ol",
+              "children": [
+                {
+                  "tag": "li",
+                  "children": [
+                    "详情请看ant 的input 文档",
+                    {
+                      "tag": "a",
+                      "target": "_blank",
+                      "href": "https://ant.design/components/input-cn",
+                      "children": "查看ant input文档"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "API（注意：configNode表示低代码配置，action表示动作配置）"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "layout-fit",
+          "style": {
+            "height": "250px",
+            "width": "100%"
+          },
+          "children": [
+            {
+              "tag": "table",
+              "rowData": "${apiList}",
+              "tooltipShowDelay": 0,
+              "columnDefs": [
+                {
+                  "headerName": "#",
+                  "width": 60,
+                  "suppressSizeToFit": true,
+                  "valueGetter": "node.rowIndex + 1",
+                  "sortable": false,
+                  "pinned": "left"
+                },
+                {
+                  "headerName": "字段",
+                  "field": "code",
+                  "width": 200,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "名称",
+                  "field": "name",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "类型",
+                  "field": "type",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "描述",
+                  "field": "description",
+                  "tooltipField": "description"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "展示示例"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "coder-preview",
+              "coder":{
+                "tag": "form",
+                "name": "basic-login",
+                "labelCol": {
+                  "span": 8
+                },
+                "wrapperCol": {
+                  "span": 8
+                },
+                "initialValues": {
+                  "remember": true
+                },
+                "autoComplete": "off",
+                "children": [
+                  {
+                    "tag": "form-item",
+                    "name": "username",
+                    "label": "用户名",
+                    "rules": [
+                      {
+                        "required": true,
+                        "message": "请输入用户名!"
+                      }
+                    ],
+                    "children": [
+                      {
+                        "tag": "input",
+                        "placeholder": "请输入用户名"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "form-item",
+                    "name": "password",
+                    "label": "密码",
+                    "rules": [
+                      {
+                        "required": true,
+                        "message": "请输入密码!"
+                      }
+                    ],
+                    "children": [
+                      {
+                        "tag": "input",
+                        "showPassword": true,
+                        "placeholder": "请输入密码"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "form-item",
+                    "name": "remember",
+                    "label": "记住密码",
+                    "valuePropName":"checked",
+                    "children": [
+                      {
+                        "tag": "checkbox"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "form-item",
+                    "wrapperCol":{ "offset": 8, "span": 16 },
+                    "children": [
+                      {
+                        "tag": "button",
+                        "type": "primary",
+                        "htmlType": "submit",
+                        "children": "登录"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "coder-preview",
+              "coder":   {
+                "tag": "form",
+                "name": "add-node-form",
+                "initialValues": {
+                  "type": "1",
+                  "server_env_id": null,
+                  "parent_id": null,
+                  "server_env_code": "",
+                  "server_env_name": "",
+                  "order_id": 0,
+                  "server_busi_name": "",
+                  "server_ip": "",
+                  "root_username": "",
+                  "root_password": "",
+                  "normal_username": "",
+                  "normal_password": ""
+                },
+                "labelCol": { "span": 4 },
+                "wrapperCol": { "span": 20 },
+                "children": [
+                  {
+                    "tag": "form-item",
+                    "name": "type",
+                    "label": "类型",
+                    "rules": [
+                      { "required": true, "message": "请选择类型" }
+                    ],
+                    "children": [
+                      {
+                        "tag": "select",
+
+                        "placeholder": "请选择类型",
+                        "options": [
+                          { "value": "1", "label": "环境" },
+                          { "value": "2", "label": "服务器" }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "form-item",
+                    "noStyle": true,
+                    "itemVisible": "${type==='1'}",
+                    "children": [
+                      {
+                        "tag": "form-item",
+                        "name": "parent_id",
+                        "label": "上级",
+                        "children": [
+                          {
+
+                            "tag": "tree-select",
+                            "placeholder": "请输入名称,不选为根节点",
+                            "allowClear": true,
+                            "treeIcon": "FolderOutlined",
+                            "treeLine": true,
+                            "openLevel": 2,
+                            "valueKey": "${item.server_env_id}",
+                            "treeTitle":
+                            "${item.server_env_name+'（'+item.server_env_code+'）'}",
+                            "showSearch": true,
+                            "showIcon": true,
+                            "treeData": [
+                              {
+                                "server_env_id": "1",
+                                "server_env_name": "演示环境",
+                                "server_env_code": "h001",
+                                "children": [
+                                  {
+                                    "server_env_id": "2",
+                                    "server_env_name": "fat",
+                                    "server_env_code":"fat"
+                                  },
+                                  {
+                                    "server_env_id": "3",
+                                    "server_env_name": "test",
+                                    "server_env_code":"test"
+                                  }
+                                ]
+                              }
+
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "form-item",
+                        "label": "环境名称",
+                        "name": "server_env_name",
+                        "rules": [
+                          {
+                            "required": true,
+                            "message": "环境名称不能为空"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "tag": "input",
+                            "placeholder": "请输入环境名称"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "form-item",
+                        "label": "环境编码",
+                        "name": "server_env_code",
+                        "rules": [
+                          {
+                            "required": true,
+                            "message": "环境编码不能为空"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "tag": "input",
+                            "placeholder": "请输入环境编码"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "form-item",
+                        "label": "排序号",
+                        "name": "order_id",
+                        "rules": [
+                          {
+                            "required": true,
+                            "message": "排序号不能为空"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "tag": "input",
+                            "isNumber": true,
+                            "placeholder": "请输入排序号"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "form-item",
+                    "noStyle": true,
+                    "itemVisible": "${type==='2'}",
+                    "children": [
+                      {
+                        "tag": "form-item",
+                        "name": "server_env_id",
+                        "label": "所属环境",
+                        "rules": [
+                          {
+                            "required": true,
+                            "message": "所属环境不能为空"
+                          }
+                        ],
+                        "children": [
+                          {
+
+                            "tag": "tree-select",
+                            "placeholder": "请输入名称",
+                            "allowClear": true,
+                            "openLevel": 2,
+                            "valueKey": "${item.server_env_id}",
+                            "treeTitle":
+                            "${item.server_env_name+'（'+item.server_env_code+'）'}",
+                            "treeIcon": "FolderOutlined",
+                            "treeData": [
+                              {
+                                "server_env_id": "1",
+                                "server_env_name": "演示环境",
+                                "server_env_code": "h001",
+                                "children": [
+                                  {
+                                    "server_env_id": "2",
+                                    "server_env_name": "fat",
+                                    "server_env_code":"fat"
+                                  },
+                                  {
+                                    "server_env_id": "3",
+                                    "server_env_name": "test",
+                                    "server_env_code":"test"
+                                  }
+                                ]
+                              }
+
+                            ],
+                            "treeLine": true,
+                            "showIcon": true,
+                            "showSearch": true
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "form-item",
+                        "name": "server_busi_name",
+                        "label": "资源名称",
+                        "rules": [
+                          {
+                            "required": true,
+                            "message": "资源名称不能为空"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "tag": "input",
+                            "placeholder": "请输入资源名称"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "form-item",
+                        "name": "server_ip",
+                        "label": "服务器IP",
+                        "rules": [
+                          {
+                            "required": true,
+                            "message": "服务器IP不能为空"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "tag": "input",
+                            "placeholder": "请输入服务器IP"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "divider",
+                        "orientation": "left",
+                        "children": "管理员账号/密码"
+                      },
+                      {
+                        "tag": "form-item",
+                        "name": "root_username",
+                        "label": "账号",
+                        "rules": [
+                          {
+                            "required": true,
+                            "message": "管理员账号不能为空"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "tag": "input",
+                            "placeholder": "请输入管理员账号"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "form-item",
+                        "name": "root_password",
+                        "label": "密码",
+                        "rules": [
+                          {
+                            "required": true,
+                            "message": "管理员密码不能为空"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "tag": "input",
+                            "showPassword": true,
+                            "placeholder": "请输入管理员密码",
+                            "addonAfterIcon": "LoginOutlined",
+                            "addonAfterTitle": "登录测试",
+                            "addonAfterAction": [
+
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "divider",
+                        "orientation": "left",
+                        "children": "普通账号/密码"
+                      },
+                      {
+                        "tag": "form-item",
+                        "name": "normal_username",
+                        "label": "账号",
+
+                        "children": [
+                          {
+                            "tag": "input",
+                            "placeholder": "请输入普通账号"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "form-item",
+                        "name": "normal_password",
+                        "label": "密码",
+                        "children": [
+                          {
+                            "tag": "input",
+                            "showPassword": true,
+                            "placeholder": "请输入普通密码",
+                            "addonAfterIcon": "LoginOutlined",
+                            "addonAfterTitle": "登录测试",
+                            "addonAfterAction": [
+
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

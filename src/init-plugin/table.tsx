@@ -22,7 +22,7 @@ export default function (props: any, store: any, rootStore: any) {
           return (
             <ScopedRender
               {...cellRender}
-              _target={params.data}
+              _target={{row:params.data}}
               store={store}
               rootStore={rootStore}
             ></ScopedRender>

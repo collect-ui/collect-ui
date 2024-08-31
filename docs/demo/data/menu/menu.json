@@ -108,7 +108,12 @@
               "url": "/framework/form",
               "data": "framework/form.json"
             },
-            { "menu_code": "4", "menu_name": "input" }
+            {
+              "menu_code": "4",
+              "menu_name": "input",
+              "url": "/framework/input",
+              "data": "framework/input.json"
+            }
           ]
         },
         {
@@ -138,13 +143,20 @@
     {
       "icon": "FaVoicemail",
       "menu_code": "sub2",
-      "menu_name": "数据绑定",
+      "menu_name": "数据绑定&初始化",
       "children": [
         {
           "menu_code": "initStore",
           "menu_name": "initStore 绑定数据",
           "url": "/framework/initStore",
           "data": "/framework/initStore.json"
+        },
+
+        {
+          "menu_code": "initAction",
+          "menu_name": "initAction 初始化动作",
+          "url": "/framework/initAction",
+          "data": "/framework/initAction.json"
         }
       ]
     },
@@ -170,6 +182,24 @@
           "menu_name": "menu2router菜单转路由",
           "url": "/framework/menu2router",
           "data": "action/menu2router.json"
+        },
+        {
+          "menu_code": "submitForm",
+          "menu_name": "submit-form 提交表单",
+          "url": "/framework/submit-form",
+          "data": "action/submit-form.json"
+        },
+        {
+          "menu_code": "resetForm",
+          "menu_name": "reset-form 重置表单",
+          "url": "/framework/reset-form",
+          "data": "action/reset-form.json"
+        },
+        {
+          "menu_code": "reload-init-action",
+          "menu_name": "reload-init-action 批量调用",
+          "url": "/framework/reload-init-action",
+          "data": "action/reload-init-action.json"
         }
       ]
     }

@@ -1,0 +1,263 @@
+{
+  "tag": "layout-fit",
+  "className": "padding10 h100 overflow-auto",
+  "initStore": {
+    "apiList": [
+      {
+        "code": "tag",
+        "name": "submit-form",
+        "type": "string",
+        "description": "提交表单"
+      },
+      {
+        "code": "formName",
+        "name": "表单名称",
+        "type": "string",
+        "description": "传表单名称"
+      }
+    ]
+  },
+  "children": [
+    {
+      "tag": "h1",
+      "className": "border-bottom",
+      "children": "submit-form示例"
+    },
+    {
+      "tag": "label",
+      "className": "padding-left10 padding-bottom10",
+      "children": [
+        "标签 `tag=submit-form` 用于更新 提交表单，以校验表单项。表单内提交可直接用表单的action，控制外部查询表单需指定表单提交动作。",
+        {
+          "tag": "ul",
+          "children": [
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children": "功能描述"
+                },
+                "：标签 tag=submit-form 继承了 Ant Design 表单组件的校验功能，不仅支持表单提交，还提供了额外的自定义校验规则，使用户能够根据需求定制表单的校验逻辑和提交行为"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children": "应用场景"
+                },
+                "：此功能适用于需要严格校验表单输入的应用程序，如用户注册、数据提交、信息修改等，通过 tag=submit-form 标签，可以构建出既安全又灵活的表单提交组件。"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 8,
+          "style": {
+            "height": "300px",
+            "overflow": "auto"
+          },
+          "children": [
+            {
+              "tag": "h3",
+              "children": "代码配置示例",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "coder",
+              "language": "json",
+              "value": {
+                "tag": "submit-form",
+                "formName": "userForm"
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 8,
+          "children": [
+            {
+              "tag": "h3",
+              "children": "配置简述",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "ol",
+              "children": [
+                {
+                  "tag": "li",
+                  "children": "tag-`submit-form` 提交表单"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "API（注意：configNode表示低代码配置，action表示动作配置）"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "layout-fit",
+          "style": {
+            "height": "200px",
+            "width": "100%"
+          },
+          "children": [
+            {
+              "tag": "table",
+              "rowData": "${apiList}",
+              "tooltipShowDelay": 0,
+              "columnDefs": [
+                {
+                  "headerName": "#",
+                  "width": 60,
+                  "suppressSizeToFit": true,
+                  "valueGetter": "node.rowIndex + 1",
+                  "sortable": false,
+                  "pinned": "left"
+                },
+                {
+                  "headerName": "字段",
+                  "field": "code",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "名称",
+                  "field": "name",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "类型",
+                  "field": "type",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "描述",
+                  "field": "description",
+                  "tooltipField": "description"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "展示示例"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 24,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "coder-preview",
+              "coder": {
+                "tag": "layout-fit",
+                "children": [
+                  {
+                    "tag": "form",
+                    "name": "opForm",
+                    "labelCol": {
+                      "span": 8
+                    },
+                    "wrapperCol": {
+                      "span": 16
+                    },
+                    "initialValues": {
+                      "username":"",
+                      "nick":""
+                    },
+                    "children": [
+                      {
+                        "tag":"form-item",
+                        "label": "用户名",
+                        "name": "username",
+                        "rules": [{
+                          "required": true,
+                          "message": "请输入用户名!"
+                        }],
+                        "children": [
+                          {
+                            "tag": "input"
+                          }
+                        ]
+                      },
+                      {
+                        "tag":"form-item",
+                        "name": "nick",
+                        "label": "昵称",
+                        "rules": [{
+                          "required": true,
+                          "message": "请输入昵称!"
+                        }],
+                        "children": [
+                          {
+                            "tag": "input"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "row",
+                    "children": [
+                      {
+                        "tag": "button",
+                        "type": "primary",
+                        "children": "提交",
+                        "action": [
+                          {
+                            "tag": "submit-form",
+                            "formName": "opForm"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "button",
+                        "children": "重置",
+                        "action": [
+                          {
+                            "tag": "reset-form",
+                            "formName": "opForm"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

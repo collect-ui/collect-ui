@@ -72,9 +72,9 @@ export default function (props: any) {
   }, [])
   useEffect(() => {
     const handleResize = () => {
-      if (gridRef.current && gridRef.current.api) {
+      if (gridRef.current && gridRef.current?.api) {
         setTimeout(()=>{
-          gridRef.current.api.sizeColumnsToFit();
+          gridRef.current?.api.sizeColumnsToFit();
         },10)
 
       }

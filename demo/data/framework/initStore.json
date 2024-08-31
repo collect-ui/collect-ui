@@ -22,7 +22,7 @@
       "tag": "label",
       "className":"padding-left10 padding-bottom10",
       "children": [
-        "`initStore` 是一个用于页面初始化数据的机制，必须与目标组件紧密结合。一般设置在layout-fit上和initAction配合使用",
+        "`initStore` 是一个用于页面初始化数据的机制，必须与目标组件紧密结合。页面初始化layout-fit上和initAction配合使用，其他按钮等元素的 action,也可以改变它",
         {
           "tag": "ul",
           "children": [

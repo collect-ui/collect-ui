@@ -85,7 +85,7 @@
         "code": "columnDefs[cellRender]",
         "name": "自定义渲染cell",
         "type": "configNode",
-        "description": "支持传一个低代码配置。直接传了行数据,显示的时候直接可以用行数据变量。支持里面按钮处理action。但是行数据包裹在row里面"
+        "description": "支持低代码配置，显示时用 row.变量，按钮处理 action，行数据在 row 中。"
       }
     ]
   },
@@ -467,7 +467,7 @@
                         "field": "create_ldap",
                         "cellRender": {
                           "tag": "icon",
-                          "visible": "${create_ldap==='1'}",
+                          "visible": "${row.create_ldap==='1'}",
                           "icon": "FaCheck",
                           "color": "green"
                         }

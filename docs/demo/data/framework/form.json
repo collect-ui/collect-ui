@@ -10,6 +10,30 @@
         "description": "表单"
       },
       {
+        "code": "name",
+        "name": "表单名称",
+        "type": "string",
+        "description": "注意表单名称，由于ant 加了根据name生成元素ID，请尽量保证全局唯一。form的名称可以用于reset-form 重置表单，submit-form提交表单。"
+      },
+      {
+        "code": "submitOnEnter",
+        "name": "按回车提交",
+        "type": "boolean",
+        "description": "比如登陆表单中，输入密码回车提交。搜索条件输入完成，回车刷新列表"
+      },
+      {
+        "code": "submitOnChange",
+        "name": "有输入就提交",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "code": "action",
+        "name": "提交后的事件",
+        "type": "array[action]",
+        "description": "比如提交后，发ajax请求获取数据"
+      },
+      {
         "code": "form-item",
         "name": "表单项",
         "type": "string",

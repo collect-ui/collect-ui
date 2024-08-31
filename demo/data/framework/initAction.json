@@ -1,0 +1,214 @@
+{
+  "tag": "layout-fit",
+  "className": "padding10 h100 overflow-auto",
+  "initStore": {
+    "apiList": [
+      {
+        "code": "tag",
+        "name": "initAction",
+        "type": "dict",
+        "description": "初始化页面动作"
+      }
+
+    ]
+  },
+  "children": [
+    {
+      "tag": "h1",
+      "className": "border-bottom",
+      "children":"initAction示例"
+    },
+    {
+      "tag": "label",
+      "className":"padding-left10 padding-bottom10",
+      "children": [
+        "initAction 在布局渲染后初始化，支持分组管理与启用/禁用状态控制。虽然initAction 是绑定在initStore上，但是所有元素action都可以参考",
+        {
+          "tag": "ul",
+          "children": [
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"初始化动作"
+                },
+                "：initAction 在布局渲染后执行页面初始化，支持定义 group 以分组管理动作"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"分组触发"
+                },
+                "：通过定义 group，方便后续根据不同分组触发动作，提高动作管理的灵活性"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children":"启用禁用"
+                },
+                "：支持 enable 属性定义动作的启用和禁用状态，便于动态控制动作执行。"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height":"660px",
+            "overflow": "auto"
+          },
+          "children": [
+            {
+              "tag": "h3",
+              "children":"代码配置示例",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "coder",
+              "language": "json",
+              "value": {
+                "tag": "layout-fit",
+                "initStore": {
+                  "dialogOpen": false,
+                   "op": "add",
+                  "dataList": []
+                },
+                "initAction": [
+                  {
+                    "tag": "ajax",
+                    "enable": "${op=='add'}",
+                    "group": "dataList",
+                    "before_render":true,
+                    "api": "get:/collect-ui/demo/data/menu/menu.json",
+                    "adapt": {
+                      "dataList": "${data}"
+                    }
+                  }
+                ],
+                "children":[
+                  {
+                    "tag": "button",
+                    "type": "primary",
+                    "children": "根据init-group-action的分组发起调用",
+                    "action": [
+                      {
+                        "tag": "reload-init-action",
+                        "group": "dataList"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 12,
+          "children":[
+            {
+              "tag": "h3",
+              "children":"配置简述",
+              "className": "border-bottom"
+            },
+            {
+            "tag": "ol",
+            "children": [
+              {
+                "tag": "li",
+                "children":"initAction-初始化动作"
+              },
+              {
+                "tag": "li",
+                "children":"initAction[enable] 禁用/启用"
+              },
+              {
+                "tag": "li",
+                "children":"initAction[group]-分组，方便reload-init-action"
+              },
+              {
+                "tag": "li",
+                "children":"initAction[before_render]-true,layout-fit渲染前执行，比如菜单，是渲染之前执行的。因为它动态生成路由。但是只它执行一次"
+              }
+            ]
+          }
+          ]
+        }
+      ]
+    },
+
+    {
+      "tag":"h3",
+      "className": "border-bottom",
+      "children": "API（注意：configNode表示低代码配置，action表示动作配置）"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "layout-fit",
+          "style": {
+            "height": "100px",
+            "width": "100%"
+          },
+          "children": [
+            {
+              "tag": "table",
+              "rowData": "${apiList}",
+              "tooltipShowDelay": 0,
+              "columnDefs": [
+                {
+                  "headerName": "#",
+                  "width": 60,
+                  "suppressSizeToFit": true,
+                  "valueGetter": "node.rowIndex + 1",
+                  "sortable": false,
+                  "pinned": "left"
+                },
+                {
+                  "headerName": "字段",
+                  "field": "code",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "名称",
+                  "field": "name",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "类型",
+                  "field": "type",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "描述",
+                  "field": "description",
+                  "tooltipField": "description"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+
+
+
+  ]
+}

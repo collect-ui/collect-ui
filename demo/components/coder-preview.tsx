@@ -6,19 +6,6 @@ import React from "react";
 export default function(props){
     const {coder}=props
     const CoderShow = utils.ScopedRender
-
-    const items=[
-        {
-            key: '1',
-            label: '展示',
-            children: <CoderShow  className="h100" {...coder} store={props.store} rootStore={props.rootStore} />
-        },
-        {
-            key: '2',
-            label: '源码',
-            children:JSON.stringify(coder)
-        }
-    ]
     const tabs = {
         tag:"tabs",
         items:[
