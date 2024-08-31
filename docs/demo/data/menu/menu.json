@@ -103,16 +103,28 @@
           "children": [
             {
               "menu_code": "3",
-              "menu_name": "form",
+              "menu_name": "form表单",
               "router_group": "/framework",
               "url": "/framework/form",
               "data": "framework/form.json"
             },
             {
               "menu_code": "4",
-              "menu_name": "input",
+              "menu_name": "input输入框",
               "url": "/framework/input",
               "data": "framework/input.json"
+            },
+            {
+              "menu_code": "select",
+              "menu_name": "select下拉",
+              "url": "/framework/select",
+              "data": "framework/select.json"
+            },
+            {
+              "menu_code": "date",
+              "menu_name": "date日期",
+              "url": "/framework/date",
+              "data": "framework/date.json"
             }
           ]
         },

@@ -1,0 +1,239 @@
+{
+  "tag": "layout-fit",
+  "className": "padding10 h100 overflow-auto",
+  "initStore": {
+    "apiList": [
+      {
+        "code": "select",
+        "name": "下拉框",
+        "type": "string",
+        "description": "下拉框"
+      },
+      {
+        "code": "fieldNames",
+        "name": "自定义节点 label、value、options、groupLabel 的字段",
+        "type": "object",
+        "description": "{ label: label, value: value, options: options, groupLabel: label }"
+      },
+      {
+        "code": "allowClear",
+        "name": "自定义清除按钮",
+        "type": "boolean",
+        "description": "默认false"
+      }
+    ]
+  },
+  "children": [
+    {
+      "tag": "h1",
+      "className": "border-bottom",
+      "children": "select示例"
+    },
+    {
+      "tag": "label",
+      "className": "padding-left10 padding-bottom10",
+      "children": [
+        "tag=select通过继承 Ant Design 的 Select 组件，实现了功能与样式的扩展。新增了搜索过滤、多选等特性，并支持主题定制和响应式设计，提升了组件的灵活性和定制性，同时保留了 Ant Design 的高质量和高性能。",
+        {
+          "tag": "a",
+          "target": "_blank",
+          "href": "https://ant.design/components/select-cn",
+          "children": "查看ant select文档"
+        },
+        {
+          "tag": "ul",
+          "children": [
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children": "功能扩展"
+                },
+                "：新增搜索过滤、多选等特性"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children": "代码复用"
+                },
+                "：继承 Ant Design，提升开发效率"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height": "400px",
+            "overflow": "auto"
+          },
+          "children": [
+            {
+              "tag": "h3",
+              "children": "代码配置示例",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "coder",
+              "language": "json",
+              "value":  {
+                "tag": "select",
+                "placeholder": "请选择状态",
+                "options": [
+                  {
+                    "value": "trial",
+                    "label": "试用"
+                  },
+                  {
+                    "value": "normal",
+                    "label": "正式"
+                  },
+                  {
+                    "value": "leave",
+                    "label": "离职"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 12,
+          "children": [
+            {
+              "tag": "h3",
+              "children": "配置简述",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "ol",
+              "children": [
+                {
+                  "tag": "li",
+                  "children": [
+                    "详情请看ant 的select 文档",
+                    {
+                      "tag": "a",
+                      "target": "_blank",
+                      "href": "https://ant.design/components/select-cn",
+                      "children": "查看ant select"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "API（注意：configNode表示低代码配置，action表示动作配置）"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "layout-fit",
+          "style": {
+            "height": "250px",
+            "width": "100%"
+          },
+          "children": [
+            {
+              "tag": "table",
+              "rowData": "${apiList}",
+              "tooltipShowDelay": 0,
+              "columnDefs": [
+                {
+                  "headerName": "#",
+                  "width": 60,
+                  "suppressSizeToFit": true,
+                  "valueGetter": "node.rowIndex + 1",
+                  "sortable": false,
+                  "pinned": "left"
+                },
+                {
+                  "headerName": "字段",
+                  "field": "code",
+                  "width": 200,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "名称",
+                  "field": "name",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "类型",
+                  "field": "type",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "描述",
+                  "field": "description",
+                  "tooltipField": "description"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "展示示例"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "coder-preview",
+              "coder": {
+                "tag": "select",
+                "placeholder": "请选择状态",
+                "options": [
+                  {
+                    "value": "trial",
+                    "label": "试用"
+                  },
+                  {
+                    "value": "normal",
+                    "label": "正式"
+                  },
+                  {
+                    "value": "leave",
+                    "label": "离职"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
