@@ -14,6 +14,12 @@
         "name": "改变的数据",
         "type": "dict",
         "description": "传一个对象，将对象里面数据key,对应数据更新，其他变量不变"
+      },
+      {
+        "code": "targetStore",
+        "name": "目标store",
+        "type": "string",
+        "description": "默认更新本身的store。可以更新其他布局里面的store,比如左右布局"
       }
     ]
   },
@@ -193,6 +199,10 @@
           "className": "padding10",
           "children": [
             {
+              "tag": "label",
+              "children": ["更新store"]
+            },
+            {
               "tag": "coder-preview",
               "coder": {
                 "tag": "layout",
@@ -250,6 +260,88 @@
                         "value": {
                           "dialogShow": false
                         }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 24,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "label",
+              "children": ["更新目标store"]
+            },
+            {
+              "tag": "coder-preview",
+              "coder": {
+                "tag": "row",
+                "children": [
+                  {
+                    "tag": "col",
+                    "span": 12,
+                    "children": [
+                      {
+                        "tag": "layout-fit",
+                        "title": "页面布局1",
+                        "initStore": {
+                          "data": "页面元素1的值"
+                        },
+                        "children": [
+
+                          {
+                            "tag": "label",
+                            "children": "${data}"
+                          },
+                          {
+                            "tag": "div",
+                            "className": "padding10",
+                            "children": [
+                              {
+                                "tag": "button",
+                                "children": ["根据storeName,更新布局2的data数据"],
+                                "action": [
+                                  {
+                                    "tag": "update-store",
+                                    "targetStore": "test2",
+                                    "value": {
+                                      "data": "从布局1，更新布局2后的数据"
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "col",
+                    "span": 12,
+                    "children": [
+                      {
+                        "tag": "layout-fit",
+                        "title": "页面布局2,必须设置storeName",
+                        "storeName": "test2",
+                        "initStore": {
+                          "data": "页面元素2的值"
+                        },
+                        "children": [
+                          {
+                            "tag": "label",
+                            "children": "${data}"
+                          }
+                        ]
                       }
                     ]
                   }
