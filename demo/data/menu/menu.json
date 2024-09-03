@@ -111,24 +111,28 @@
             {
               "menu_code": "4",
               "menu_name": "input输入框",
+              "router_group": "/framework",
               "url": "/framework/input",
               "data": "framework/input.json"
             },
             {
               "menu_code": "select",
               "menu_name": "select下拉",
+              "router_group": "/framework",
               "url": "/framework/select",
               "data": "framework/select.json"
             },
             {
               "menu_code": "date",
               "menu_name": "date日期",
+              "router_group": "/framework",
               "url": "/framework/date",
               "data": "framework/date.json"
             },
             {
               "menu_code": "switch",
               "menu_name": "switch开关",
+              "router_group": "/framework",
               "url": "/framework/switch",
               "data": "framework/switch.json"
             }
