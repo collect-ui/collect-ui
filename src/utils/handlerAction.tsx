@@ -2,6 +2,7 @@ import { result } from "../types/result"
 import { getErrorResult } from "./result"
 import { getAction } from "../index"
 import { App } from "antd"
+import {useNavigate} from "react-router-dom";
 
 /**
  * 处理action,动作，跳转地址发送请求什么的
@@ -28,7 +29,6 @@ export default async function handlerAction(
     console.error(msg)
     return getErrorResult(msg)
   }
-
   const res = await actionFunc(action, store, rootStore, useApp,target)
   //todo 这个根据action 显示错误信息的提示形式，
   // 可以是消息提示，
@@ -38,6 +38,10 @@ export default async function handlerAction(
 
   if (!res.success && res.showMsg !== false) {
     useApp?.message?.error(res.msg)
+    // todo 这里改成注册插件模式
+    if(res.msg=="请登录！！！"){
+      window.location.href = "/#/login"
+    }
   }
   if (saveField) {
     store.setValue(saveField, res)

@@ -152,6 +152,13 @@
               "router_group": "/framework",
               "url": "/framework/dialog",
               "data": "ele/dialog.json"
+            },
+            {
+              "menu_code": "tabs",
+              "menu_name": "tabs标签页",
+              "router_group": "/framework",
+              "url": "/framework/tabs",
+              "data": "ele/tabs.json"
             }
 
           ]
@@ -166,6 +173,7 @@
         {
           "menu_code": "initStore",
           "menu_name": "initStore 绑定数据",
+          "router_group": "/framework",
           "url": "/framework/initStore",
           "data": "/framework/initStore.json"
         },
@@ -173,6 +181,7 @@
         {
           "menu_code": "initAction",
           "menu_name": "initAction 初始化动作",
+          "router_group": "/framework",
           "url": "/framework/initAction",
           "data": "/framework/initAction.json"
         }
@@ -186,36 +195,42 @@
         {
           "menu_code": "ajax",
           "menu_name": "ajax 发送请求",
+          "router_group": "/framework",
           "url": "/framework/ajax",
           "data": "action/ajax.json"
         },
         {
           "menu_code": "update-store",
           "menu_name": "update-store更新数据",
+          "router_group": "/framework",
           "url": "/framework/update-store",
           "data": "action/update-store.json"
         },
         {
           "menu_code": "menu2router",
           "menu_name": "menu2router菜单转路由",
+          "router_group": "/framework",
           "url": "/framework/menu2router",
           "data": "action/menu2router.json"
         },
         {
           "menu_code": "submitForm",
           "menu_name": "submit-form 提交表单",
+          "router_group": "/framework",
           "url": "/framework/submit-form",
           "data": "action/submit-form.json"
         },
         {
           "menu_code": "resetForm",
           "menu_name": "reset-form 重置表单",
+          "router_group": "/framework",
           "url": "/framework/reset-form",
           "data": "action/reset-form.json"
         },
         {
           "menu_code": "reload-init-action",
           "menu_name": "reload-init-action 批量调用",
+          "router_group": "/framework",
           "url": "/framework/reload-init-action",
           "data": "action/reload-init-action.json"
         }

@@ -90,16 +90,25 @@ export default async function (
     redirect: indexRouter.url,
 
   }
-
+  const fullList=[]
   const subList = []
   menuList.filter(item=>item.is_index!=="1" && item.url).forEach(item=>{
-    subList.push({
-      path:item.url,
-      data:item.data
-    })
+    if(item.router_group){// 带框架的路由
+      subList.push({
+        path:item.url,
+        data:item.data
+      })
+    }else{// 全路由
+      fullList.push({
+        path:item.url,
+        data:item.data
+      })
+    }
+
   })
   const newRouter=[
     routerIndex,
+    ...fullList,
     {
       path: indexRouter["group_path"],
       data:indexRouter["group_data"],

@@ -3,6 +3,22 @@ import { App } from "antd"
 import varValue from "./varValue"
 import {getResult} from "./result";
 
+
+function canExecue(beforeRender,init){
+  // 如果传beforeRender 为 true 并且 init 为 true 才执行
+  if(beforeRender==true && init==true){
+    return true
+  }
+  // 如果没有传beforeBefore， 但是传init true 不执行
+  if((beforeRender==undefined || beforeRender==false) && init ==true ){
+    return false
+  }
+  // 如果配置beforeRender=true,那就不能在函数里面执行了
+  if(beforeRender==true && init==false){
+    return false
+  }
+  return true
+}
 /**
  * 批量处理动作
  * @param actions
@@ -20,9 +36,10 @@ export default async function handlerActions(
   for (let i = 0; i < actions.length; i++) {
     let { enable, useStore,fail_action,before_render, ...rest } = actions[i]
     // 初始化一次，启动
-    if(before_render && !init){
+    if(!canExecue(before_render,init)){
       continue
     }
+
     // 未启用
     if (enable) {
       const enableValue = varValue(enable, store, target)

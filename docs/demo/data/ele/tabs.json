@@ -1,0 +1,286 @@
+{
+  "tag": "layout-fit",
+  "className": "padding10 h100 overflow-auto",
+  "initStore": {
+    "apiList": [
+      {
+        "code": "tag",
+        "name": "tabs",
+        "type": "string",
+        "description": "标签页"
+      },
+      {
+        "code": "action",
+        "name": "标签页切换动作",
+        "type": "array[action]",
+        "description": ""
+      },
+      {
+        "code": "activeKey",
+        "name": "当前激活的标签",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "code": "items",
+        "name": "tab 项的内容",
+        "type": "array[configNode]",
+        "description": ""
+      }
+    ]
+  },
+  "children": [
+    {
+      "tag": "h1",
+      "className": "border-bottom",
+      "children": "tabs示例"
+    },
+    {
+      "tag": "label",
+      "className": "padding-left10 padding-bottom10",
+      "children": [
+        "Tag=tabs 作为 Ant Design 标签页组件的继承者，确实提供了更多的自定义功能，使得用户可以根据自己的需求来定制标签页的显示效果和行为。以下是一些可能的额外功能和自定义选项。",
+
+        {
+          "tag": "a",
+          "target": "_blank",
+          "href": "https://ant.design/components/tabs-cn",
+          "children": "查看tabs文档"
+        },
+        {
+          "tag": "ul",
+          "children": [
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children": "功能描述"
+                },
+                "：tag=tabs 标签确实继承了 Ant Design 标签页的丰富特性，这使得它在设计和功能上都具有很高的灵活性和实用性。Ant Design 是一个基于 React 的 UI 组件库，它提供了一系列高质量的组件"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children": "注意事项"
+                },
+                "：tab 标签页请求数据，不要进来就将所有标签的数据加载，尽量保持当前激活标签数据加载。可以通过标签页切换，action，刷新数据"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height": "400px",
+            "overflow": "auto"
+          },
+          "children": [
+            {
+              "tag": "h3",
+              "children": "代码配置示例",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "coder",
+              "language": "json",
+              "value":  {
+                "style": {
+                  "paddingTop": 10
+                },
+                "tag": "tabs",
+                "size": "small",
+                "type": "card",
+                "action": [
+                  {
+                    "tag": "reload-init-action",
+                    "group": "${activeKey=='user'?'user-list':'ldap-list'}",
+                    "description": "页面初始化请求"
+                  }
+                ],
+                "activeKey": "${activeKey}",
+                "items": [
+                  {
+                    "label": "用户管理",
+                    "key": "user",
+                    "children": [
+                      "用户管理内容"
+                    ]
+                  },
+                  {
+                    "label": "ldap分组管理",
+                    "key": "ldap",
+                    "children": [
+                      "ldap 分组内容"
+                    ]
+                  }
+                ]
+              }
+
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 12,
+          "children": [
+            {
+              "tag": "h3",
+              "children": "配置简述",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "ol",
+              "children": [
+                {
+                  "tag": "li",
+                  "children": "tag=tabs-标签页"
+                },
+                {
+                  "tag": "li",
+                  "children": "action-切换标签页后的动作"
+                },
+                {
+                  "tag": "li",
+                  "children": [{
+                    "tag": "a",
+                    "target": "_blank",
+                    "href": "https://ant.design/components/tabs-cn",
+                    "children": "查看tabs文档"
+                  }]
+                }
+
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "API（注意：configNode表示低代码配置，action表示动作配置）"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "layout-fit",
+          "style": {
+            "height": "300px",
+            "width": "100%"
+          },
+          "children": [
+            {
+              "tag": "table",
+              "rowData": "${apiList}",
+              "tooltipShowDelay": 0,
+              "columnDefs": [
+                {
+                  "headerName": "#",
+                  "width": 60,
+                  "suppressSizeToFit": true,
+                  "valueGetter": "node.rowIndex + 1",
+                  "sortable": false,
+                  "pinned": "left"
+                },
+                {
+                  "headerName": "字段",
+                  "field": "code",
+                  "width": 250,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "名称",
+                  "field": "name",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "类型",
+                  "field": "type",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "描述",
+                  "field": "description",
+                  "tooltipField": "description"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "展示示例"
+    },
+    {
+      "tag": "row",
+      "children": [
+
+        {
+          "tag": "col",
+          "span": 16,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "label",
+              "className": "bold",
+              "children": "标签页"
+            },
+            {
+              "tag": "coder-preview",
+              "coder": {
+                "style": {
+                  "paddingTop": 10
+                },
+                "tag": "tabs",
+                "size": "small",
+                "type": "card",
+                "action": [
+                  {
+                    "tag": "reload-init-action",
+                    "group": "${activeKey=='user'?'user-list':'ldap-list'}",
+                    "description": "切换标签页后的动作"
+                  }
+                ],
+                "items": [
+                  {
+                    "label": "用户管理",
+                    "key": "user",
+                    "children": [
+                      "用户管理内容"
+                    ]
+                  },
+                  {
+                    "label": "ldap分组管理",
+                    "key": "ldap",
+                    "children": [
+                      "ldap 管理内容"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

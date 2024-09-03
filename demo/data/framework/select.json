@@ -10,6 +10,12 @@
         "description": "下拉框"
       },
       {
+        "code": "mode",
+        "name": "设置 Select 的模式为多选或标签",
+        "type": "string",
+        "description": "multiple | tags"
+      },
+      {
         "code": "fieldNames",
         "name": "自定义节点 label、value、options、groupLabel 的字段",
         "type": "object",
@@ -20,6 +26,18 @@
         "name": "自定义清除按钮",
         "type": "boolean",
         "description": "默认false"
+      },
+      {
+        "code": "labelRender",
+        "name": "自定义label",
+        "type": "string",
+        "description": "支持表达式${label+'['+value+']'}"
+      },
+      {
+        "code": "optionRender",
+        "name": "自定义option",
+        "type": "boolean",
+        "description": "支持表达式${role_name+'['+role_code+']'}"
       }
     ]
   },

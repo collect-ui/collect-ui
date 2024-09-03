@@ -52,7 +52,7 @@ for (const item in actionContext) {
   let frame = filename.substring(0, filename.indexOf("."))
   const name = pascal2Kebab(frame)
   // 注册动作名称
-  registerActionMap[name] = actionContext[item].default
+  setAction(name, actionContext[item].default)
 }
 // 处理init 函数
 for (const item in initContext) {
@@ -118,6 +118,9 @@ function getInitPlugin(name: string) {
 
 export function getAction(name: string) {
   return registerActionMap[name]
+}
+export function setAction(name: string,func: Function){
+  registerActionMap[name] = func
 }
 export function ajaxAction() {
   return registerActionMap["ajax"]

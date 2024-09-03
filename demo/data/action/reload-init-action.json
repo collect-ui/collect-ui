@@ -13,7 +13,13 @@
         "code": "group",
         "name": "分组名称",
         "type": "string",
-        "description": "调用分组，支持批量调用一系列的action"
+        "description": "调用分组，支持批量调用一系列的action。group 支持表达式"
+      },
+      {
+        "code": "targetStore",
+        "name": "目标store变量",
+        "type": "string",
+        "description": "默认更新自身store,传了则更新目标store"
       }
     ]
   },
@@ -21,7 +27,7 @@
     {
       "tag": "h1",
       "className": "border-bottom",
-      "children": "submit-form示例"
+      "children": "reload-init-action示例"
     },
     {
       "tag": "label",
@@ -202,12 +208,20 @@
                   {
 
                     "tag": "ajax",
+                    "enable": "${init}",
                     "group": "dataList",
                     "api": "get:/collect-ui/demo/data/menu/menu.json",
                     "showResultMsg": true,
                     "adapt": {
                       "dataList": "${data}"
                     }
+                  },
+                  {
+                    "tag": "update-store",
+                    "value": {
+                      "init": true
+                    }
+
                   }
 
                 ],

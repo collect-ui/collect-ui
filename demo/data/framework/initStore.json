@@ -6,8 +6,14 @@
       {
         "code": "tag",
         "name": "initStore",
-        "type": "dict",
+        "type": "string",
         "description": "初始化页面数据"
+      },
+      {
+        "code": "storeName",
+        "name": "store的名称",
+        "type": "string",
+        "description": "如果存在2个layout-fit布局，想从一个layout-fit 中更新另外一个layout-fit的变量。必须指定targetStore"
       }
 
     ]

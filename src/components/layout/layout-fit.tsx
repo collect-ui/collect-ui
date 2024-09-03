@@ -60,7 +60,7 @@ export default function (props: any) {
   const initAction = props["initAction"]
   useEffect(() => {
     if (initAction && store) {
-      handlerActions(initAction, store, props.rootStore, useApp)
+      handlerActions(initAction, store, props.rootStore, useApp,null,false)
     }
   }, [])
 
