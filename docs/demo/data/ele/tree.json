@@ -1,0 +1,554 @@
+{
+  "tag": "layout-fit",
+  "className": "padding10 h100 overflow-auto",
+  "initStore": {
+    "apiList": [
+      {
+        "code": "tag",
+        "name": "tree",
+        "type": "string",
+        "description": "树"
+      },
+      {
+        "code": "showLine",
+        "name": "链接线",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "code": "treeSelected",
+        "name": "树的绑定对象",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "code": "showIcon",
+        "name": "tab 项的内容",
+        "type": "boolean",
+        "description": "是否显示icon"
+      },
+      {
+        "code": "treeIcon",
+        "name": "图标",
+        "type": "string",
+        "description": "showIcon为true 的时候，显示的图标，支持ant和fa图标"
+      },
+      {
+        "code": "treeData",
+        "name": "tree",
+        "type": "string|array",
+        "description": "tree的数据"
+      },
+      {
+        "code": "treeKey",
+        "name": "tree 里key 取值字段",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "code": "treeTitle",
+        "name": "tree 里title 取值字段",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "code": "rightMenu",
+        "name": "右键",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "code": "rightMenu[type]",
+        "name": "右键类型",
+        "type": "string",
+        "description": "item-选项，separator-分割线，submenu-二级菜单"
+      },
+      {
+        "code": "rightMenu[icon]",
+        "name": "右键图标",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "code": "rightMenu[code]",
+        "name": "右键编码",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "code": "rightMenu[label]",
+        "name": "右键显示名称",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "code": "rightMenuAction",
+        "name": "右键动作",
+        "type": "array[action]",
+        "description": ""
+      }
+    ]
+  },
+  "children": [
+    {
+      "tag": "h1",
+      "className": "border-bottom",
+      "children": "tree示例"
+    },
+    {
+      "tag": "label",
+      "className": "padding-left10 padding-bottom10",
+      "children": [
+        "Ant Design 的 Tree 组件是一个非常强大且灵活的组件，用于在用户界面中展示层级数据。作为其继承者，Tag=tree 可能会提供更多的自定义功能，以满足更复杂的需求",
+
+        {
+          "tag": "a",
+          "target": "_blank",
+          "href": "https://ant.design/components/tree-cn",
+          "children": "查看tree文档"
+        },
+        {
+          "tag": "ul",
+          "children": [
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children": "功能描述"
+                },
+                "：Tree 组件是 Ant Design 中用于展示层级数据的强大工具，支持自定义节点渲染、拖拽、复选框、搜索过滤、异步加载和事件回调等功能，以满足复杂的前端需求。"
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children": "应用场景"
+                },
+                "：Tree 组件适用于文件管理系统、组织架构展示、分类导航、权限管理等需要展示层级关系和进行节点操作的应用场景。"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height": "400px",
+            "overflow": "auto"
+          },
+          "children": [
+            {
+              "tag": "h3",
+              "children": "代码配置示例",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "coder",
+              "language": "json",
+              "value":  {
+                "tag": "tree",
+                "showLine": true,
+                "className": "h100",
+                "treeSelected": "${treeSelected}",
+                "showIcon": true,
+                "treeKey":
+                "${item.server_id?item.server_id:item.server_env_id}",
+                "treeTitle":
+                "${item.server_id?item.server_ip+'（'+item.server_busi_name+'）':item.server_env_name+'（'+item.server_env_code+'）'}",
+                "treeIcon":
+                "${item.server_id?'DesktopOutlined':'FolderOutlined'}",
+                "treeData": "${server_env_data}",
+                "openLevel": 1,
+                "rightMenu": [
+                  {
+                    "type": "item",
+                    "icon": "PlusOutlined",
+                    "code": "add",
+                    "label": "新增数据"
+                  },
+                  {
+                    "type": "item",
+                    "icon": "EditOutlined",
+                    "code": "edit",
+                    "label": "修改数据"
+                  },
+                  { "type": "separator" },
+                  {
+                    "type": "submenu",
+                    "label": "其他",
+                    "children": [
+                      {
+                        "type": "item",
+                        "icon": "DeleteOutlined",
+                        "code": "delete",
+                        "label": "删除数据"
+                      },
+                      {
+                        "type": "item",
+                        "code": "history",
+                        "icon": "HistoryOutlined",
+                        "label": "操作记录"
+                      }
+                    ]
+                  }
+                ],
+                "rightMenuAction": [
+                  {
+                    "tag": "reset-form",
+                    "enable": "${['add','edit'].indexOf(item.code)>=0}",
+                    "formName": "add-node-form"
+                  },
+                  {
+                    "tag": "update-store",
+                    "enable": "${item.code==='add'}",
+                    "value": {
+                      "addNodeVisible": true,
+                      "nodeOp": "add",
+                      "updateNodeForm": {}
+                    }
+                  },
+                  {
+                    "enable": "${item.code==='add'}",
+                    "tag": "update-form",
+                    "formName": "add-node-form",
+                    "value": {
+                      "parent_id": "${rightNode.server_env_id}",
+                      "server_env_id": "${rightNode.server_env_id}",
+                      "type": "${rightNode.server_id?'2':'1'}"
+                    }
+                  },
+                  {
+                    "enable": "${item.code==='edit'}",
+                    "tag": "update-form",
+                    "formName": "add-node-form",
+                    "value": {
+                      "type": "${rightNode.server_id?'2':'1'}"
+                    }
+                  },
+
+                  {
+                    "tag": "update-store",
+                    "enable": "${item.code==='edit'}",
+                    "value": {
+                      "addNodeVisible": true,
+                      "nodeOp": "edit",
+                      "updateNodeForm": {}
+                    }
+                  },
+
+                  {
+                    "tag": "ajax",
+                    "name": "查询环境信息",
+                    "enable":
+                    "${item.code==='edit' && !rightNode.server_id}",
+                    "api": "post:/template_data/data?service=project.env_tree",
+                    "data": {
+                      "to_tree": false,
+                      "server_env_id": "${rightNode.server_env_id}",
+                      "to_obj": true
+                    },
+                    "adapt": {
+                      "updateNodeForm": "${data}"
+                    }
+                  },
+                  {
+                    "tag": "ajax",
+                    "name": "查询服务器信息",
+                    "enable":
+                    "${item.code==='edit' && rightNode.server_id}",
+                    "api": "post:/template_data/data?service=project.server_list",
+                    "data": {
+                      "server_id": "${rightNode.server_id}",
+                      "show_detail": true
+                    },
+                    "adapt": {
+                      "updateNodeForm": "${data}"
+                    }
+                  },
+                  {
+                    "tag": "update-form",
+                    "name": " 更新表单",
+                    "enable": "${item.code==='edit'}",
+                    "formName": "add-node-form",
+                    "useStore": true,
+                    "value": "${updateNodeForm}"
+                  },
+                  {
+                    "tag": "check",
+                    "enable":
+                    "${item.code=='delete' && !rightNode.server_id}",
+                    "title":
+                    "${'【'+rightNode.server_env_name+'】下存在'+rightNode?.children.length+'个节点，请先删除节点'}",
+                    "check":
+                    "${!rightNode.children || (rightNode.children && rightNode.children.length<=0)}"
+                  },
+                  {
+                    "tag": "confirm",
+                    "title": "确认提示",
+                    "content":
+                    "${rightNode.server_id?'确认删除所选【'+rightNode.server_ip+'（'+rightNode.server_busi_name+'）'+'】服务器吗？':'确认删除所选【'+rightNode.server_env_name+'（'+rightNode.server_env_code+'）'+'】环境吗'}",
+                    "enable": "${item.code==='delete'}"
+                  },
+
+                  {
+                    "tag": "ajax",
+                    "name": "删除环境",
+                    "enable":
+                    "${item.code=='delete' && !rightNode.server_id}",
+                    "group": "server-env-tree",
+                    "api": "post:/template_data/data?service=project.server_env_delete",
+                    "data": {
+                      "server_env_id_list": "${[rightNode.server_env_id]}"
+                    }
+                  },
+                  {
+                    "tag": "ajax",
+                    "name": "删除服务器",
+                    "enable":
+                    "${item.code=='delete' && rightNode.server_id}",
+                    "group": "server-env-tree",
+                    "api": "post:/template_data/data?service=project.server_delete",
+                    "data": {
+                      "server_id_list": "${[rightNode.server_id]}"
+                    }
+                  },
+                  {
+                    "tag": "reload-init-action",
+                    "group": "server-env-tree",
+                    "enable": "${item.code=='delete'}",
+                    "description": "页面初始化请求"
+                  },
+                  {
+                    "tag": "ajax",
+                    "name": "增删改之后出发查询",
+                    "enable":
+                    "${['add','edit','delete'].indexOf(item.code)>=0}",
+                    "api": "post:/template_data/data?service=project.my_env",
+                    "appendFormFields": "server-search-form",
+                    "adapt": {
+                      "env_data": "${data}"
+                    }
+                  }
+                ]
+              }
+
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 12,
+          "children": [
+            {
+              "tag": "h3",
+              "children": "配置简述",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "ol",
+              "children": [
+                {
+                  "tag": "li",
+                  "children": "tag=tree 树"
+                },
+                {
+                  "tag": "li",
+                  "children": "showLine-是否显示连接线"
+                },
+                {
+                  "tag": "li",
+                  "children": "treeSelected-树选中的绑定对象"
+                },
+                {
+                  "tag": "li",
+                  "children": "openLevel-打开的层级"
+                },
+                {
+                  "tag": "li",
+                  "children": "rightMenu-右键"
+                },
+                {
+                  "tag": "li",
+                  "children": "rightMenuAction-右键动作"
+                },
+                {
+                  "tag": "li",
+                  "children": [
+                    {
+                      "tag": "a",
+                      "target": "_blank",
+                      "href": "https://ant.design/components/tree-cn",
+                      "children": "查看tree文档"
+                    }
+                  ]
+                }
+
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "API（注意：configNode表示低代码配置，action表示动作配置）"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "layout-fit",
+          "style": {
+            "height": "300px",
+            "width": "100%"
+          },
+          "children": [
+            {
+              "tag": "table",
+              "rowData": "${apiList}",
+              "tooltipShowDelay": 0,
+              "columnDefs": [
+                {
+                  "headerName": "#",
+                  "width": 60,
+                  "suppressSizeToFit": true,
+                  "valueGetter": "node.rowIndex + 1",
+                  "sortable": false,
+                  "pinned": "left"
+                },
+                {
+                  "headerName": "字段",
+                  "field": "code",
+                  "width": 250,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "名称",
+                  "field": "name",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "类型",
+                  "field": "type",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "描述",
+                  "field": "description",
+                  "tooltipField": "description"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "展示示例"
+    },
+    {
+      "tag": "row",
+      "children": [
+
+        {
+          "tag": "col",
+          "span": 16,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "label",
+              "className": "bold",
+              "children": "标签页"
+            },
+            {
+              "tag": "coder-preview",
+              "coder": {
+                "tag": "layout-fit",
+                "initStore": {
+                  "treeData": [],
+                  "treeSelected": []
+                },
+                "initAction": [
+                  {
+                    "tag": "ajax",
+                    "api": "get:/collect-ui/demo/data/menu/treeData.json",
+                    "adapt": {
+                      "treeData": "${data}"
+                    }
+                  }
+                ],
+                "children": [
+                  {
+                    "tag": "tree",
+                    "showLine": true,
+                    "className": "h100",
+                    "treeSelected": "${treeSelected}",
+                    "showIcon": true,
+                    "treeKey":
+                    "${item.server_id?item.server_id:item.server_env_id}",
+                    "treeTitle":
+                    "${item.server_id?item.server_ip+'（'+item.server_busi_name+'）':item.server_env_name+'（'+item.server_env_code+'）'}",
+                    "treeIcon":
+                    "${item.server_id?'DesktopOutlined':'FolderOutlined'}",
+                    "treeData": "${treeData}",
+                    "openLevel": 1,
+                    "rightMenu": [
+                      {
+                        "type": "item",
+                        "icon": "PlusOutlined",
+                        "code": "add",
+                        "label": "新增数据"
+                      },
+                      {
+                        "type": "item",
+                        "icon": "EditOutlined",
+                        "code": "edit",
+                        "label": "修改数据"
+                      },
+                      { "type": "separator" },
+                      {
+                        "type": "submenu",
+                        "label": "其他",
+                        "children": [
+                          {
+                            "type": "item",
+                            "icon": "DeleteOutlined",
+                            "code": "delete",
+                            "label": "删除数据"
+                          },
+                          {
+                            "type": "item",
+                            "code": "history",
+                            "icon": "HistoryOutlined",
+                            "label": "操作记录"
+                          }
+                        ]
+                      }
+                    ],
+                    "rightMenuAction": []
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -163,6 +163,13 @@
               "router_group": "/framework",
               "url": "/framework/tabs",
               "data": "ele/tabs.json"
+            },
+            {
+              "menu_code": "tree",
+              "menu_name": "tree树展示",
+              "router_group": "/framework",
+              "url": "/framework/tree",
+              "data": "ele/tree.json"
             }
 
           ]
