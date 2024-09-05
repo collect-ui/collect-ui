@@ -1,0 +1,214 @@
+{
+  "tag": "layout-fit",
+  "className": "padding10 h100 overflow-auto",
+  "initStore": {
+    "apiList": [
+      {
+        "code": "tag",
+        "name": "confirm",
+        "type": "string",
+        "description": "二次确认"
+      },
+      {
+        "code": "title",
+        "name": "标题",
+        "type": "string",
+        "description": "标题"
+      },
+      {
+        "code": "content",
+        "name": "内容",
+        "type": "string",
+        "description": "内容"
+      }
+    ]
+  },
+  "children": [
+    {
+      "tag": "h1",
+      "className": "border-bottom",
+      "children": "confirm示例"
+    },
+    {
+      "tag": "label",
+      "className": "padding-left10 padding-bottom10",
+      "children": [
+        "标签 tag=confirm,二次确认。一般用户删除数据前，全局确认，虽然按钮带了二次确认，但是右键的情况就没有按钮的二次确认",
+        {
+          "tag": "ul",
+          "children": [
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children": "功能描述"
+                },
+                "：删除数据前二次确认"
+              ]
+            }
+
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 8,
+          "style": {
+            "height": "300px",
+            "overflow": "auto"
+          },
+          "children": [
+            {
+              "tag": "h3",
+              "children": "代码配置示例",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "coder",
+              "language": "json",
+              "value":  {
+                "tag": "confirm",
+                "title": "确认提示",
+                "content":
+                "${rightNode.server_id?'确认删除所选【'+rightNode.server_ip+'（'+rightNode.server_busi_name+'）'+'】服务器吗？':'确认删除所选【'+rightNode.server_env_name+'（'+rightNode.server_env_code+'）'+'】环境吗'}",
+                "enable": "${item.code==='delete'}"
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 8,
+          "children": [
+            {
+              "tag": "h3",
+              "children": "配置简述",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "ol",
+              "children": [
+                {
+                  "tag": "li",
+                  "children": "tag-`confirm`二次确认，确认后继续后面执行"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "API（注意：configNode表示低代码配置，action表示动作配置）"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "layout-fit",
+          "style": {
+            "height": "200px",
+            "width": "100%"
+          },
+          "children": [
+            {
+              "tag": "table",
+              "rowData": "${apiList}",
+              "tooltipShowDelay": 0,
+              "columnDefs": [
+                {
+                  "headerName": "#",
+                  "width": 60,
+                  "suppressSizeToFit": true,
+                  "valueGetter": "node.rowIndex + 1",
+                  "sortable": false,
+                  "pinned": "left"
+                },
+                {
+                  "headerName": "字段",
+                  "field": "code",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "名称",
+                  "field": "name",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "类型",
+                  "field": "type",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "描述",
+                  "field": "description",
+                  "tooltipField": "description"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "展示示例"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 24,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "coder-preview",
+              "coder": {
+                "tag": "layout-fit",
+
+
+                "children": [
+                  {
+                    "tag": "row",
+                    "children": [
+                      {
+                        "tag": "button",
+                        "danger": true,
+                        "children": "二次确认",
+                        "action": [
+                          {
+                            "tag": "confirm",
+                            "title": "确认操作",
+                            "content": "确认要删除吗？"
+                          }
+                        ]
+                      }
+
+                    ]
+                  }
+
+
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
