@@ -1,9 +1,9 @@
-import { memo } from "react"
+import {memo, useMemo} from "react"
 import RenderChild from "../components/render/render-child"
 import { getConfig } from "./index"
 
 const ScopedRender = memo((props: any) => {
   const { store, rootStore, ...rest } = props
-  return <RenderChild {...getConfig(rest, store, rootStore,rest.target)} />
+  return <RenderChild  {...getConfig(rest, store, rootStore,rest._target)} />
 })
 export default ScopedRender

@@ -244,6 +244,13 @@
           "router_group": "/framework",
           "url": "/framework/reload-init-action",
           "data": "action/reload-init-action.json"
+        },
+        {
+          "menu_code": "confirm",
+          "menu_name": "confirm 二次确认",
+          "router_group": "/framework",
+          "url": "/framework/confirm",
+          "data": "action/confirm.json"
         }
       ]
     }

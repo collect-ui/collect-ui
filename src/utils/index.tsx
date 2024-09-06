@@ -3,6 +3,7 @@ import { Api, ApiObject, ApiString, PlainObject } from "../types/api"
 import transferProp from "./transferProp";
 import ScopedRender from "./scopedRender";
 import clone from "./clone";
+import varValue from "./varValue";
 export function projectName(name: string) {
   return {
     className: `co-ui-${name}`,
@@ -46,8 +47,10 @@ export function toApiObj(api: Api): ApiObject {
   }
   return api as ApiObject
 }
-export function getConfig(props: any, store: any, rootStore?: any,_target?:any): any {
-  return { schema: props, store: store, rootStore: rootStore,_target: _target }
+export function getConfig(props: any, store: any, rootStore?: any,_target?:any,_level?:0,): any {
+  // let config= { schema: props, store: store, rootStore: rootStore,_target: _target,_level: _level ,_index: _index}
+  let config={...props,store: store, rootStore: rootStore,_target: _target,_level: _level}
+  return config
 }
 export default {
   transferProp,

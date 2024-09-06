@@ -1,4 +1,4 @@
-import React from "react"
+import React, {memo} from "react"
 import {
   getRegister,
   hasRegister,
@@ -8,11 +8,12 @@ import {
   getInitPlugin,
 } from "../../index"
 import { v4 as uuid } from "uuid"
-import renderChildren from "./render-children"
+import RenderChildren from "./render-children"
 import { isIgnoreRenderChildrenNode } from "../../utils/rules.tsx"
 import { types } from "mobx-state-tree"
-import varValue from "../../utils/varValue";
+
 import handlerActions from "../../utils/handlerActions";
+import getPassVar from "../../utils/getPassVar";
 import {App} from "antd";
 
 function genStore(initStore): any {
@@ -98,36 +99,29 @@ function genStore(initStore): any {
   return store.create(initStore)
 }
 
-// function handlerChildrenForm(children: any, store: any) {
-//   const childList = treeToArray(children)
-//   // // 处理children 里面的表单，能在外层拿到引用
-//   childList.forEach((child) => {
-//     const { tag, name, valueRule } = child
-//     if (tag === "form" && name) {
-//       const useForm = Form.useForm()
-//       // 表单引用
-//       store.setFormRef(name, useForm)
-//       // 表单规则
-//       if (valueRule) {
-//         store.setFormRule(name, valueRule)
-//       }
-//       child.form = useForm[0]
-//     }
-//   })
-// }
-
-export default function renderChild(props: any) {
+export default function RenderChild(props: any) {
   // 获取schema
-  const { schema, store, rootStore } = props
+  const {  store, rootStore,storeName, initStore, ...rest } = props
   // 获取渲染类型
-  let { storeName, initStore, ...rest } = schema
-  let tag = schema["tag"]
-  let initAction = schema["initAction"]
+  // let { storeName, initStore, ...rest } = schema
+  let tag = props["tag"]
+  let initAction = props["initAction"]
   let localStore = null
-  let children = schema["children"]
-  const useApp = App.useApp()
+  let children = props["children"]
   // _target 是一个特殊属性，用于行数据显示，比如listview循环一个列表，_target 是列表的子项item
-  let target = schema["_target"]||props["_target"]
+  let target = props["_target"]
+
+
+
+  // if(props._target_row){
+  //   target={
+  //     row:props._target_row,
+  //     rowIndex:props._target_rowIndex,
+  //     rowId:props._target_rowId
+  //   }
+  // }
+  // 层级
+
 
   // 获取store,如果组件有store,就用组件的，否则用上层传递的
   // todo 这里看如何改造成层级取，可能也不需要层级取？，将要打数据层级传递还是？
@@ -136,7 +130,10 @@ export default function renderChild(props: any) {
 
     // 如果存在storeName 则在rootStore,中保存,由于不能直接设置localStore ，所以外面包了一个数组
     if (storeName) {
-      rootStore.setStore(storeName, [localStore])
+      setTimeout(()=>{
+        rootStore.setStore(storeName, [localStore])
+      },0)
+
     }
 
   } else if (hasStore(tag)) {
@@ -162,20 +159,39 @@ export default function renderChild(props: any) {
   // 主要用于插入useForm ,以便全局能拿到form
   if (children && !isIgnoreRenderChildrenNode(tag) && Array.isArray(children)) {
     // 传递target 属性
-    children = renderChildren(children, localStore, rootStore,target)
+    // children = renderChildren(children, localStore, rootStore,target)
+    const pass=getPassVar(props)
+    children =(
+        <RenderChildren
+            children={children}
+            store={localStore}
+            rootStore={rootStore}
+            _target={target}
+            {...pass}
+        >
+        </RenderChildren>
+    )
   }
 
   if (hasRegister(tag)) {
     // 如果是自定义组件
     tag = getRegister(tag)
   } else {
-    rest = props
+    // rest = props
     tag = getRegister("default")
   }
   let Tag = tag
-  const key = uuid()
-  // // 处理显示隐藏
+  let key = uuid()
 
+  // if(props?._target_rowId){
+    // let suffix=""
+    // if(level){
+    //   suffix = "_x_"+level+"_y"+index
+    // }
+
+    // key = props._target_rowId
+  // }
+  // 处理显示隐藏
   return (
     <Tag key={key} store={localStore} rootStore={rootStore} {...rest} _target={target}>
       {children}

@@ -1,9 +1,14 @@
 import { getConfig } from "../../utils"
-import renderChild from "./render-child"
-export default function renderChildren(children, store, rootStore,_target?:any) {
-  return children.map((child) => {
-    return renderChild(getConfig(child, store, rootStore,_target))
-  })
+import RenderChild from "./render-child"
+// export default function renderChildren(children, store, rootStore,_target?:any) {
+//   return children.map((child,index) => {
+//     return <RenderChild key={index} {...getConfig(child, store, rootStore,_target)}></RenderChild>
+//   })
+// }
 
-  // return  renderChild(getConfig(children[0], store, rootStore))
+export default function RenderChildren(props) {
+  const { children, store, rootStore,_target,...rest } = props
+  return children.map((child) => {
+    return RenderChild(getConfig({...rest,...child}, store, rootStore,_target))
+  })
 }

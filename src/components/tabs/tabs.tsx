@@ -1,9 +1,7 @@
 import { App, Tabs } from "antd"
 import transferProp from "../../utils/transferProp"
-import renderChildren from "../render/render-children"
 import varValue from "../../utils/varValue"
 import ScopedRender from "../../utils/scopedRender"
-import { v4 as uuid } from "uuid"
 import {useCallback} from "react";
 import varName from "../../utils/varName";
 import setStoreValue from "../../utils/setStoreValue";

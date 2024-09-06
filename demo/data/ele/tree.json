@@ -23,9 +23,15 @@
       },
       {
         "code": "showIcon",
-        "name": "tab 项的内容",
+        "name": "显示icon",
         "type": "boolean",
         "description": "是否显示icon"
+      },
+      {
+        "code": "openLevel",
+        "name": "打开层级",
+        "type": "int",
+        "description": "2 就是展开前面2层"
       },
       {
         "code": "treeIcon",

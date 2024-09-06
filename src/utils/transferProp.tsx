@@ -11,16 +11,14 @@ import varValue from "./varValue";
 export default function transferProp(props: any, name: string, useApp?: any) {
   // const {rootStore,...rest}=props
   let tmp: any = {}
+  let _target=props._target
   for (let key in props) {
-    if (key.startsWith("_")) {
-      let newKey = key.substring(1)
-      // 防止a 标签中target 被替换成行_target。导致target="_bank" 不生效
-      // _target 之前用了，用成表示行数据里面item
-
-      if(!props.hasOwnProperty(newKey)){
-        tmp[newKey] = props[key]
+    if (key.startsWith("_target_")) {
+      if(!_target){
+        _target={}
       }
-
+      let newKey = key.replace("_target_","")
+      _target[newKey]=props[key]
     }
   }
   // // todo 处理模板变量
@@ -38,30 +36,18 @@ export default function transferProp(props: any, name: string, useApp?: any) {
   // }
   // 动态处理store和变量
   for (let key in rest) {
+    if (key.startsWith("_target_")) {
+      continue
+    }
     let str = rest[key]
     // 正则替换${store.xxx} 这种变量
     if (hasVar(str)) {
-      // const nameList = varNameList(str)
-      // for (let i = 0; i < nameList.length; i++) {
-      //   const varName = nameList[i]
-      //   let value = getStoreValue(varName, store)
-      //   //如果是全量匹配，替换，保证类型不变
-      //   // todo 表达式的处理
-      //   if (str === toVarName(varName)) {
-      //     if (typeof value == "object") {
-      //       str = value.toJSON()
-      //     } else {
-      //       str = value
-      //     }
-      //   } else {
-      //     // 如果是部分匹配，只替换匹配到的部分
-      //     str = str.replace(varName, value)
-      //   }
-      // }
-      str = varValue(str, store,rest._target)
+      str = varValue(str, store,_target)
       if (str !== rest[key]) {
-        rest[key] = str
+        tmp[key] = str
       }
+    }else{
+      tmp[key] = str
     }
   }
 
@@ -71,5 +57,5 @@ export default function transferProp(props: any, name: string, useApp?: any) {
   if (className) {
     pClass["className"] = `${pClass["className"]} ${className}`
   }
-  return { store,...rest, ...tmp, ...pClass }
+  return { store, ...tmp, ...pClass }
 }

@@ -1,25 +1,22 @@
 import transferProp from "../../utils/transferProp";
 import { v4 as uuid } from "uuid"
 export default function (props: any) {
-  const { schema, store } = props
-  const { tag, children, ...rest } = schema
-  console.log(typeof schema)
-  if (typeof schema === "object" && !tag) {
-    if(schema?.type?.$$typeof){
+  const { schema, store,tag, children, ...rest } = props
+  // const { tag, children, ...rest } = schema
+  // console.log(typeof schema)
+  if (typeof props === "object" && !tag) {
+    if(props?.type?.$$typeof){
       console.error("存在组件改变children 属性")
       return
     }
 
-    return JSON.stringify(schema)
+    return JSON.stringify(props)
   }
   // eslint-disable-next-line no-template-curly-in-string
-  let tmp = schema as string
-  if (typeof schema === "string") {
-    //todo 取上级store
-    tmp = tmp.replace("${page}", "【模拟测试变量】")
-  }
+  let tmp = props as string
   let Tag = tag
   if (!Tag) {
+    // return props.children.join("")
     return tmp
   }
   if (typeof children === "string" && store) {

@@ -82,7 +82,7 @@ export default function (name: string, store: any, targetValue?: any): any {
       const varName = vars[i]
       // 如果targetValue没有varName 字段，才从store 里面取
       // 这里体现了优先从targetValue 取，然后从store 里面取
-      if(targetKeys.indexOf(varName)<0){
+      if(targetKeys.indexOf(varName)<0 && store.getValue){
         const storeValue = store.getValue(varName)
         if(storeValue){
           p[varName] = storeValue
@@ -93,6 +93,9 @@ export default function (name: string, store: any, targetValue?: any): any {
     return value
   }
   const [firstName, secondName,thirdName] = varNameList(name)
+  if(!store.getValue){
+    return "未获取到store！！！不能获取变量："+firstName
+  }
   let value = store.getValue(firstName)
   // 如果是单一的数组变量
   if (isArrayVar(firstName)) {

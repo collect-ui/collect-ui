@@ -1,37 +1,14 @@
 import transferProp from "../../utils/transferProp"
 import Title from "../title/title"
-import { getConfig } from "../../utils"
-import renderChildren from "../render/render-children"
-import treeToArray from "../../utils/tree2Array"
-import { App, Form } from "antd"
-import { useForm } from "antd/lib/form/Form"
+import { App,  } from "antd"
 import {
-  cloneElement,
-  ReactElement,
-  useCallback,
+
   useEffect,
-  useState,
 } from "react"
 
 import handlerActions from "../../utils/handlerActions"
 
-// function handlerChildrenForm(children: any, store: any) {
-//   const childList = treeToArray(children)
-//   // // 处理children 里面的表单，能在外层拿到引用
-//   childList.forEach((child) => {
-//     const { tag, name, valueRule } = child
-//     if (tag === "form" && name) {
-//       const useForm = Form.useForm()
-//       // 表单引用
-//       store.setFormRef(name, useForm)
-//       // 表单规则
-//       if (valueRule) {
-//         store.setFormRule(name, valueRule)
-//       }
-//       child.form = useForm[0]
-//     }
-//   })
-// }
+
 
 export default function (props: any) {
   const {

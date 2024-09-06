@@ -2,6 +2,7 @@ import { Panel } from "react-resizable-panels"
 import transferProp from "../../utils/transferProp"
 import getVisible from "../../utils/getVisible";
 export default function (props) {
+  console.log("panel render")
   const { panelKey,visible, ...rest } = props
   const show = getVisible(props)
   if(!show) {
