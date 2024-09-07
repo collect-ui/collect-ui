@@ -16,6 +16,18 @@
         "description": ""
       },
       {
+        "code": "type",
+        "name": "类型",
+        "type": "string",
+        "description": "页签的基本样式，可选 line、card editable-card 类型"
+      },
+      {
+        "code": "hideAdd",
+        "name": "隐藏加号图标",
+        "type": "boolean",
+        "description": "是否隐藏加号图标，在 type=\"editable-card\" 时有效"
+      },
+      {
         "code": "activeKey",
         "name": "当前激活的标签",
         "type": "string",
@@ -25,7 +37,19 @@
         "code": "items",
         "name": "tab 项的内容",
         "type": "array[configNode]",
-        "description": ""
+        "description": "直接渲染，items,适应标签页固定的场景"
+      },
+      {
+        "code": "itemData",
+        "name": "tab 项的内容",
+        "type": "string",
+        "description": "动态添加标签页的场景，itemData 数组取值，适应动态添加标签,需要配合itemAttr"
+      },
+      {
+        "code": "itemAttr",
+        "name": "动态添加标签的模板",
+        "type": "configNode",
+        "description": "需要配合itemData"
       }
     ]
   },
@@ -233,7 +257,7 @@
 
         {
           "tag": "col",
-          "span": 16,
+          "span": 8,
           "style": {
             "height": "500px"
           },
@@ -274,6 +298,98 @@
                     "children": [
                       "ldap 管理内容"
                     ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 16,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "label",
+              "className": "bold",
+              "children": "动态添加标签页"
+            },
+            {
+              "tag": "coder-preview",
+              "coder": {
+                "tag": "layout-fit",
+                "initStore": {
+                  "lastNewTabId": "",
+                  "activeKey": "1",
+                  "tabList": [
+                    {
+                      "id": "1",
+                      "title": "标签 1",
+                      "content": "内容1"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "tag": "row",
+                    "children": [
+                      {
+                        "tag": "button",
+                        "children": "添加标签",
+                        "action": [
+
+                          {
+                            "tag": "update-store",
+                            "value": {
+                              "lastNewTabId": "${uuid()}"
+                            }
+                          },
+                          {
+                            "tag": "arr-push",
+                            "from": "tabList",
+                            "value": {
+                              "id": "${lastNewTabId}",
+                              "title": "${'标签 '+(tabList.length+1)}",
+                              "content": "${'tab-content-'+(tabList.length+1)}"
+                            }
+                          },
+                          {
+                            "tag": "update-store",
+                            "value": {
+                              "activeKey": "${lastNewTabId}"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "style": {
+                      "paddingTop": 10
+                    },
+                    "tag": "tabs",
+                    "size": "small",
+                    "type": "editable-card",
+                    "keyField":"id",
+                    "hideAdd": true,
+                    "activeKey": "${activeKey}",
+                    "itemData": "${tabList}",
+                    "itemAttr":  {
+                      "label": "${row.title}",
+                      "key": "${row.id}",
+                      "children": [
+                        {
+                          "tag": "label",
+                          "children": "${row.content}"
+                        },
+                        {
+                          "tag": "input"
+                        }
+                      ]
+                    }
                   }
                 ]
               }

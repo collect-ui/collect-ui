@@ -14,7 +14,7 @@
                 "fontWeight": "bold",
                 "color": "#fff"
               },
-              "children": ["collect"]
+              "children": "collect"
             }
           ],
           "style": {
@@ -68,11 +68,10 @@
                             "key_field": "menu_code",
                             "label_field": "menu_name",
                             "icon_field": "icon",
-
                             "to_field": "url"
                           },
                           "defaultOpenKeys": ["home","sub1"],
-                          "items": "${menu_list}"
+                          "items": "${menu_list.filter((item)=>item.in_menu!==false)}"
                         }
                       ]
                     }
@@ -110,7 +109,12 @@
         },
         {
           "tag": "footer",
-          "children": ["footer"],
+          "children": [
+            {
+              "tag": "label",
+              "children": "footer"
+            }
+          ],
           "style": {
             "padding": "4px 10px",
             "display": "flex",

@@ -47,7 +47,8 @@ function isArrayVar(name: string): boolean {
   return name.indexOf("[") >= 0 && name.indexOf("]") > 0 && !(name.indexOf("?")>=0 || name.indexOf(":")>=0)
 }
 export default function (name: string, store: any, targetValue?: any): any {
-  if (!store) {
+  // store 和目标对象都没有，直接返回
+  if (!store ) {
     return name
   }
   // 如果不是字符串类型直接返回

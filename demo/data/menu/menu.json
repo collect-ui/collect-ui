@@ -170,8 +170,14 @@
               "router_group": "/framework",
               "url": "/framework/tree",
               "data": "ele/tree.json"
+            },
+            {
+              "menu_code": "listview",
+              "menu_name": "listview 列表",
+              "router_group": "/framework",
+              "url": "/framework/listview",
+              "data": "ele/listview.json"
             }
-
           ]
         }
       ]
@@ -251,6 +257,13 @@
           "router_group": "/framework",
           "url": "/framework/confirm",
           "data": "action/confirm.json"
+        },
+        {
+          "menu_code": "arr-push",
+          "menu_name": "arr-push 数组添加数据",
+          "router_group": "/framework",
+          "url": "/framework/arr-push",
+          "data": "action/arr-push.json"
         }
       ]
     }

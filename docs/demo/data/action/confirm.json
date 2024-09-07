@@ -5,21 +5,21 @@
     "apiList": [
       {
         "code": "tag",
-        "name": "reload-init-action",
+        "name": "confirm",
         "type": "string",
-        "description": "提交表单"
+        "description": "二次确认"
       },
       {
-        "code": "group",
-        "name": "分组名称",
+        "code": "title",
+        "name": "标题",
         "type": "string",
-        "description": "调用分组，支持批量调用一系列的action。group 支持表达式"
+        "description": "标题"
       },
       {
-        "code": "targetStore",
-        "name": "目标store变量",
+        "code": "content",
+        "name": "内容",
         "type": "string",
-        "description": "默认更新自身store,传了则更新目标store"
+        "description": "内容"
       }
     ]
   },
@@ -33,7 +33,7 @@
       "tag": "label",
       "className": "padding-left10 padding-bottom10",
       "children": [
-        "标签 tag=confirm,二次确认，一般用户删除数据前，全局确认",
+        "标签 tag=confirm,二次确认。一般用户删除数据前，全局确认，虽然按钮带了二次确认，但是右键的情况就没有按钮的二次确认",
         {
           "tag": "ul",
           "children": [
@@ -95,11 +95,7 @@
               "children": [
                 {
                   "tag": "li",
-                  "children": "tag-`reload-init-action`调用initAction里面action"
-                },
-                {
-                  "tag": "li",
-                  "children": "group分组调用"
+                  "children": "tag-`confirm`二次确认，确认后继续后面执行"
                 }
               ]
             }
@@ -184,52 +180,26 @@
               "tag": "coder-preview",
               "coder": {
                 "tag": "layout-fit",
-                "initStore": {
-                  "dataList": [],
-                  "init":false
-                },
-                "initAction": [
-                  {
 
-                    "tag": "ajax",
-                    "enable": "${init}",
-                    "group": "dataList",
-                    "api": "get:/collect-ui/demo/data/menu/menu.json",
-                    "showResultMsg": true,
-                    "adapt": {
-                      "dataList": "${data}"
-                    }
-                  },
-                  {
-                    "tag": "update-store",
-                    "value": {
-                      "init": true
-                    }
 
-                  }
-
-                ],
                 "children": [
                   {
                     "tag": "row",
                     "children": [
                       {
                         "tag": "button",
-                        "type": "primary",
-                        "children": "根据init-group-action的分组发起调用",
+                        "danger": true,
+                        "children": "二次确认",
                         "action": [
                           {
-                            "tag": "reload-init-action",
-                            "group": "dataList"
+                            "tag": "confirm",
+                            "title": "确认操作",
+                            "content": "确认要删除吗？"
                           }
                         ]
                       }
 
                     ]
-                  },
-                  {
-                    "tag": "label",
-                    "children": "${JSON.stringify(dataList)}"
                   }
 
 

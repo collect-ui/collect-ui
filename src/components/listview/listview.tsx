@@ -3,20 +3,7 @@ import ScopedRender from "../../utils/scopedRender"
 import transferProp from "../../utils/transferProp"
 import NoData from "../no-data/no-data"
 import {v4 as uuid} from "uuid"
-function getConfig(order){
-  return {}
-}
-const First = memo(({...rest})=>{
-  return <Second {...rest} ></Second>
-})
-const Second = memo((props)=>{
-  console.log("second render")
-  return <span>second  </span>
-})
-const Third=(props)=>{
-  console.log("third render")
-  return <span>test,{props.dataID}<input/></span>
-}
+
 const DynamicListView = (props) => {
   const { keyField, itemAttr, joinAttr, ...rest } = props;
   if(!keyField){
@@ -29,11 +16,6 @@ const DynamicListView = (props) => {
 
   const itemsWithJoinAttr = useMemo(() => {
     return itemData.reduce((acc, item, index) => {
-      // const target={
-      //   row: item,
-      //   rowIndex: index,
-      //   rowId: item[keyField]
-      // }
       const newAttr = { ...itemAttr,
         _target_row:item,
         _target_rowIndex:index,
@@ -43,7 +25,6 @@ const DynamicListView = (props) => {
       let rootStore=rest.rootStore
       // 添加当前的 ScopedRender 组件
       acc.push(
-
           <ScopedRender
               key={keyField ? item[keyField] : uuid()}
               {...newAttr}

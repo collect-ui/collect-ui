@@ -86,6 +86,12 @@
         "name": "自定义渲染cell",
         "type": "configNode",
         "description": "支持低代码配置，显示时用 row.变量，按钮处理 action，行数据在 row 中。"
+      },
+      {
+        "code": "columnDefs[tooltipField]",
+        "name": "提示文字取值字段",
+        "type": "string",
+        "description": "提示字段文字"
       }
     ]
   },

@@ -1,0 +1,238 @@
+{
+  "tag": "layout-fit",
+  "className": "padding10 h100 overflow-auto",
+  "initStore": {
+    "apiList": [
+      {
+        "code": "tag",
+        "name": "listview",
+        "type": "string",
+        "description": "列表"
+      },
+      {
+        "code": "itemData",
+        "name": "tab 项的内容",
+        "type": "string",
+        "description": "动态添加标签页的场景，itemData 数组取值，适应动态添加标签,需要配合itemAttr"
+      },
+      {
+        "code": "itemAttr",
+        "name": "动态添加标签的模板",
+        "type": "configNode",
+        "description": "需要配合itemData"
+      }
+    ]
+  },
+  "children": [
+    {
+      "tag": "h1",
+      "className": "border-bottom",
+      "children": "listview示例"
+    },
+    {
+      "tag": "label",
+      "className": "padding-left10 padding-bottom10",
+      "children": [
+        "Tag=listview 列表展示组件",
+
+
+        {
+          "tag": "ul",
+          "children": [
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children": "功能描述"
+                },
+                "：循环展示组件，用于动态循环展示 一个组件"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 12,
+          "style": {
+            "height": "400px",
+            "overflow": "auto"
+          },
+          "children": [
+            {
+              "tag": "h3",
+              "children": "代码配置示例",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "coder",
+              "language": "json",
+              "value":  {
+                "tag": "listview",
+                "keyField": "id",
+                "itemData": [
+                  {
+                    "id": "1",
+                    "title": "新增"
+                  },
+                  {
+                    "id": "2",
+                    "title": "修改"
+                  }
+                ],
+                "itemAttr":{
+                  "tag": "button",
+                  "style": {
+                    "marginRight": "10px"
+                  },
+                  "children": "${row.title}"
+                }
+              }
+
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 12,
+          "children": [
+            {
+              "tag": "h3",
+              "children": "配置简述",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "ol",
+              "children": [
+                {
+                  "tag": "li",
+                  "children": "tag=listview-循环展示"
+                }
+
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "API（注意：configNode表示低代码配置，action表示动作配置）"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "layout-fit",
+          "style": {
+            "height": "300px",
+            "width": "100%"
+          },
+          "children": [
+            {
+              "tag": "table",
+              "rowData": "${apiList}",
+              "tooltipShowDelay": 0,
+              "columnDefs": [
+                {
+                  "headerName": "#",
+                  "width": 60,
+                  "suppressSizeToFit": true,
+                  "valueGetter": "node.rowIndex + 1",
+                  "sortable": false,
+                  "pinned": "left"
+                },
+                {
+                  "headerName": "字段",
+                  "field": "code",
+                  "width": 250,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "名称",
+                  "field": "name",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "类型",
+                  "field": "type",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "描述",
+                  "field": "description",
+                  "tooltipField": "description"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "展示示例"
+    },
+    {
+      "tag": "row",
+      "children": [
+
+        {
+          "tag": "col",
+          "span": 8,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "label",
+              "className": "bold",
+              "children": "根据数据，动态展示按钮"
+            },
+            {
+              "tag": "coder-preview",
+              "coder": {
+                "tag": "row",
+                "className": "padding10",
+                "children": [
+                  {
+                    "tag": "listview",
+                    "keyField": "id",
+                    "itemData": [
+                      {
+                        "id": "1",
+                        "title": "新增"
+                      },
+                      {
+                        "id": "2",
+                        "title": "修改"
+                      },
+                      {
+                        "id": "3",
+                        "title": "删除"
+                      }
+                    ],
+                    "itemAttr":{
+                      "tag": "button",
+                      "children": "${row.title}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

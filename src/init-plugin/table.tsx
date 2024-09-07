@@ -29,6 +29,7 @@ export default function (props: any, store: any, rootStore: any) {
           )
         }
       }
+      delete item.cellRender
     }
   })
 }

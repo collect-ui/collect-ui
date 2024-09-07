@@ -9,6 +9,12 @@ import RenderChild from "./render-child"
 export default function RenderChildren(props) {
   const { children, store, rootStore,_target,...rest } = props
   return children.map((child) => {
+    if (typeof child === "string"){// 如果是字符串转label
+      child = {
+        tag:"label",
+        children: child
+      }
+    }
     return RenderChild(getConfig({...rest,...child}, store, rootStore,_target))
   })
 }

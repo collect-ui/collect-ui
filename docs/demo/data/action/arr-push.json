@@ -1,0 +1,274 @@
+{
+  "tag": "layout-fit",
+  "className": "padding10 h100 overflow-auto",
+  "initStore": {
+    "apiList": [
+      {
+        "code": "tag",
+        "name": "arr-push",
+        "type": "string",
+        "description": "数组添加数据"
+      },
+      {
+        "code": "from",
+        "name": "来源对象",
+        "type": "string",
+        "description": "来源对象"
+      },
+      {
+        "code": "value",
+        "name": "值",
+        "type": "dict",
+        "description": "默认更新本身的store。可以更新其他布局里面的store,比如左右布局"
+      }
+    ]
+  },
+  "children": [
+    {
+      "tag": "h1",
+      "className": "border-bottom",
+      "children": "update-store示例"
+    },
+    {
+      "tag": "label",
+      "className": "padding-left10 padding-bottom10",
+      "children": [
+        "标签 `tag=arr-push`数组添加对象",
+        {
+          "tag": "ul",
+          "children": [
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children": "功能描述"
+                },
+                "：数组添加对象"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 8,
+          "style": {
+            "height": "300px",
+            "overflow": "auto"
+          },
+          "children": [
+            {
+              "tag": "h3",
+              "children": "代码配置示例",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "coder",
+              "language": "json",
+              "value":  {
+                "tag": "arr-push",
+                "from": "tabList",
+                "value": {
+                  "id": "${lastNewTabId}",
+                  "title": "${'tab-title'+(tabList.length+1)}",
+                  "content": "${'tab-content-'+(tabList.length+1)}"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "tag": "col",
+          "span": 8,
+          "children": [
+            {
+              "tag": "h3",
+              "children": "配置简述",
+              "className": "border-bottom"
+            },
+            {
+              "tag": "ol",
+              "children": [
+                {
+                  "tag": "li",
+                  "children": "tag-`arr-push` 数组添加对象"
+                },
+                {
+                  "tag": "li",
+                  "children": "from-来源对象"
+                },
+                {
+                  "tag": "li",
+                  "children": "value-添加对象"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "API（注意：configNode表示低代码配置，action表示动作配置）"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "layout-fit",
+          "style": {
+            "height": "200px",
+            "width": "100%"
+          },
+          "children": [
+            {
+              "tag": "table",
+              "rowData": "${apiList}",
+              "tooltipShowDelay": 0,
+              "columnDefs": [
+                {
+                  "headerName": "#",
+                  "width": 60,
+                  "suppressSizeToFit": true,
+                  "valueGetter": "node.rowIndex + 1",
+                  "sortable": false,
+                  "pinned": "left"
+                },
+                {
+                  "headerName": "字段",
+                  "field": "code",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "名称",
+                  "field": "name",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "类型",
+                  "field": "type",
+                  "width": 150,
+                  "suppressSizeToFit": true
+                },
+                {
+                  "headerName": "描述",
+                  "field": "description",
+                  "tooltipField": "description"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "h3",
+      "className": "border-bottom",
+      "children": "展示示例"
+    },
+    {
+      "tag": "row",
+      "children": [
+        {
+          "tag": "col",
+          "span": 24,
+          "style": {
+            "height": "500px"
+          },
+          "className": "padding10",
+          "children": [
+            {
+              "tag": "label",
+              "children": "添加标签项"
+            },
+            {
+              "tag": "coder-preview",
+              "coder": {
+                "tag": "layout-fit",
+                "initStore": {
+                  "lastNewTabId": "",
+                  "activeKey": "1",
+                  "tabList": [
+                    {
+                      "id": "1",
+                      "title": "标签 1",
+                      "content": "内容1"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "tag": "row",
+                    "children": [
+                      {
+                        "tag": "button",
+                        "children": "添加标签",
+                        "action": [
+
+                          {
+                            "tag": "update-store",
+                            "value": {
+                              "lastNewTabId": "${uuid()}"
+                            }
+                          },
+                          {
+                            "tag": "arr-push",
+                            "from": "tabList",
+                            "value": {
+                              "id": "${lastNewTabId}",
+                              "title": "${'标签 '+(tabList.length+1)}",
+                              "content": "${'tab-content-'+(tabList.length+1)}"
+                            }
+                          },
+                          {
+                            "tag": "update-store",
+                            "value": {
+                              "activeKey": "${lastNewTabId}"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "style": {
+                      "paddingTop": 10
+                    },
+                    "tag": "tabs",
+                    "size": "small",
+                    "type": "editable-card",
+                    "keyField":"id",
+                    "hideAdd": true,
+                    "activeKey": "${activeKey}",
+                    "itemData": "${tabList}",
+                    "itemAttr":  {
+                      "label": "${row.title}",
+                      "key": "${row.id}",
+                      "children": [
+                        {
+                          "tag": "label",
+                          "children": "${row.content}"
+                        },
+                        {
+                          "tag": "input"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -45,7 +45,10 @@
       "tag": "label",
       "className": "padding-left10 padding-bottom10",
       "children": [
-        "标签 tag=router 作为页面的路由容器，负责管理和控制页面的跳转逻辑，是实现页面导航的核心组件",
+        {
+          "tag": "label",
+          "children":"标签 tag=router 作为页面的路由容器，负责管理和控制页面的跳转逻辑，是实现页面导航的核心组件"
+        },
         {
           "tag": "a",
           "target": "_blank",
@@ -62,7 +65,11 @@
                   "tag": "strong",
                   "children": "功能描述"
                 },
-                "：tag=router 标签通过定义和处理路由规则，控制用户在不同页面之间的跳转，确保用户能够根据需要访问相应的功能模块"
+                {
+                  "tag": "label",
+                  "children": "：tag=router 标签通过定义和处理路由规则，控制用户在不同页面之间的跳转，确保用户能够根据需要访问相应的功能模块"
+                }
+
               ]
             },
             {
@@ -72,7 +79,11 @@
                   "tag": "strong",
                   "children": "使用方法"
                 },
-                "：开发者通过配置 tag=router 标签，定义路由路径及其对应的页面组件，实现页面间的无缝切换"
+                {
+                  "tag": "label",
+                  "children": "：开发者通过配置 tag=router 标签，定义路由路径及其对应的页面组件，实现页面间的无缝切换"
+                }
+
               ]
             },
             {
@@ -82,7 +93,11 @@
                   "tag": "strong",
                   "children": "应用场景"
                 },
-                "：此功能适用于需要复杂页面导航的应用程序，如多模块的管理系统、内容丰富的网站等，通过 tag=router 标签，可以构建出结构清晰、易于维护的页面导航系统。"
+                {
+                  "tag": "label",
+                  "children": "：此功能适用于需要复杂页面导航的应用程序，如多模块的管理系统、内容丰富的网站等，通过 tag=router 标签，可以构建出结构清晰、易于维护的页面导航系统。"
+                }
+
               ]
             }
           ]
@@ -176,7 +191,10 @@
                 {
                   "tag": "li",
                   "children": [
-                    "详情请看router-v6 文档",
+                    {
+                      "tag": "label",
+                      "children": "详情请看router-v6 文档"
+                    },
                     {
                       "tag": "a",
                       "target": "_blank",

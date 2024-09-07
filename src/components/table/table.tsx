@@ -96,6 +96,7 @@ export default function (props: any) {
           ref={gridRef}
           headerHeight="36px"
           rowHeight="32px"
+          tooltipShowDelay={0}
           onSelectionChanged={onSelectionChanged}
           onSortChanged={onSortChanged}
           onRowClicked={onRowClicked}
