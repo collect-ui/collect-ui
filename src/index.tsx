@@ -25,6 +25,7 @@ const registerMap: any = {}
 const registerStoreMap: any = {}
 const registerActionMap: any = {}
 const initPluginMap: any = {}
+const initStoreTypeMap: any = {}
 const pascal2Kebab = (str: string) =>
   str
     .replace(/([a-z])([A-Z])/g, ($, $1, $2) => $1 + "-" + $2.toLowerCase())
@@ -124,6 +125,12 @@ export function setAction(name: string,func: Function){
 }
 export function ajaxAction() {
   return registerActionMap["ajax"]
+}
+export function getInitStoreType(name: string) {
+  return initStoreTypeMap[name]
+}
+export function setInitStoreType(name: string, type: any) {
+  initStoreTypeMap[name] = type
 }
 export default {
   getRegister,

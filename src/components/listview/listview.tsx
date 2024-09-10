@@ -10,9 +10,6 @@ const DynamicListView = (props) => {
     throw new Error("listview 中 keyField is required");
   }
   let { itemData, ...newProps } = transferProp(rest, "listview");
-  if (!itemData) {
-    return <NoData />;
-  }
 
   const itemsWithJoinAttr = useMemo(() => {
     return itemData.reduce((acc, item, index) => {
@@ -55,7 +52,9 @@ const DynamicListView = (props) => {
       return acc;
     }, []);
   }, [itemData, itemAttr, joinAttr, keyField, rest.store, rest.rootStore]);
-
+  if (!itemData ||itemData?.length <= 0) {
+    return <NoData />;
+  }
   return <React.Fragment>{itemsWithJoinAttr}</React.Fragment>;
 };
 

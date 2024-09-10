@@ -76,5 +76,6 @@ export default function (props: any) {
   } else if (isSearch){
     return <Input.Search {...newProps} onSearch={onSearchClick}></Input.Search>
   }
+
   return <Input {...newProps}></Input>
 }

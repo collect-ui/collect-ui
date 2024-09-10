@@ -5,7 +5,7 @@ import {
   getStore,
   hasStore,
   hasInitPlugin,
-  getInitPlugin,
+  getInitPlugin, getInitStoreType,
 } from "../../index"
 import { v4 as uuid } from "uuid"
 import RenderChildren from "./render-children"
@@ -16,7 +16,7 @@ import handlerActions from "../../utils/handlerActions";
 import getPassVar from "../../utils/getPassVar";
 import {App} from "antd";
 
-function genStore(initStore): any {
+function genStore(initStore,initStoreType): any {
   const transferType = {
     // 处理表单引用
     _formRef: types.optional(types.frozen(), {}),
@@ -33,10 +33,26 @@ function genStore(initStore): any {
       transferType[key] = types.optional(types.string, initStore[key])
     } else if (type === "object") {
       if (Array.isArray(initStore[key])) {
-        transferType[key] = types.optional(
-          types.array(types.frozen()),
-          initStore[key],
-        )
+        let  customerType = null;
+        if(initStoreType){
+          customerType = initStoreType[key]
+        }
+        if(!customerType){
+          transferType[key] = types.optional(
+              types.array(types.frozen()),
+              initStore[key],
+          )
+        }else{// panelList 单独处理
+
+          const tmp = getInitStoreType(customerType)
+          if (tmp){
+            transferType[key]=tmp
+          }else{
+            console.error("注册自定义类型："+customerType)
+            console.error("但是没找到类型："+customerType)
+          }
+        }
+
       } else {
         transferType[key] = types.optional(types.frozen(), initStore[key])
       }
@@ -101,7 +117,7 @@ function genStore(initStore): any {
 
 export default function RenderChild(props: any) {
   // 获取schema
-  const {  store, rootStore,storeName, initStore, ...rest } = props
+  const {  store, rootStore,storeName, initStore,initStoreType, ...rest } = props
   // 获取渲染类型
   // let { storeName, initStore, ...rest } = schema
   let tag = props["tag"]
@@ -111,22 +127,10 @@ export default function RenderChild(props: any) {
   // _target 是一个特殊属性，用于行数据显示，比如listview循环一个列表，_target 是列表的子项item
   let target = props["_target"]
 
-
-
-  // if(props._target_row){
-  //   target={
-  //     row:props._target_row,
-  //     rowIndex:props._target_rowIndex,
-  //     rowId:props._target_rowId
-  //   }
-  // }
-  // 层级
-
-
   // 获取store,如果组件有store,就用组件的，否则用上层传递的
   // todo 这里看如何改造成层级取，可能也不需要层级取？，将要打数据层级传递还是？
   if (initStore) {
-    localStore = genStore(initStore)
+    localStore = genStore(initStore,initStoreType)
 
     // 如果存在storeName 则在rootStore,中保存,由于不能直接设置localStore ，所以外面包了一个数组
     if (storeName) {
@@ -161,16 +165,27 @@ export default function RenderChild(props: any) {
     // 传递target 属性
     // children = renderChildren(children, localStore, rootStore,target)
     const pass=getPassVar(props)
-    children =(
-        <RenderChildren
-            children={children}
-            store={localStore}
-            rootStore={rootStore}
-            _target={target}
-            {...pass}
-        >
-        </RenderChildren>
-    )
+    const config={
+      children:children,
+      store:localStore,
+      rootStore:rootStore,
+      _target:target,
+      ...pass
+    }
+    // 不能用标签，form 表单input值value更新了,
+    // 导致上层RenderChildren重新渲染，
+    // 导致input 重新渲染了，然后就input失去焦点
+    children= RenderChildren(config)
+    // children =(
+    //     // <RenderChildren
+    //     //     children={children}
+    //     //     store={localStore}
+    //     //     rootStore={rootStore}
+    //     //     _target={target}
+    //     //     {...pass}
+    //     // >
+    //     // </RenderChildren>
+    // )
   }
 
   if (hasRegister(tag)) {
@@ -183,14 +198,7 @@ export default function RenderChild(props: any) {
   let Tag = tag
   let key = uuid()
 
-  // if(props?._target_rowId){
-    // let suffix=""
-    // if(level){
-    //   suffix = "_x_"+level+"_y"+index
-    // }
 
-    // key = props._target_rowId
-  // }
   // 处理显示隐藏
   return (
     <Tag key={key} store={localStore} rootStore={rootStore} {...rest} _target={target}>

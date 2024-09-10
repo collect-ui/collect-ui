@@ -35,6 +35,7 @@ function wrapPromise(promise: Promise<any>) {
 export default function (props: any) {
   console.log("table render")
   const gridRef = useRef()
+  const containerRef = useRef()
   const { selection, rowClick, rowClickAction, ...rest } = props
   const store = props["store"]
   const rootStore = props["rootStore"]
@@ -70,27 +71,47 @@ export default function (props: any) {
       handlerActions(rowClickAction, store, rootStore, useApp)
     }
   }, [])
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     if (gridRef.current && gridRef.current?.api) {
+  //       setTimeout(()=>{
+  //         gridRef.current?.api.sizeColumnsToFit();
+  //       },10)
+  //
+  //     }
+  //   };
+  //
+  //   window.addEventListener('resize', handleResize);
+  //
+  //   // Cleanup listener on component unmount
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //   };
+  // }, []);
   useEffect(() => {
     const handleResize = () => {
       if (gridRef.current && gridRef.current?.api) {
-        setTimeout(()=>{
+        setTimeout(() => {
           gridRef.current?.api.sizeColumnsToFit();
-        },10)
-
+        }, 10)
       }
     };
 
-    window.addEventListener('resize', handleResize);
+    // 使用 ResizeObserver 监听 containerRef 的大小变化
+    const resizeObserver = new ResizeObserver(handleResize);
+    resizeObserver.observe(containerRef.current);
 
     // Cleanup listener on component unmount
     return () => {
-      window.removeEventListener('resize', handleResize);
+      resizeObserver.disconnect();
     };
   }, []);
 
   return (
     <Suspense fallback={<Loading></Loading>}>
-      <div className={"ag-theme-quartz"} style={tableStyle}>
+      <div
+          ref={containerRef}
+          className={"ag-theme-quartz"} style={tableStyle}>
         <AgGridReact
           onGridReady={onGridReady}
           ref={gridRef}

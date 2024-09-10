@@ -58,5 +58,5 @@ export default function transferProp(props: any, name: string, useApp?: any) {
   if (className) {
     pClass["className"] = `${pClass["className"]} ${className}`
   }
-  return { store, ...tmp, ...pClass }
+  return { store, ...tmp, ...pClass}
 }

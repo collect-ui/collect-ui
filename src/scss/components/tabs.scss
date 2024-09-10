@@ -3,11 +3,24 @@
 // project(分组名称)
 @include project(tabs){
   height: 100%;
+
   .ant-tabs-content{
     height: 100%;
+    position: relative;
     .ant-tabs-tabpane{
       height: 100%;
+      position: absolute;
+      width: 100%;
+      z-index: 1;
     }
+    .ant-tabs-tabpane-hidden {
+      visibility: hidden; /* 隐藏内容但保持高度 */
+      display: block;
+      z-index: -1 !important;
+
+    }
+
+
 
   }
   .ant-tabs-nav{

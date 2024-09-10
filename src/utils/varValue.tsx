@@ -44,6 +44,9 @@ const reg = /\$\{(.+?)\}/
 // }
 
 function isArrayVar(name: string): boolean {
+  if(!name){
+    return false
+  }
   return name.indexOf("[") >= 0 && name.indexOf("]") > 0 && !(name.indexOf("?")>=0 || name.indexOf(":")>=0)
 }
 export default function (name: string, store: any, targetValue?: any): any {
@@ -147,7 +150,11 @@ export default function (name: string, store: any, targetValue?: any): any {
           const varValue = form.getFieldValue(fieldName)
           return varValue
         }
-      } else if (varKey === "uuid") {
+      }else if(varKey==="getVarValue"){
+        params[varKey] = (varValue) => {
+          return store.getValue(varValue)
+        }
+      }else if (varKey === "uuid") {
         params[varKey] = () => {
           return uuid()
         }

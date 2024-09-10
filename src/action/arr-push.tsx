@@ -4,6 +4,9 @@ import { App } from "antd"
 import varValue from "../utils/varValue"
 import actionStore from "../utils/actionStore"
 import isArray from "../utils/isArray";
+import {applySnapshot} from "mobx-state-tree";
+import expression_name from "../../../../../../collect-ui/src/utils/expression_name";
+import getVariablesFromExpression from "../../../../../../collect-ui/src/utils/getVariablesFromExpression";
 function handlerVarValue(value,store,target){
   let newObj = {}
 
@@ -39,10 +42,33 @@ export default async function (
   useApp: App.useApp,
   target?: any,
 ): Promise<result> {
-  const { from,value } = action
+  const { method,from,value } = action
   let targetStoreObj = actionStore(action, store, rootStore)
   const newObj=handlerVarValue(value, store, target)
-  const old = targetStoreObj.getValue(from)
-  targetStoreObj.setValue(from,[...old,newObj])
+  const fromName = varValue(from, store, target)
+  const old = targetStoreObj.getValue(fromName)
+  if(method){// 解决二级数组的children的节点，addChildren 方法
+    //示例${panelList[0].addChildren(value)}
+    const expression = expression_name(method)
+    // 获取表达式里面有哪些变量
+    let vars = []
+    try {
+      vars = getVariablesFromExpression(expression)
+    } catch (e) {
+      return value
+    }
+    const targetRow = {
+      value:newObj
+    }
+    vars.forEach(key=>{
+      if(store[key]!=undefined){
+        targetRow[key]=store[key]
+      }
+    })
+    varValue(method,store,targetRow)
+  }else{
+    targetStoreObj.setValue(fromName,[...old,newObj])
+  }
+
   return getResult(true)
 }

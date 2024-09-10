@@ -20,6 +20,7 @@ const MyTree = ({
   treeTitle,
   rightMenu,
   rightMenuAction,
+  dblAction,
   ...rest
 }) => {
   console.log("tree render")
@@ -90,7 +91,7 @@ const MyTree = ({
     if (rightMenuAction) {
       handlerActions(rightMenuAction, rest.store, rest.rootStore, useApp, {
         item,
-        rightNode: node,
+        node: node,
       })
     }
     // Add your logic here
@@ -104,10 +105,15 @@ const MyTree = ({
         node: node, // Pass the node information as a prop
       },
     })
-    // const menu = generateContextMenu(node, menuItems, (node, item) => {
-    //   console.log(node, item)
-    // })
   }, [])
+  const handleDoubleClick = useCallback((event,data) => {
+    if (rightMenuAction) {
+      handlerActions(dblAction, rest.store, rest.rootStore, useApp, {
+        node: data,
+      })
+    }
+    // Add your logic here
+  },[])
 
   if (treeData && treeData.length <= 0) {
     return <NoData />
@@ -123,6 +129,7 @@ const MyTree = ({
         {...newProps}
         treeData={treeDataMemo}
         onRightClick={handleRightClick}
+        onDoubleClick={handleDoubleClick}
       />
       {rightMenu && genContextMenu(MENU_ID, rightMenu, handleItemClick)}
     </>

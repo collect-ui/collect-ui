@@ -6,6 +6,9 @@ export default function (name: string): string[] {
   const nameList = []
   if (hasVar(name)) {
     const arr = name.match(reg_g)
+    if(!arr){
+      return nameList
+    }
     for (let i = 0; i < arr.length; i++) {
       let item = arr[i]
       let storeVarArr = item.match(reg)
