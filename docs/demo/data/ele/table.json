@@ -92,6 +92,18 @@
         "name": "提示文字取值字段",
         "type": "string",
         "description": "提示字段文字"
+      },
+      {
+        "code": "columnDefs[wrapText]",
+        "name": "文字换行",
+        "type": "boolean",
+        "description": "文字是否换行"
+      },
+      {
+        "code": "columnDefs[autoHeight]",
+        "name": "自动高度",
+        "type": "boolean",
+        "description": "自动高度,如果觉得默认高度太高，可以设置 \"cellClass\": \"line-height2\""
       }
     ]
   },
@@ -296,6 +308,8 @@
                 {
                   "headerName": "描述",
                   "field": "description",
+                  "wrapText": true,
+                  "autoHeight": true,
                   "tooltipField": "description"
                 }
               ]

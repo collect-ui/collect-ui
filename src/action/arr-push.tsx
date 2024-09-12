@@ -57,7 +57,9 @@ export default async function (
     } catch (e) {
       return value
     }
+    const oldTarget = target||{}
     const targetRow = {
+      ...oldTarget,
       value:newObj
     }
     vars.forEach(key=>{

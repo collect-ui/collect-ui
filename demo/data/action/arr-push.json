@@ -13,7 +13,13 @@
         "code": "from",
         "name": "来源对象",
         "type": "string",
-        "description": "来源对象"
+        "description": "来源数组对象"
+      },
+      {
+        "code": "method",
+        "name": "自定定义方法添加",
+        "type": "string",
+        "description": "如果没有method，直接from对应数组添加对象。比如处理webshell 需要在它的上面二级处理添加对象\"method\": \"${row.parent.parent.addChildren(value)}\"，或者数组三级添加对象\"method\": \"${panelList[last_webshell_x].children[last_webshell_y].addChildren(value)} \","
       },
       {
         "code": "value",
@@ -161,6 +167,9 @@
                 {
                   "headerName": "描述",
                   "field": "description",
+                  "wrapText": true,
+                  "autoHeight": true,
+                  "cellClass": "line-height2",
                   "tooltipField": "description"
                 }
               ]
@@ -249,9 +258,26 @@
                     "hideAdd": true,
                     "activeKey": "${activeKey}",
                     "itemData": "${tabList}",
+                    "removeAction": [
+
+                      {
+                        "tag": "update-store",
+                        "value": {
+                          "tabList": "${tabList.filter(item=>item.id!==row.id)}"
+                        }
+                      },
+                      {
+                        "tag": "update-store",
+                        "description": "如果关闭的标签是激活的标签，则激活标签选第一个",
+                        "enable": "${tabList.length>0 && activeKey==key}",
+                        "value": {
+                          "activeKey": "${tabList[0].id}"
+                        }
+                      }
+
+                    ],
                     "itemAttr":  {
                       "label": "${row.title}",
-                      "key": "${row.id}",
                       "children": [
                         {
                           "tag": "label",

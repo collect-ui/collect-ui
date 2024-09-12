@@ -1,4 +1,3 @@
-import transferProp from "../../utils/transferProp";
 import { v4 as uuid } from "uuid"
 export default function (props: any) {
   const { schema, store,tag, children, ...rest } = props

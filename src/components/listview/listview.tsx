@@ -15,7 +15,6 @@ const DynamicListView = (props) => {
     return itemData.reduce((acc, item, index) => {
       const newAttr = { ...itemAttr,
         _target_row:item,
-        _target_rowIndex:index,
         _target_rowId:item[keyField]
       };
       let store = rest.store
@@ -32,10 +31,9 @@ const DynamicListView = (props) => {
 
       // 如果不是最后一个元素，添加 joinAttr 对应的 ScopedRender 组件
       if (joinAttr && index < itemData.length - 1) {
-        const joinAttrCopy = { ...joinAttr,_level:0 };
+        const joinAttrCopy = { ...joinAttr };
         const newJoinAttr={
           _target_row:item,
-          _target_rowIndex:index,
           _target_rowId:item[keyField]+"_join"
         }
         acc.push(

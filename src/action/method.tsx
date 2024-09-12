@@ -30,14 +30,19 @@ export default async function (
     } catch (e) {
      console.error(e)
     }
-    const targetRow = {
+    let targetRow = {
 
     }
-    vars.forEach(key=>{
-      if(store[key]!=undefined){
-        targetRow[key]=store[key]
-      }
-    })
+    if(target){
+      targetRow=target
+    }else{
+      vars.forEach(key=>{
+        if(store[key]!=undefined){
+          targetRow[key]=store[key]
+        }
+      })
+    }
+
     varValue(method,store,targetRow)
 
   return getResult(true)

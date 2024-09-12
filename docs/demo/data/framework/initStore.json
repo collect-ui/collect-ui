@@ -14,6 +14,12 @@
         "name": "store的名称",
         "type": "string",
         "description": "如果存在2个layout-fit布局，想从一个layout-fit 中更新另外一个layout-fit的变量。必须指定targetStore"
+      },
+      {
+        "code": "initStoreType",
+        "name": "自定store的类型",
+        "type": "string",
+        "description": "import { Render, setInitStoreType, setRegister } from \"collect-ui/src/index\"\n// 注册panelList 类型的自定义模型，解决webshell 二维数组，第二级children 不能添加的问题\nsetInitStoreType(\"panelList\", panelList)"
       }
 
     ]
@@ -96,6 +102,9 @@
               "tag": "coder",
               "language": "json",
               "value": {
+                "initStoreType": {
+                  "panelList": "panelList"
+                },
                 "tag": "layout-fit",
                 "initStore": {
                   "dialogOpen": false,
@@ -140,7 +149,7 @@
         {
           "tag": "layout-fit",
           "style": {
-            "height": "100px",
+            "height": "200px",
             "width": "100%"
           },
           "children": [
@@ -178,6 +187,8 @@
                 {
                   "headerName": "描述",
                   "field": "description",
+                  "wrapText": true,
+                  "autoHeight": true,
                   "tooltipField": "description"
                 }
               ]

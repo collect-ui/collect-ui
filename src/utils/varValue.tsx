@@ -1,16 +1,14 @@
 import varNameList from "./varNameList"
 import expression_name from "./expression_name"
-import * as espree from "espree"
 import hasVar from "./hasVar"
 import isArray from "./isArray"
 import isExpression from "./isExpression"
 import convertStringToFunction from "./convertStringToFunction"
 import getVariablesFromExpression from "../utils/getVariablesFromExpression"
-import { getSnapshot } from 'mobx-state-tree';
-import { v4 as uuid } from "uuid"
+import {getFilter, getFilterNames} from "../index"
+
 const reg_g = /\$\{(.+?)\}/g
 const reg = /\$\{(.+?)\}/
-
 // function getVariablesFromExpression(expression) {
 //   const ast = espree.parse(expression, { ecmaVersion: 2020 })
 //   const variables = new Set()
@@ -62,9 +60,10 @@ export default function (name: string, store: any, targetValue?: any): any {
   if (!hasVar(name)) {
     return name
   }
+  const filterNames=getFilterNames()
   // 处理行自定义渲染
   if (targetValue) {
-    const expression = expression_name(name)
+    let expression = expression_name(name)
     // 获取表达式里面有哪些变量
     let vars = []
     try {
@@ -82,19 +81,37 @@ export default function (name: string, store: any, targetValue?: any): any {
     // 比如server_ip 中selection[0] 就是从store 里面取
     // row.event_id 是行数据，从target 里面取
     const targetKeys = Object.keys(targetValue)
+    let hasFilter=false
     for(let i=0;i<vars.length;i++){
       const varName = vars[i]
-      // 如果targetValue没有varName 字段，才从store 里面取
-      // 这里体现了优先从targetValue 取，然后从store 里面取
-      if(targetKeys.indexOf(varName)<0 && store.getValue){
+
+      if(filterNames.indexOf(varName)>=0){
+        // 填充函数
+        p[varName]=getFilter(varName)
+        hasFilter=true
+      }else if(targetKeys.indexOf(varName)<0 && store.getValue){
+        // 如果targetValue没有varName 字段，才从store 里面取
+        // 这里体现了优先从targetValue 取，然后从store 里面取
         const storeValue = store.getValue(varName)
         if(storeValue){
           p[varName] = storeValue
         }
       }
     }
-    const value = convertStringToFunction(expression, p)
-    return value
+    if(hasFilter){
+      const regexPattern = filterNames.map(name => `${name}\\([^)]*\\)`).join("|");
+      const regex = new RegExp(`(${regexPattern})`, "g");
+      // 使用正则表达式替换字符串
+      expression = expression.replace(regex, (match) => {
+        // 检查是否有参数
+        if (match.includes('()')) {
+          return match; // 如果没有参数，不添加 store
+        }
+        // 在匹配到的函数调用后面添加 store 参数
+        return match.replace(/(\))/, `, store$1`);
+      });
+    }
+    return convertStringToFunction(expression, p)
   }
   const [firstName, secondName,thirdName] = varNameList(name)
   if(!store.getValue){
@@ -128,8 +145,9 @@ export default function (name: string, store: any, targetValue?: any): any {
     value = { ...value }
   }
   // 如果复杂的表达式
+  let hasFilter=false
   if (isExpression(name)) {
-    const expression = expression_name(name)
+    let expression = expression_name(name)
     // 获取表达式里面有哪些变量
     let vars = []
     try {
@@ -141,28 +159,36 @@ export default function (name: string, store: any, targetValue?: any): any {
     }
     const params = {}
 
+
     vars.forEach((varKey) => {
       // 处理表达式的函数
       // todo 这里搞成自动注册的，主要只利用store,返回一个函数
-      if (varKey === "getFormValue") {
-        params[varKey] = (formName, fieldName) => {
-          const [form] = store.getFormRef(formName)
-          const varValue = form.getFieldValue(fieldName)
-          return varValue
-        }
-      }else if(varKey==="getVarValue"){
-        params[varKey] = (varValue) => {
-          return store.getValue(varValue)
-        }
-      }else if (varKey === "uuid") {
-        params[varKey] = () => {
-          return uuid()
-        }
-      } else {
+      if(filterNames.indexOf(varKey)>=0){
+        params[varKey]=getFilter(varKey)
+        hasFilter=true
+      }else{
         params[varKey] = store.getValue(varKey)
       }
     })
-    value = convertStringToFunction(expression, { ...params })
+
+
+// 动态生成正则表达式,都拼接一个store 变量
+    if(hasFilter){
+      const regexPattern = filterNames.map(name => `${name}\\([^)]*\\)`).join("|");
+      const regex = new RegExp(`(${regexPattern})`, "g");
+      // 使用正则表达式替换字符串
+      expression = expression.replace(regex, (match) => {
+        // 检查是否有参数
+        if (match.includes('()')) {
+          return match; // 如果没有参数，不添加 store
+        }
+        // 在匹配到的函数调用后面添加 store 参数
+        return match.replace(/(\))/, `, store$1`);
+      });
+    }
+
+
+    value = convertStringToFunction(expression, { ...params,store:store })
   }
   return value
 }

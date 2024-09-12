@@ -16,6 +16,12 @@
         "description": ""
       },
       {
+        "code": "removeAction",
+        "name": "标签页删除的动作",
+        "type": "array[action]",
+        "description": "会传操作row对象和操作对象的key"
+      },
+      {
         "code": "type",
         "name": "类型",
         "type": "string",
@@ -238,6 +244,8 @@
                 {
                   "headerName": "描述",
                   "field": "description",
+                  "wrapText": true,
+                  "autoHeight": true,
                   "tooltipField": "description"
                 }
               ]
@@ -377,9 +385,26 @@
                     "hideAdd": true,
                     "activeKey": "${activeKey}",
                     "itemData": "${tabList}",
+                    "removeAction": [
+
+                      {
+                        "tag": "update-store",
+                        "value": {
+                          "tabList": "${tabList.filter(item=>item.id!==row.id)}"
+                        }
+                      },
+                      {
+                        "tag": "update-store",
+                        "description": "如果关闭的标签是激活的标签，则激活标签选第一个",
+                        "enable": "${tabList.length>0 && activeKey==key}",
+                        "value": {
+                          "activeKey": "${tabList[0].id}"
+                        }
+                      }
+
+                    ],
                     "itemAttr":  {
                       "label": "${row.title}",
-                      "key": "${row.id}",
                       "children": [
                         {
                           "tag": "label",
