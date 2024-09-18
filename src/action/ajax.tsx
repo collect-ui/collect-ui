@@ -1,11 +1,28 @@
 import { Api, ApiObject } from "../types/api.js"
 import axios from "axios"
-import { toApiObj } from "../utils"
+import {getResult, toApiObj} from "../utils"
 import type { result } from "../types/result"
 import varName from "../utils/varName"
 import varValue from "../utils/varValue"
 import hasVar from "../utils/hasVar"
+import handlerAction from "../utils/handlerAction"
 import { App } from "antd"
+function convertRes2Blob(response: any) {
+  // 提取文件名
+  let desc = response.headers.get("content-disposition")
+  const fileName = desc.match(
+      /filename=(.*)/
+  )[1]
+  // 创建一个下载链接
+  const blob = new Blob([response.data], { type: response.headers['content-type'] });
+  const link = document.createElement('a');
+  link.href = window.URL.createObjectURL(blob);
+  link.download = fileName; // 设置下载文件的名称
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+}
 /**
  * 发送http请求
  * @param api
@@ -18,7 +35,7 @@ export default async function (
   useApp: App.useApp,
   target?: any,
 ): Promise<result> {
-  let { api, data, appendFields, appendFormFields, adapt, showResultMsg } =
+  let { download,downloadingPercent,start,end,api, data, appendFields, appendFormFields, adapt, showResultMsg } =
     action
   // 支持三元表达式
   if (api && hasVar(api)) {
@@ -55,13 +72,49 @@ export default async function (
     }
   }
 
+
   const config = {
     method: apiObj.method,
     url:apiObj.url,
-    data:formValue
+    data:formValue,
   };
+  if(download){
+    config.responseType = 'blob'  // 接收blob 类型数据
+    config.onDownloadProgress= (progressEvent) => {
+      // 计算下载进度
+      const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+      console.log(`Download progress: ${percentCompleted}%`);
+      if(downloadingPercent){// 设置进度字段
+        const fieldName = varName(downloadingPercent)
+        store.setValue(fieldName,percentCompleted)
+      }
+      // 在这里更新 UI 显示进度
+    }
+  }
+ // 执行前触发一些动作
+  // 比如设置请求loading开始
+  if(start){
+    const startConfig={
+      tag:"update-store",
+      value:start
+    }
+    handlerAction(startConfig,store,rootStore,useApp,target)
+  }
   //@ts-ignore
   const res = await axios.create({}).request(config)
+  // 执行后触发一些动作
+  // 比如设置请求loading结束
+  if(end){
+    const endConfig={
+      tag:"update-store",
+      value:end
+    }
+    handlerAction(endConfig,store,rootStore,useApp,target)
+  }
+  if(download){
+    convertRes2Blob(res)
+    return   getResult(true)
+  }
   const { msg, success } = res.data
   if (showResultMsg && success) {
     useApp?.message?.success(msg)
@@ -70,8 +123,15 @@ export default async function (
   // 请求成功 解析结果集合
   if (success && adapt) {
     for (const key in adapt) {
-      const field = varName(adapt[key])
-      store.setValue(key, res.data[field])
+      const resultField = adapt[key]
+      if(resultField.indexOf(".")>0){// 多级地址
+        store.setValue(key,varValue(resultField, store, res.data))
+      }else{
+        const field = varName(resultField)
+        store.setValue(key, res.data[field])
+      }
+
+
     }
   }
 

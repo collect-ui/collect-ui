@@ -6,6 +6,7 @@ import Icon from "../icon/icon"
 import getVisible from "../../utils/getVisible";
 
 export default function (props: any) {
+  console.log("button render")
   const { icon,visible, action, confirm, ...rest } = props
   const store = props["store"]
   const useApp = App.useApp()

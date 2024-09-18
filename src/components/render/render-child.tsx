@@ -32,26 +32,37 @@ function genStore(initStore,initStoreType): any {
     } else if (type === "string") {
       transferType[key] = types.optional(types.string, initStore[key])
     } else if (type === "object") {
-      if (Array.isArray(initStore[key])) {
-        let  customerType = null;
-        if(initStoreType){
-          customerType = initStoreType[key]
+      if(initStoreType && initStoreType[key]){
+        const tmp = getInitStoreType(initStoreType[key])
+        if (tmp){
+          transferType[key]=tmp
+        }else{
+          console.error("注册自定义类型："+initStoreType[key])
+          console.error("但是没找到类型："+initStoreType[key])
         }
-        if(!customerType){
+        continue
+      }
+      // 如果是数组的处理
+      if (Array.isArray(initStore[key])) {
+        // let  customerType = null;
+        // if(initStoreType){
+        //   customerType = initStoreType[key]
+        // }
+        // if(!customerType){
           transferType[key] = types.optional(
               types.array(types.frozen()),
               initStore[key],
           )
-        }else{// panelList 单独处理
-
-          const tmp = getInitStoreType(customerType)
-          if (tmp){
-            transferType[key]=tmp
-          }else{
-            console.error("注册自定义类型："+customerType)
-            console.error("但是没找到类型："+customerType)
-          }
-        }
+        // }else{// panelList 单独处理
+        //
+        //   const tmp = getInitStoreType(customerType)
+        //   if (tmp){
+        //     transferType[key]=tmp
+        //   }else{
+        //     console.error("注册自定义类型："+customerType)
+        //     console.error("但是没找到类型："+customerType)
+        //   }
+        // }
 
       } else {
         transferType[key] = types.optional(types.frozen(), initStore[key])

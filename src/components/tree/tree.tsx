@@ -88,7 +88,12 @@ const MyTree = ({
   )
   const handleItemClick = useCallback(({ props, item }) => {
     const { node } = props
-    if (rightMenuAction) {
+    if(item.action){// 如果自己配action则取自己
+      handlerActions(item.action, rest.store, rest.rootStore, useApp, {
+        item,
+        node: node,
+      })
+    }else if (rightMenuAction) {
       handlerActions(rightMenuAction, rest.store, rest.rootStore, useApp, {
         item,
         node: node,

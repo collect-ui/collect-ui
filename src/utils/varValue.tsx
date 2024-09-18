@@ -93,7 +93,7 @@ export default function (name: string, store: any, targetValue?: any): any {
         // 如果targetValue没有varName 字段，才从store 里面取
         // 这里体现了优先从targetValue 取，然后从store 里面取
         const storeValue = store.getValue(varName)
-        if(storeValue){
+        if(storeValue!=undefined){
           p[varName] = storeValue
         }
       }

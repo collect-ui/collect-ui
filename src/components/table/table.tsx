@@ -2,6 +2,7 @@ import transferProp from "../../utils/transferProp"
 import { AgGridReact } from "ag-grid-react" // React Data Grid Component
 import "ag-grid-community/styles/ag-grid.css" // Mandatory CSS required by the Data Grid
 import "ag-grid-community/styles/ag-theme-quartz.css"
+import "ag-grid-community/styles/ag-theme-balham.css"
 import React, { useCallback, useEffect, useRef } from "react" // Optional Theme applied to the Data Grid
 import { Suspense } from "react"
 import varName from "../../utils/varName"
@@ -36,7 +37,7 @@ export default function (props: any) {
   console.log("table render")
   const gridRef = useRef()
   const containerRef = useRef()
-  const { selection, rowClick, rowClickAction, ...rest } = props
+  const { theme,selection, rowClick, rowClickAction, ...rest } = props
   const store = props["store"]
   const rootStore = props["rootStore"]
   const useApp = App.useApp()
@@ -111,12 +112,12 @@ export default function (props: any) {
     <Suspense fallback={<Loading></Loading>}>
       <div
           ref={containerRef}
-          className={"ag-theme-quartz"} style={tableStyle}>
+          className={['ag-theme-quartz','ag-theme-balham'].indexOf(theme)>=0?theme:"ag-theme-quartz"} style={tableStyle}>
         <AgGridReact
           onGridReady={onGridReady}
           ref={gridRef}
-          headerHeight="36px"
-          rowHeight="32px"
+          headerHeight={props.headerHeight?props.headerHeight:"36px"}
+          rowHeight={props.rowHeight?props.rowHeight:"32px"}
           tooltipShowDelay={0}
           onSelectionChanged={onSelectionChanged}
           onSortChanged={onSortChanged}

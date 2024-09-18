@@ -4,6 +4,8 @@ import transferProp from "./transferProp";
 import ScopedRender from "./scopedRender";
 import clone from "./clone";
 import varValue from "./varValue";
+import {getResult} from "./result";
+import type {result} from "../types/result"
 export function projectName(name: string) {
   return {
     className: `co-ui-${name}`,
@@ -55,11 +57,18 @@ export function getConfig(props: any, store: any, rootStore?: any,_target?:any,_
 export default {
   transferProp,
   ScopedRender,
-  clone
+  clone,
+  getResult,
+
 }
 export {
   transferProp,
   ScopedRender,
-  clone
+  clone,
+  getResult,
+
+}
+export type{
+  result
 }
 

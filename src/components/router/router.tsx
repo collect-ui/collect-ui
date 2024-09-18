@@ -52,8 +52,10 @@ function resolvePath(basePath, relativePath) {
 export default function(props:any){
     const {hash,basename,data_home,...rest } = props
     const {router,...newProps} = transferProp(rest, "router")
+    const routerList = props.store.router
+    console.log(routerList)
     if (router.length<=0){
-        return <div style={{padding:'40px'}}>数据加载中...</div>
+        return <div style={{padding:'40px'}}>{routerList.length}数据加载中...</div>
     }
     const list = handlerRouter(router,data_home,props.store,props.rootStore)
     let  newRouter =null

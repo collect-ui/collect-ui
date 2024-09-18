@@ -117,7 +117,12 @@ export default function (props: any) {
     },[itemData])
     const handleItemClick = useCallback(({ props, item }) => {
         const { row } = props
-        if (rightMenuAction) {
+        if(item.action){// 如果自己配action则取自己
+            handlerActions(item.action, rest.store, rest.rootStore, useApp, {
+                item,
+                row
+            })
+        }else if (rightMenuAction) {// 取公共的
             handlerActions(rightMenuAction, rest.store, rest.rootStore, useApp, {
                 item,
                 row

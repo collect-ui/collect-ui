@@ -28,6 +28,24 @@
         "description": ""
       },
       {
+        "code": "theme",
+        "name": "主题",
+        "type": "string",
+        "description": "支持ag-theme-balham,ag-theme-quartz"
+      },
+      {
+        "code": "headerHeight",
+        "name": "header 高度",
+        "type": "number",
+        "description": "默认36px"
+      },
+      {
+        "code": "rowHeight",
+        "name": "行高",
+        "type": "number",
+        "description": "默认32px"
+      },
+      {
         "code": "columnDefs",
         "name": "列信息",
         "type": "array",
@@ -461,6 +479,7 @@
                     "tag": "table",
                     "selection": "${selection}",
                     "rowSelection": "multiple",
+                    "theme":"ag-theme-balham",
                     "rowData": "${dataList}",
                     "columnDefs": [
                       {

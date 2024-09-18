@@ -57,6 +57,49 @@
         "type": "configNode",
         "description": "需要配合itemData"
       }
+    ,
+      {
+        "code": "rightMenu",
+        "name": "右键",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "code": "rightMenu[type]",
+        "name": "右键类型",
+        "type": "string",
+        "description": "item-选项，separator-分割线，submenu-二级菜单"
+      },
+      {
+        "code": "rightMenu[icon]",
+        "name": "右键图标",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "code": "rightMenu[code]",
+        "name": "右键编码",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "code": "rightMenu[label]",
+        "name": "右键显示名称",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "code": "rightMenu[action]",
+        "name": "右键的动作",
+        "type": "string",
+        "description": "优先级rightMenu[action]>rightMenuAction。只能执行一个"
+      },
+      {
+        "code": "rightMenuAction",
+        "name": "右键动作",
+        "type": "array[action]",
+        "description": ""
+      }
     ]
   },
   "children": [

@@ -5,8 +5,8 @@ import varValue from "../utils/varValue"
 import actionStore from "../utils/actionStore"
 import isArray from "../utils/isArray";
 import {applySnapshot} from "mobx-state-tree";
-import expression_name from "../../../../../../collect-ui/src/utils/expression_name";
-import getVariablesFromExpression from "../../../../../../collect-ui/src/utils/getVariablesFromExpression";
+import expression_name from "../utils/expression_name";
+import getVariablesFromExpression from "../utils/getVariablesFromExpression";
 function handlerVarValue(value,store,target){
   let newObj = {}
 
@@ -42,7 +42,7 @@ export default async function (
   useApp: App.useApp,
   target?: any,
 ): Promise<result> {
-  const { method,from,value } = action
+  const { method,from,value,first } = action
   let targetStoreObj = actionStore(action, store, rootStore)
   const newObj=handlerVarValue(value, store, target)
   const fromName = varValue(from, store, target)
@@ -69,7 +69,12 @@ export default async function (
     })
     varValue(method,store,targetRow)
   }else{
-    targetStoreObj.setValue(fromName,[...old,newObj])
+    if(first){
+      targetStoreObj.setValue(fromName,[newObj,...old])
+    }else{
+      targetStoreObj.setValue(fromName,[...old,newObj])
+    }
+
   }
 
   return getResult(true)

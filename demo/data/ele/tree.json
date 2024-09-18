@@ -88,6 +88,12 @@
         "description": ""
       },
       {
+        "code": "rightMenu[action]",
+        "name": "右键的动作",
+        "type": "string",
+        "description": "优先级rightMenu[action]>rightMenuAction。只能执行一个"
+      },
+      {
         "code": "rightMenuAction",
         "name": "右键动作",
         "type": "array[action]",
