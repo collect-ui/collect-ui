@@ -26,6 +26,7 @@ export default defineConfig({
                 },
             },
         },
+        minify: 'esbuild', // 使用 esbuild 进行压缩
     },
     server: {
         port: 3000,

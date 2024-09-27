@@ -10,9 +10,18 @@ import { App } from "antd"
 function convertRes2Blob(response: any) {
   // 提取文件名
   let desc = response.headers.get("content-disposition")
-  const fileName = desc.match(
+  let fileName = desc.match(
       /filename=(.*)/
   )[1]
+  // 处理文件名中文乱码
+  if (fileName.startsWith("'") && fileName.endsWith("'")) {
+    fileName = fileName.slice(1, -1);
+  }
+  if (fileName.includes('utf-8')) {
+    fileName = decodeURIComponent(fileName.split('utf-8\'')[1]);
+  } else {
+    fileName = decodeURIComponent(fileName);
+  }
   // 创建一个下载链接
   const blob = new Blob([response.data], { type: response.headers['content-type'] });
   const link = document.createElement('a');
