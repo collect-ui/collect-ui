@@ -4,7 +4,8 @@ import { Image } from 'antd';
 import getVisible from "../../utils/getVisible";
 import transferProp from "../../utils/transferProp";
 
-const Image = (props) => {
+
+export default (props) => {
     const { icon,visible, ...rest } = props
     const show = getVisible(props)
     if(!show) {
@@ -13,4 +14,3 @@ const Image = (props) => {
     const newProps = transferProp(rest, "img")
     return <Image{...newProps}/>
 }
-export default Image
