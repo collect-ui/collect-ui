@@ -5,7 +5,12 @@ import ScopedRender from "./scopedRender";
 import clone from "./clone";
 import varValue from "./varValue";
 import {getResult} from "./result";
+import getVisible from "./getVisible";
 import type {result} from "../types/result"
+import handlerActions from "./handlerActions";
+import hasVar from "./hasVar";
+import expression_name from "./expression_name";
+import getVariablesFromExpression from "./getVariablesFromExpression";
 export function projectName(name: string) {
   return {
     className: `co-ui-${name}`,
@@ -30,7 +35,7 @@ export function getUrlParam(url: string): PlainObject {
     return {}
   }
 }
-export function toApiObj(api: Api): ApiObject {
+function toApiObj(api: Api): ApiObject {
   if (isApiString(api)) {
     let tmp = api as ApiString
     let arr = tmp.split(":")
@@ -56,16 +61,29 @@ export function getConfig(props: any, store: any, rootStore?: any,_target?:any,_
 }
 export default {
   transferProp,
-  ScopedRender,
   clone,
   getResult,
-
+  getVisible,
+  varValue,
+  handlerActions,
+  toApiObj,
+  getVariablesFromExpression,
+  ScopedRender,
+  hasVar,
+  expression_name
 }
 export {
   transferProp,
   ScopedRender,
   clone,
   getResult,
+  getVisible,
+  varValue,
+  handlerActions,
+  toApiObj,
+  getVariablesFromExpression,
+  hasVar,
+  expression_name
 
 }
 export type{

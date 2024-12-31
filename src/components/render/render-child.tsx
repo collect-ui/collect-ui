@@ -5,7 +5,8 @@ import {
   getStore,
   hasStore,
   hasInitPlugin,
-  getInitPlugin, getInitStoreType,
+  getInitPlugin,
+  getInitStoreType,
 } from "../../index"
 import { v4 as uuid } from "uuid"
 import RenderChildren from "./render-children"

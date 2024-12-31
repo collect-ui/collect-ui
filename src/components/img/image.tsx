@@ -7,6 +7,7 @@ import transferProp from "../../utils/transferProp";
 
 export default (props) => {
     const { icon,visible, ...rest } = props
+
     const show = getVisible(props)
     if(!show) {
         return null

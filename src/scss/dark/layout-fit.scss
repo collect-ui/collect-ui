@@ -1,0 +1,79 @@
+@use '../common/var' as *;
+@use '../mixins/mixins' as *;
+
+// project(分组名称)
+@include project(layout-fit-dark) {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+
+
+  .top-header {
+    border-bottom: $border;
+    display: flex;
+    padding: 10px;
+
+    .top-title {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+
+    .top-right {
+      // 其他样式
+    }
+  }
+
+  .bar {
+    padding: 10px 0px 0px 10px;
+    display: flex;
+
+    .search-left {
+      flex: 1;
+    }
+  }
+
+  .layout-content {
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    // 滚动条样式
+    &::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #004c80;
+      border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #007acc;
+      border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: #0099ff;
+    }
+  }
+
+  .bottom-tool-bar {
+    padding: 6px;
+
+    &.right {
+      text-align: right;
+    }
+
+    &.center {
+      text-align: center;
+    }
+
+    &.left {
+      text-align: left;
+    }
+  }
+}

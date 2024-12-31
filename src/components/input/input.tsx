@@ -4,6 +4,7 @@ import Icon from "../icon/icon"
 import { useCallback } from "react"
 import handlerActions from "../../utils/handlerActions";
 export default function (props: any) {
+  console.log("input render")
   const {
     isNumber,
     isTextarea,

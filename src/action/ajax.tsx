@@ -88,7 +88,9 @@ export default async function (
     data:formValue,
   };
   if(download){
+    //@ts-ignore
     config.responseType = 'blob'  // 接收blob 类型数据
+    //@ts-ignore
     config.onDownloadProgress= (progressEvent) => {
       // 计算下载进度
       const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);

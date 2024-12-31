@@ -29,7 +29,7 @@ interface Props {
   children: Children
   [propName: string]: any
 }
-export function KeepAlive({ children, exclude, include, maxLen = 5,...rest }: Props) {
+export function KeepAlive({ children, exclude, include, maxLen = 25,...rest }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const components = useRef<Array<{ name: string; ele: Children }>>([])
   const { pathname } = useLocation()

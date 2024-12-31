@@ -1,0 +1,46 @@
+@use '../common/var' as *;
+@use '../mixins/mixins' as *;
+// project(分组名称)
+@include project(select-dark){
+  .ant-select-selector {
+    background-color: #00254a !important; // 深色背景
+    border-color: #374151 !important; // 深色边框
+    color: #ffffff; // 文本颜色
+  }
+  .ant-select-selection-item{
+    color: #ffffff !important;
+  }
+
+  .ant-select-arrow {
+    color: #9ca3af !important; // 箭头颜色
+  }
+  &:hover {
+    .ant-select-clear {
+      background: transparent;
+      color: #ffffff; // 文本颜色
+    }
+  }
+  .ant-select-clear {
+    color: #9ca3af; // 关闭图标颜色
+    background: transparent;
+  }
+
+
+  .ant-select-dropdown {
+    background-color: #1f2937 !important; // 下拉菜单背景色
+
+    .ant-select-item {
+      color: #ffffff; // 下拉菜单项文本颜色
+
+      &-option {
+        &:hover {
+          background-color: #374151 !important; // 悬停时的背景色
+        }
+
+        &.ant-select-item-option-selected {
+          background-color: #4b5563 !important; // 选中项的背景色
+        }
+      }
+    }
+  }
+}

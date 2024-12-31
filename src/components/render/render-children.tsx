@@ -7,6 +7,9 @@ import RenderChild from "./render-child"
 // }
 
 export default function RenderChildren(props) {
+  if(!props){
+    return null;  // ���有children时返回null
+  }
   const { children, store, rootStore,_target,...rest } = props
   return children.map((child) => {
     if (typeof child === "string"){// 如果是字符串转label

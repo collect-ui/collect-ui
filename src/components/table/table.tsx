@@ -1,14 +1,11 @@
 import transferProp from "../../utils/transferProp"
 import { AgGridReact } from "ag-grid-react" // React Data Grid Component
-import "ag-grid-community/styles/ag-grid.css" // Mandatory CSS required by the Data Grid
-import "ag-grid-community/styles/ag-theme-quartz.css"
-import "ag-grid-community/styles/ag-theme-balham.css"
+
 import React, { useCallback, useEffect, useRef } from "react" // Optional Theme applied to the Data Grid
 import { Suspense } from "react"
 import varName from "../../utils/varName"
 import handlerActions from "../../utils/handlerActions"
 import { App } from "antd"
-import ScopedRender from "../../utils/scopedRender"
 function Loading() {
   return <div>加载中...</div>
 }
@@ -41,7 +38,8 @@ export default function (props: any) {
   const store = props["store"]
   const rootStore = props["rootStore"]
   const useApp = App.useApp()
-  const newProps = transferProp(rest, "table")
+
+  const newProps = transferProp({theme,...rest}, "table")
   const { style, ...newRest } = newProps
   const tableStyle = style || { height: "100%", width: "100%" }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -91,8 +89,10 @@ export default function (props: any) {
   // }, []);
   useEffect(() => {
     const handleResize = () => {
+      //@ts-ignore
       if (gridRef.current && gridRef.current?.api) {
         setTimeout(() => {
+          //@ts-ignore
           gridRef.current?.api.sizeColumnsToFit();
         }, 10)
       }
@@ -100,6 +100,7 @@ export default function (props: any) {
 
     // 使用 ResizeObserver 监听 containerRef 的大小变化
     const resizeObserver = new ResizeObserver(handleResize);
+    //@ts-ignore
     resizeObserver.observe(containerRef.current);
 
     // Cleanup listener on component unmount
@@ -109,6 +110,7 @@ export default function (props: any) {
   }, []);
 
   return (
+
     <Suspense fallback={<Loading></Loading>}>
       <div
           ref={containerRef}

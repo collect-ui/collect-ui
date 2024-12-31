@@ -1,0 +1,75 @@
+@use '../common/var' as *;
+@use '../mixins/mixins' as *;
+// project(分组名称)
+@include project(pull-down){
+  position: relative;
+  width: 100%;
+  &:focus-within{
+    .label-single{
+      color: rgb(0,0,0,0.25);
+    }
+  }
+  .ant-popover-arrow {
+    display: none;
+  }
+  .ant-popover-content {
+    transform: translateY(-12px);
+  }
+  .down{
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    cursor: pointer;
+    z-index: 1 ;
+    font-size: 0.9em;
+  }
+  .rotate-180 {
+    color: #999;
+    transition: transform 0.3s ease-in-out;
+    transform: rotate(180deg) translateY(1px);
+  }
+
+  .rotate-0 {
+    color: #999;
+    transition: transform 0.3s ease-in-out;
+    transform: rotate(0deg);
+  }
+  .tags{
+    position: absolute;
+    padding-right: 24px;
+    top: 4px;
+    left: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+  .input{
+    padding-right: 32px;
+    width: 100%;
+
+  }
+  .close{
+    color: #999;
+    margin-right: 4px;
+    display: none;
+  }
+  &:hover{
+    .close{
+      color: #999;
+      display: unset;
+    }
+  }
+  .tag{
+    margin: 1px 2px 0px 2px;
+    background: rgb(0,0,0,0.06);
+    border: 1px solid transparent;
+  }
+  .label-single{
+    padding: 2px 0 0px 8px;
+    font-size: inherit;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  }
+}
+
+
+

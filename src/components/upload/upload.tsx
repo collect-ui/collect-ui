@@ -15,6 +15,7 @@ export default function (props: any) {
         return null
     }
     const apiObj: ApiObject = toApiObj(uploadConfig.api as Api)
+
     let formValue = {}
     // 平均api 的data
     if (apiObj.data) {
@@ -36,7 +37,7 @@ export default function (props: any) {
                 handlerActions(finish_action, props.store, props.rootStore, useApp, {row:info.file.response})
             }
         } else if (info.file.status === 'error') {
-            message.error(`${info.file.name} 文件上传失败`);
+            useApp?.message?.error(`${info.file.name} 文件上传失败`);
         }
     }, []);
     return <Upload  {...newProps} {...uploadConfig}  onChange={handleChange} name="file" action={apiObj.url} data={(file)=>{return formValue}}></Upload>

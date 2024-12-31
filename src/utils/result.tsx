@@ -16,3 +16,6 @@ export function getResult(
 export function getErrorResult(msg: string, showMsg?: boolean): result {
   return getResult(false, msg, null, showMsg)
 }
+export type{
+  result
+}

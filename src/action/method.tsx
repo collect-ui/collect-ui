@@ -42,8 +42,6 @@ export default async function (
         }
       })
     }
-
     varValue(method,store,targetRow)
-
   return getResult(true)
 }

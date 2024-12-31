@@ -10,7 +10,7 @@ export default function(props){
         tag:"tabs",
         items:[
             {
-                label: "页面显示",
+                label: "页面预览",
                 key:"1",
                 children: [
                     coder

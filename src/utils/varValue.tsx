@@ -50,6 +50,7 @@ function isArrayVar(name: string): boolean {
 export default function (name: string, store: any, targetValue?: any): any {
   // store 和目标对象都没有，直接返回
   if (!store ) {
+    console.error("没有传store 过来，请检查代码")
     return name
   }
   // 如果不是字符串类型直接返回
@@ -110,6 +111,10 @@ export default function (name: string, store: any, targetValue?: any): any {
         // 在匹配到的函数调用后面添加 store 参数
         return match.replace(/(\))/, `, store$1`);
       });
+      if(expression.indexOf('store')>=0){
+        p['store']=store;
+      }
+
     }
     return convertStringToFunction(expression, p)
   }
@@ -123,8 +128,19 @@ export default function (name: string, store: any, targetValue?: any): any {
     // 取数组名称
     const arrName = firstName.split("[")[0]
     // 取坐标
-    const index = parseInt(firstName.split("[")[1].split("]")[0])
-    value = store.getValue(arrName)[index]
+    const numName = firstName.split("[")[1].split("]")[0]
+
+    if(arrName && numName){
+      // 先尝试转成int
+      let  index = parseInt(numName)
+      // 默认处理list[0]
+      // 判断index是否为store名称,stage_list[stage_index]
+      if (isNaN(index)){
+        index = store.getValue(numName)
+      }
+      value = store.getValue(arrName)[index]
+    }
+
   }
   // 如果是二级变量
   if (secondName && value) {
@@ -152,7 +168,7 @@ export default function (name: string, store: any, targetValue?: any): any {
     let vars = []
     try {
       // 忽略变量对象
-      const ignore=["JSON","stringify"]
+      const ignore=["JSON","stringify","parseInt"]
       vars = getVariablesFromExpression(expression).filter(item=>ignore.indexOf(item)<0)
     } catch (e) {
       return value
@@ -186,7 +202,6 @@ export default function (name: string, store: any, targetValue?: any): any {
         return match.replace(/(\))/, `, store$1`);
       });
     }
-
 
     value = convertStringToFunction(expression, { ...params,store:store })
   }

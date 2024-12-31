@@ -4,6 +4,7 @@ import transferProp from "../../utils/transferProp"
 import { Payload } from "../../types/api"
 import { ajaxAction } from "../../index"
 import handlerActions from "../../utils/handlerActions"
+import FormContext from '../../provider/formProvider';
 
 export default function (props: any) {
   const {
@@ -63,14 +64,19 @@ export default function (props: any) {
         handlerActions(action, store, props.rootStore, useApp)
     }
   },[]);
+  const setFormValue = (name, value) => {
+    form.setFieldsValue({ [name]: value });
+  };
   return (
-      <div onKeyDown={handleKeyDown} >
-        <Form
-          form={form}
-          onFinish={onFinish}
-          onValuesChange={onValuesChange}
-          {...transferProp(rest, "form")}
-        ></Form>
-      </div>
+      <FormContext.Provider value={{ setFormValue }}>
+        <div onKeyDown={handleKeyDown} >
+          <Form
+            form={form}
+            onFinish={onFinish}
+            onValuesChange={onValuesChange}
+            {...transferProp(rest, "form")}
+          ></Form>
+        </div>
+      </FormContext.Provider>
   )
 }

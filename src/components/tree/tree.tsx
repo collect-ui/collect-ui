@@ -21,6 +21,7 @@ const MyTree = ({
   rightMenu,
   rightMenuAction,
   dblAction,
+  selectAction,
   ...rest
 }) => {
   console.log("tree render")
@@ -44,9 +45,11 @@ const MyTree = ({
         if (item.children) {
           result.children = loop(item.children)
         }
-        const iconName = varValue(treeIcon, rest.store, { item })
-        const Icon = getIcon(iconName)
-        result.icon = <Icon />
+        if (treeIcon){
+          const iconName = varValue(treeIcon, rest.store, { item })
+          const Icon = getIcon(iconName)
+          result.icon = <Icon />
+        }
         return result
       })
 
@@ -82,6 +85,9 @@ const MyTree = ({
         } else {
           rest.store.setValue(expression, {})
         }
+      }
+      if (selectAction) {
+        handlerActions(selectAction, rest.store, rest.rootStore, useApp,{row:e.node,selected:e.selected})
       }
     },
     [],

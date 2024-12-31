@@ -1,4 +1,4 @@
-import { App, Form, Modal } from "antd"
+import { App, Form, Modal,Button } from "antd"
 import transferProp from "../../utils/transferProp"
 import varName from "../../utils/varName"
 import setStoreValue from "../../utils/setStoreValue"
@@ -21,6 +21,7 @@ export default function (props: any) {
   const [bounds, setBounds] = useState({ left: 0, top: 0, bottom: 0, right: 0 })
   const draggleRef = useRef<HTMLDivElement>(null)
   const newProps = transferProp(rest, "dialog")
+  const confirmAndContinue=newProps.confirmAndContinue
   const title = newProps.title
 
   const useApp = App.useApp()
@@ -48,14 +49,33 @@ export default function (props: any) {
   // 去掉直接关闭对话框
   const handleOk = useCallback(async () => {
 
-    handlerActions(action, store, props.rootStore, useApp)
+    handlerActions(action, store, props.rootStore, useApp,{"confirmAndContinue":false})
 
   }, [])
+  // 去掉直接关闭对话框
+  const handleConfirmAndContinue = useCallback(async () => {
+
+    handlerActions(action, store, props.rootStore, useApp,{"confirmAndContinue":true})
+
+  }, [])
+
+  const footer=[
+    <Button key="cancel" onClick={handleCancel}>
+      取消
+    </Button>,
+    <Button key="ok" type="primary" onClick={handleOk}>
+      确定
+    </Button>
+  ]
+  if (confirmAndContinue){
+    footer.push(<Button key="confirmAndContinue" type="primary" onClick={handleConfirmAndContinue}>确定并继续</Button>)
+  }
   return (
     <Modal
       {...newProps}
       onCancel={handleCancel}
       onOk={handleOk}
+      footer={footer}
       title={
         <div
           className="dialog-title"
