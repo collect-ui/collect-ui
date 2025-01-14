@@ -29,6 +29,7 @@ export default function (props: any) {
         props.rootStore,
         useApp,
         rest._target,
+        rest["namespace"]
       )
     }
   }, [])
@@ -40,6 +41,7 @@ export default function (props: any) {
           props.rootStore,
           useApp,
           rest._target,
+          rest["namespace"]
       )
     }
   }, [])
@@ -51,6 +53,7 @@ export default function (props: any) {
           props.rootStore,
           useApp,
           rest._target,
+          rest["namespace"]
       )
     }
   }, [])

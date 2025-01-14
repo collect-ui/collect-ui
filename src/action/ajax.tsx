@@ -25,7 +25,9 @@ function convertRes2Blob(response: any) {
   // 创建一个下载链接
   const blob = new Blob([response.data], { type: response.headers['content-type'] });
   const link = document.createElement('a');
-  link.href = window.URL.createObjectURL(blob);
+
+  //@ts-ignore
+  link.href = window?.URL.createObjectURL(blob);
   link.download = fileName; // 设置下载文件的名称
   document.body.appendChild(link);
   link.click();

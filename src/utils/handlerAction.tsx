@@ -16,6 +16,7 @@ export default async function handlerAction(
   rootStore: any,
   useApp: App.useApp,
   target?: any,
+  namespace?:string
 ): Promise<result> {
   const { tag, saveField } = action
   if (!tag) {
@@ -29,7 +30,7 @@ export default async function handlerAction(
     console.error(msg)
     return getErrorResult(msg)
   }
-  const res = await actionFunc(action, store, rootStore, useApp,target)
+  const res = await actionFunc(action, store, rootStore, useApp,target,namespace)
   //todo 这个根据action 显示错误信息的提示形式，
   // 可以是消息提示，
   // 也可以是对话框，

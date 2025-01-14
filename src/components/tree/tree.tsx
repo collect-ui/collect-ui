@@ -87,7 +87,7 @@ const MyTree = ({
         }
       }
       if (selectAction) {
-        handlerActions(selectAction, rest.store, rest.rootStore, useApp,{row:e.node,selected:e.selected})
+        handlerActions(selectAction, rest.store, rest.rootStore, useApp,{row:e.node,selected:e.selected},false,rest["namespace"])
       }
     },
     [],
@@ -98,12 +98,12 @@ const MyTree = ({
       handlerActions(item.action, rest.store, rest.rootStore, useApp, {
         item,
         node: node,
-      })
+      },false,rest["namespace"])
     }else if (rightMenuAction) {
       handlerActions(rightMenuAction, rest.store, rest.rootStore, useApp, {
         item,
         node: node,
-      })
+      },false,rest["namespace"])
     }
     // Add your logic here
   }, [])
@@ -121,7 +121,7 @@ const MyTree = ({
     if (rightMenuAction) {
       handlerActions(dblAction, rest.store, rest.rootStore, useApp, {
         node: data,
-      })
+      },false,rest["namespace"])
     }
     // Add your logic here
   },[])

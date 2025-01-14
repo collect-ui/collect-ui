@@ -67,7 +67,7 @@ export default function (props: any) {
       store.setValue(rowClickName, event.data)
     }
     if (rowClickAction) {
-      handlerActions(rowClickAction, store, rootStore, useApp)
+      handlerActions(rowClickAction, store, rootStore, useApp,{row:event.data},false,props.namespace)
     }
   }, [])
   // useEffect(() => {

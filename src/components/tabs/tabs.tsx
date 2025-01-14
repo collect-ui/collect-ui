@@ -38,7 +38,7 @@ export default function (props: any) {
             // 延迟处理是为了页面的表单还没有生成，appendFormFields请求发送出错。先等页面处理完成
             // 相当于vue $nextTick
             setTimeout(() => {
-                handlerActions(action, store, rootStore, useApp)
+                handlerActions(action, store, rootStore, useApp,{},false,props.namespace)
             }, 0)
 
         }
@@ -112,7 +112,7 @@ export default function (props: any) {
                 row: props._target_row||itemData.find(item=>item[keyField]===key),
                 key: key
             }
-            handlerActions(removeAction, store, rootStore, useApp,target)
+            handlerActions(removeAction, store, rootStore, useApp,target,false,props.namespace)
         }
     },[itemData])
     const handleItemClick = useCallback(({ props, item }) => {
@@ -121,12 +121,12 @@ export default function (props: any) {
             handlerActions(item.action, rest.store, rest.rootStore, useApp, {
                 item,
                 row
-            })
+            },false,props.namespace)
         }else if (rightMenuAction) {// 取公共的
             handlerActions(rightMenuAction, rest.store, rest.rootStore, useApp, {
                 item,
                 row
-            })
+            },false,props.namespace)
         }
         // Add your logic here
     }, [])

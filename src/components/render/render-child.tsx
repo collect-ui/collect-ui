@@ -16,6 +16,7 @@ import { types } from "mobx-state-tree"
 import handlerActions from "../../utils/handlerActions";
 import getPassVar from "../../utils/getPassVar";
 import {App} from "antd";
+import getStoreName from "../../utils/getStoreName";
 
 function genStore(initStore,initStoreType): any {
   const transferType = {
@@ -138,6 +139,8 @@ export default function RenderChild(props: any) {
   let children = props["children"]
   // _target 是一个特殊属性，用于行数据显示，比如listview循环一个列表，_target 是列表的子项item
   let target = props["_target"]
+  // 命名空间
+  let namespace=props["namespace"]
 
   // 获取store,如果组件有store,就用组件的，否则用上层传递的
   // todo 这里看如何改造成层级取，可能也不需要层级取？，将要打数据层级传递还是？
@@ -146,8 +149,9 @@ export default function RenderChild(props: any) {
 
     // 如果存在storeName 则在rootStore,中保存,由于不能直接设置localStore ，所以外面包了一个数组
     if (storeName) {
+      const newStoreName=getStoreName(storeName,namespace)
       setTimeout(()=>{
-        rootStore.setStore(storeName, [localStore])
+        rootStore.setStore(newStoreName, [localStore])
       },0)
 
     }
@@ -162,7 +166,7 @@ export default function RenderChild(props: any) {
   // 初始化store
   if (initAction) {
     localStore.setInitAction(initAction)
-    handlerActions(initAction,localStore,rootStore,App,null,true)
+    handlerActions(initAction,localStore,rootStore,App,null,true,namespace)
   }
   //将子模块渲染处理放在这里，处理layout-fit 多次渲染的问题
   if (hasInitPlugin(tag)) {
@@ -213,7 +217,7 @@ export default function RenderChild(props: any) {
 
   // 处理显示隐藏
   return (
-    <Tag key={key} store={localStore} rootStore={rootStore} {...rest} _target={target}>
+    <Tag key={key} store={localStore} rootStore={rootStore} {...rest} _target={target} namespace={namespace}>
       {children}
     </Tag>
   )

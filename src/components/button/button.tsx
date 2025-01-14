@@ -15,7 +15,7 @@ export default function (props: any) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const onClick = useCallback(async () => {
     if (action) {
-      handlerActions(action, store, props.rootStore, useApp, rest._target)
+      handlerActions(action, store, props.rootStore, useApp, rest._target,false,rest["namespace"])
     }
   }, [])
   const show = getVisible(props)

@@ -56,7 +56,7 @@ const DynamicListView = (props) => {
   let { itemData, ...newProps } = transferProp(rest, "listview");
   const rowClick=(row)=>{
     if(rowClickAction){
-      handlerActions(rowClickAction, props.store, props.rootStore, useApp,{row})
+      handlerActions(rowClickAction, props.store, props.rootStore, useApp,{row},false,props.namespace)
     }
 
   }

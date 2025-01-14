@@ -50,7 +50,7 @@ export default function (props: any) {
       }
     }
     if (action_list.length>0) {
-        handlerActions(action_list, store, props.rootStore, useApp,null,false)
+        handlerActions(action_list, store, props.rootStore, useApp,null,false,props["namespace"])
     }
 
   }
@@ -59,7 +59,7 @@ export default function (props: any) {
   const initAction = props["initAction"]
   useEffect(() => {
     if (initAction && store) {
-      handlerActions(initAction, store, props.rootStore, useApp,null,false)
+      handlerActions(initAction, store, props.rootStore, useApp,null,false,props.namespace)
     }
     if(windowKeyUpEvent){
       window.addEventListener('keyup', handleKeyUp);
@@ -76,7 +76,7 @@ export default function (props: any) {
     if(timer){
       if(timer_enable){
         const timer_id=setInterval(()=>{
-          handlerActions(timer.action, store, props.rootStore, useApp,null,false)
+          handlerActions(timer.action, store, props.rootStore, useApp,null,false,props.namespace)
         },timer.interval)
         return ()=>{
           clearInterval(timer_id)

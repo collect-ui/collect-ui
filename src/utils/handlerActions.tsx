@@ -31,7 +31,8 @@ export default async function handlerActions(
   rootStore: any,
   useApp: App.useApp,
   target?: any,
-  init?:boolean
+  init?:boolean,
+  namespace?: string
 ) {
   for (let i = 0; i < actions.length; i++) {
     let { enable, useStore,fail_action,before_render, ...rest } = actions[i]
@@ -56,6 +57,8 @@ export default async function handlerActions(
       rootStore,
       useApp,
       useStore ? null : target,
+        namespace
+
     )
     if (!result.success) {
       // 遇到fail_action，运行错误操作，必填未登录，弹登录登录对话框
@@ -69,6 +72,7 @@ export default async function handlerActions(
               rootStore,
               useApp,
               useStore ? null : target,
+              namespace
           )
         }
       }

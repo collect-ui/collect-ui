@@ -49,13 +49,13 @@ export default function (props: any) {
   // 去掉直接关闭对话框
   const handleOk = useCallback(async () => {
 
-    handlerActions(action, store, props.rootStore, useApp,{"confirmAndContinue":false})
+    handlerActions(action, store, props.rootStore, useApp,{"confirmAndContinue":false},false,props["namespace"])
 
   }, [])
   // 去掉直接关闭对话框
   const handleConfirmAndContinue = useCallback(async () => {
 
-    handlerActions(action, store, props.rootStore, useApp,{"confirmAndContinue":true})
+    handlerActions(action, store, props.rootStore, useApp,{"confirmAndContinue":true},false,props["namespace"])
 
   }, [])
 

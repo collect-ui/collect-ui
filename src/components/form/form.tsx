@@ -36,7 +36,7 @@ export default function (props: any) {
   const onFinish = useCallback(async (values: any) => {
     // 开了submitOnEnter 导致死循环，因为action 里面有个submit
     if (action && !submitOnEnter) {
-      handlerActions(action, store, props.rootStore, useApp)
+      handlerActions(action, store, props.rootStore, useApp,{},false,rest["namespace"])
     }
   }, [])
   useEffect(() => {
@@ -61,7 +61,7 @@ export default function (props: any) {
   // }
   const handleKeyDown = useCallback((event) => {
     if (event.key === 'Enter' && submitOnEnter && action) {
-        handlerActions(action, store, props.rootStore, useApp)
+        handlerActions(action, store, props.rootStore, useApp,{},false,rest["namespace"])
     }
   },[]);
   const setFormValue = (name, value) => {
@@ -75,6 +75,7 @@ export default function (props: any) {
             onFinish={onFinish}
             onValuesChange={onValuesChange}
             {...transferProp(rest, "form")}
+            id={rest["namespace"]+"#"+rest["name"]}
           ></Form>
         </div>
       </FormContext.Provider>

@@ -13,7 +13,7 @@ export default function (props: any) {
   const useApp = App.useApp()
   const onClick = useCallback(() => {
     if (action) {
-      handlerActions(action, props.store, props.rootStore, useApp, rest._target)
+      handlerActions(action, props.store, props.rootStore, useApp, rest._target,false,props.namespace)
     }
   }, [])
   const newProps = transferProp(rest, "span")

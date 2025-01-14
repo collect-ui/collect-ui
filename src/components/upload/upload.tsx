@@ -34,7 +34,7 @@ export default function (props: any) {
         if (info.file.status === 'done') {
             console.log('上传成功后的返回数据:', info.file.response);
             if (finish_action) {
-                handlerActions(finish_action, props.store, props.rootStore, useApp, {row:info.file.response})
+                handlerActions(finish_action, props.store, props.rootStore, useApp, {row:info.file.response},false,props.namespace)
             }
         } else if (info.file.status === 'error') {
             useApp?.message?.error(`${info.file.name} 文件上传失败`);

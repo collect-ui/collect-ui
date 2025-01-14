@@ -31,7 +31,8 @@ function resolvePath(basePath, relativePath) {
                 }catch(err){
                     console.error(`load router ${p} error`,err)
                 }
-                return { element:<ScopedRender {...dataJson} store={store} rootStore={rootStore}/>}
+                const menu_code = item.menu_code
+                return { element:<ScopedRender {...dataJson} store={store} rootStore={rootStore} namespace={menu_code}/>}
             }
             //@ts-ignore
             newItem.lazy=lazy

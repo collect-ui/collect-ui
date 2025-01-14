@@ -16,12 +16,14 @@ export default async function (
   store: any,
   rootStore: any,
   useApp: App.useApp,
+  target:any,
+  namespace:string
 ): Promise<result> {
   let { group } = action
-  let targetStoreObj = actionStore(action, store, rootStore)
+  let targetStoreObj = actionStore(action, store, rootStore,namespace)
   group = varValue(group,targetStoreObj)
   const actions = targetStoreObj.getInitAction(group)
-  const res =  await handlerActions(actions, targetStoreObj, rootStore, useApp)
+  const res =  await handlerActions(actions, targetStoreObj, rootStore, useApp,{},false,namespace)
   //@ts-ignore
   res.showMsg=false
   return res

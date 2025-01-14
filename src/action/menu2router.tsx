@@ -95,11 +95,13 @@ export default async function (
   menuList.filter(item=>item.is_index!=="1" && item.url).forEach(item=>{
     if(item.router_group){// 带框架的路由
       subList.push({
+        ...item,
         path:item.url,
         data:item.data
       })
     }else{// 全路由
       fullList.push({
+        ...item,
         path:item.url,
         data:item.data
       })
@@ -110,10 +112,12 @@ export default async function (
     routerIndex,
     ...fullList,
     {
+      ...indexRouter,
       path: indexRouter["group_path"],
       data:indexRouter["group_data"],
       children:[
         {
+          ...indexRouter,
           path:indexRouter["url"],
           data:indexRouter["data"]
         },

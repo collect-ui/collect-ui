@@ -27,7 +27,7 @@ export default function (props: any) {
   }, [])
   const onChange = useCallback(async (value) => {
     if (action) {
-      handlerActions(action, props.store, props.rootStore, useApp, {value})
+      handlerActions(action, props.store, props.rootStore, useApp, {value},false,props.namespace)
     }
   }, [])
   return (

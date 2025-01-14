@@ -10,7 +10,7 @@ export default function (props: any) {
   const useApp = App.useApp()
   useEffect(() => {
     if (initAction && props.store) {
-      handlerActions(initAction, props.store, props.rootStore, useApp)
+      handlerActions(initAction, props.store, props.rootStore, useApp,{},false,props["namespace"])
     }
   }, [])
   return <Col {...newProps}></Col>

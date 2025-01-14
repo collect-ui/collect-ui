@@ -20,10 +20,11 @@ export default async function (
   rootStore: any,
   useApp: App.useApp,
   target?: any,
+  namespace?:string
 ): Promise<result> {
   const { from, value } = action
   const tmp = deepClone(value)
-  let targetStoreObj = actionStore(action, store, rootStore)
+  let targetStoreObj = actionStore(action, store, rootStore,namespace)
   const [first, second] = varnameList(from)
   const map = targetStoreObj.getValue(first)
 

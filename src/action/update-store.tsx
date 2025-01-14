@@ -17,9 +17,10 @@ export default async function (
   rootStore: any,
   useApp: App.useApp,
   target?: any,
+  namespace?:string
 ): Promise<result> {
   const { value } = action
-  let targetStoreObj = actionStore(action, store, rootStore)
+  let targetStoreObj = actionStore(action, store, rootStore,namespace)
   let targetObj: any
   let newObj = {}
   for (let key in value) {
