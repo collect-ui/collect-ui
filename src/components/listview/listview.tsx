@@ -1,5 +1,5 @@
-import React, {memo, useMemo} from "react"
-import ScopedRender from "../../utils/scopedRender"
+import React, {memo, useCallback, useMemo} from "react"
+import ScopedRender from "../../utils/scopedRenderMemo"
 import transferProp from "../../utils/transferProp"
 import NoData from "../no-data/no-data"
 import {v4 as uuid} from "uuid"
@@ -8,6 +8,7 @@ import {App} from "antd";
 import getVisible from "../../utils/getVisible";
 
 const ItemsWithJoinAttr = ({ itemData, keyField, itemAttr, joinAttr, store, rootStore, rowClick }) => {
+
   return useMemo(() => {
     return itemData?.reduce((acc, item, index) => {
       const newAttr = { ...itemAttr,
@@ -15,12 +16,14 @@ const ItemsWithJoinAttr = ({ itemData, keyField, itemAttr, joinAttr, store, root
         _target_rowId: item[keyField]
       };
       // 添加当前的 ScopedRender 组件
+
+
       acc.push(
           <ScopedRender
               key={keyField ? item[keyField] : uuid()}
               {...newAttr}
               store={store}
-              onClick={(e) => rowClick(item)}
+              onClick={rowClick}
               rootStore={rootStore}
           />
       );
@@ -54,12 +57,11 @@ const DynamicListView = (props) => {
   }
   const useApp = App.useApp()
   let { itemData, ...newProps } = transferProp(rest, "listview");
-  const rowClick=(row)=>{
-    if(rowClickAction){
-      handlerActions(rowClickAction, props.store, props.rootStore, useApp,{row},false,props.namespace)
+  const rowClick = useCallback((e,row) => {
+    if (rowClickAction) {
+      handlerActions(rowClickAction, props.store, props.rootStore, useApp, { row }, false, props.namespace);
     }
-
-  }
+  }, [rowClickAction, useApp, props.namespace]);
   const show = getVisible(props)
   if(!show) {
     return null

@@ -7,6 +7,7 @@ import varValue from "../utils/varValue"
 import hasVar from "../utils/hasVar"
 import handlerAction from "../utils/handlerAction"
 import { App } from "antd"
+import expression_name from "../utils/expression_name";
 function convertRes2Blob(response: any) {
   // 提取文件名
   let desc = response.headers.get("content-disposition")
@@ -83,7 +84,12 @@ export default async function (
     }
   }
 
-
+  // 处理undefined 为null
+  for (let key in formValue) {
+    if (formValue[key]==undefined){
+      formValue[key]=null
+    }
+  }
   const config = {
     method: apiObj.method,
     url:apiObj.url,
@@ -135,17 +141,17 @@ export default async function (
 
   // 请求成功 解析结果集合
   if (success && adapt) {
-    for (const key in adapt) {
-      const resultField = adapt[key]
-      if(resultField.indexOf(".")>0){// 多级地址
-        store.setValue(key,varValue(resultField, store, res.data))
-      }else{
-        const field = varName(resultField)
-        store.setValue(key, res.data[field])
+
+      for (const key in adapt) {
+        const resultField = adapt[key]
+        if(resultField.indexOf(".")>0){// 多级地址
+          store.setValue(key,varValue(resultField, store, res.data))
+        }else{
+          const field = varName(resultField)
+          store.setValue(key, res.data[field])
+        }
       }
 
-
-    }
   }
 
 

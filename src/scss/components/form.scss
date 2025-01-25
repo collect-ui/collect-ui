@@ -1,0 +1,14 @@
+@use '../common/var' as *;
+@use '../mixins/mixins' as *;
+// project(分组名称)
+@include project(form){
+  &.form-info-show{
+    .ant-form-item .ant-form-item-control-input{
+      background-color:#f4f4f4 ;
+      padding-left: 6px;
+    }
+  }
+
+
+}
+

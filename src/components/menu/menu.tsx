@@ -4,6 +4,7 @@ import tree2Array from "../../utils/tree2Array"
 import {useCallback, useEffect, useMemo, useState} from "react"
 import Icon from "../icon/icon"
 import { useNavigate, useLocation } from "react-router-dom"
+import getVisible from "../../utils/getVisible";
 function handlerItems(items,rule){
   return items.map(({...item}) => {
     const iconName = rule["icon_field"]
@@ -24,13 +25,17 @@ function handlerItems(items,rule){
   })
 }
 export default function (props: any) {
-  const { changeRouter, rule,...rest} = props
+  const { visible,changeRouter, rule,...rest} = props
   const rootStore=props.rootStore
   const newProps = useMemo(() => transferProp(rest, "menu"), [props]);
   const items = useMemo(() => handlerItems(newProps.items, rule), [newProps.items, rule]);
   let navigate = useNavigate()
   const location = useLocation()
   const [current, setCurrent] = useState("")
+  const show = getVisible(props)
+  if(!show) {
+    return null
+  }
   // 初始化进来的时候添加当前路由
   //
   useEffect(() => {
@@ -71,6 +76,7 @@ export default function (props: any) {
     }
 
   }, [rootStore.currentRouterPath])
+
 
   return (
     <>

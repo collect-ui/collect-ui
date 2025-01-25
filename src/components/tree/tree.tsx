@@ -41,6 +41,7 @@ const MyTree = ({
           key,
           title,
           ...item,
+          __origin: item// 原始数据,由于改了icon 图标展示，到时图标字段展示不正常
         }
         if (item.children) {
           result.children = loop(item.children)
@@ -81,13 +82,13 @@ const MyTree = ({
       if (treeSelected) {
         const expression = expression_name(treeSelected)
         if (e.selected) {
-          rest.store.setValue(expression, e.node)
+          rest.store.setValue(expression, e.node.__origin)
         } else {
           rest.store.setValue(expression, {})
         }
       }
       if (selectAction) {
-        handlerActions(selectAction, rest.store, rest.rootStore, useApp,{row:e.node,selected:e.selected},false,rest["namespace"])
+        handlerActions(selectAction, rest.store, rest.rootStore, useApp,{row:e.node.__origin,selected:e.selected},false,rest["namespace"])
       }
     },
     [],
@@ -97,12 +98,12 @@ const MyTree = ({
     if(item.action){// 如果自己配action则取自己
       handlerActions(item.action, rest.store, rest.rootStore, useApp, {
         item,
-        node: node,
+        node: node.__origin||node,
       },false,rest["namespace"])
     }else if (rightMenuAction) {
       handlerActions(rightMenuAction, rest.store, rest.rootStore, useApp, {
         item,
-        node: node,
+        node: node.__origin||node,
       },false,rest["namespace"])
     }
     // Add your logic here
@@ -113,14 +114,14 @@ const MyTree = ({
     show({
       event: event,
       props: {
-        node: node, // Pass the node information as a prop
+        node: node.__origin||node, // Pass the node information as a prop
       },
     })
   }, [])
   const handleDoubleClick = useCallback((event,data) => {
     if (rightMenuAction) {
       handlerActions(dblAction, rest.store, rest.rootStore, useApp, {
-        node: data,
+        node: data.__origin,
       },false,rest["namespace"])
     }
     // Add your logic here

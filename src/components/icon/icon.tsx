@@ -2,9 +2,11 @@
 import React from "react"
 import getIcon from "../../utils/getIcon"
 import getVisible from "../../utils/getVisible";
+import transferProp from "../../utils/transferProp";
 
 const DynamicIcon = (props) => {
-  const { icon, store,visible, rootStore, ...rest } = props
+  const {visible, ...rest } = props
+  const {icon,...newProps} = transferProp(rest, "button")
   const show = getVisible(props)
   if(!show) {
     return null
@@ -14,6 +16,6 @@ const DynamicIcon = (props) => {
   if (!IconComponent) {
     return null
   }
-  return <IconComponent {...rest} />
+  return <IconComponent {...newProps} />
 }
 export default DynamicIcon

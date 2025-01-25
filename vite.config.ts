@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import commonjs from "vite-plugin-commonjs"
+
+
 export default defineConfig({
     plugins: [react(),commonjs()],
     resolve: {
@@ -30,6 +32,7 @@ export default defineConfig({
             },
         },
         minify: 'esbuild', // 使用 esbuild 进行压缩
+        sourcemap: false, // 禁用 Source Map
     },
     server: {
         port: 3000,

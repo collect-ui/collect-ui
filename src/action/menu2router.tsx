@@ -115,6 +115,7 @@ export default async function (
       ...indexRouter,
       path: indexRouter["group_path"],
       data:indexRouter["group_data"],
+      api:indexRouter["group_api"],
       children:[
         {
           ...indexRouter,

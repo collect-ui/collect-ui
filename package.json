@@ -1,6 +1,6 @@
 {
   "name": "collect-ui",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "dist/collect-ui.es.js",
   "module": "dist/collect-ui.es.js",

@@ -3,7 +3,7 @@ import genTarget from "./genTarget";
 
 export default function (props:any){
     const { visible } = props
-    if (visible) {
+    if (visible!==undefined) {
         const show = varValue(visible, props.store, genTarget(props))
         if (!show) {
             return false
