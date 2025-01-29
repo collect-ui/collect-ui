@@ -214,6 +214,9 @@ export default function RenderChild(props: any) {
   let Tag = tag
   let key = uuid()
 
+  // if (rest["refName"]){
+  //   rest["ref"]=localStore.getFormRef(rest["refName"])
+  // }
 
   // 处理显示隐藏
   return (

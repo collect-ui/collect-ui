@@ -1,6 +1,7 @@
 import {memo, useMemo} from "react"
 import RenderChild from "../components/render/render-child"
 import { getConfig } from "./index"
+import getPassVar from "./getPassVar";
 
 
 const ScopedRender = memo((props: any) => {
@@ -12,7 +13,12 @@ const ScopedRender = memo((props: any) => {
       onClick(e, rest._target_row);
     }
   };
-  return <RenderChild  {...getConfig(rest, store, rootStore,rest._target)} onClick={handleClick} />
+  const pass=getPassVar(props)
+  if(rest._target_row){
+    pass["row"]=rest._target_row
+  }
+
+  return <RenderChild  {...getConfig(rest, store, rootStore,pass)} onClick={handleClick} />
 })
 
 export default ScopedRender

@@ -1,7 +1,7 @@
 import {App, Tabs} from "antd"
 import transferProp from "../../utils/transferProp"
 import varValue from "../../utils/varValue"
-import ScopedRender from "../../utils/scopedRender"
+import ScopedRender from "../../utils/scopedRenderMemo"
 import React, {useCallback, useMemo} from "react";
 import varName from "../../utils/varName";
 import setStoreValue from "../../utils/setStoreValue";
@@ -80,6 +80,7 @@ export default function (props: any) {
                 ...itemAttr,
                 store:props.store,
                 rootStore:props.rootStore,
+
                 _target_row: item,
                 // _target_rowIndex: index,
                 _target_rowId: item[keyField]
