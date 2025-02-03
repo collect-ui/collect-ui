@@ -6,6 +6,7 @@ import { Suspense } from "react"
 import varName from "../../utils/varName"
 import handlerActions from "../../utils/handlerActions"
 import { App } from "antd"
+import getVisible from "../../utils/getVisible";
 function Loading() {
   return <div>加载中...</div>
 }
@@ -70,6 +71,7 @@ export default function (props: any) {
       handlerActions(rowClickAction, store, rootStore, useApp,{row:event.data},false,props.namespace)
     }
   }, [])
+
   // useEffect(() => {
   //   const handleResize = () => {
   //     if (gridRef.current && gridRef.current?.api) {
@@ -108,6 +110,12 @@ export default function (props: any) {
       resizeObserver.disconnect();
     };
   }, []);
+
+
+  const show = getVisible(props)
+  if(!show) {
+    return null
+  }
 
   return (
 

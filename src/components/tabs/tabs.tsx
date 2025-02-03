@@ -1,7 +1,7 @@
 import {App, Tabs} from "antd"
 import transferProp from "../../utils/transferProp"
-import varValue from "../../utils/varValue"
-import ScopedRender from "../../utils/scopedRenderMemo"
+import ScopedRenderMemo from "../../utils/scopedRenderMemo"
+import ScopedRender from "../../utils/scopedRender"
 import React, {useCallback, useMemo} from "react";
 import varName from "../../utils/varName";
 import setStoreValue from "../../utils/setStoreValue";
@@ -13,7 +13,7 @@ import genContextMenu from "../../utils/genContextMenu";
 
 
 export default function (props: any) {
-    const {tabId,keyField, action,removeAction, rightMenu,rightMenuAction,itemAttr, items, confirm, ...rest} = props
+    const {withHistory,tabId,keyField, action,removeAction, rightMenu,rightMenuAction,itemAttr, items, confirm, ...rest} = props
     const store = props.store
     const rootStore = props.rootStore
     const useApp = App.useApp()
@@ -22,6 +22,8 @@ export default function (props: any) {
     const { show } = useContextMenu({
         id: MENU_ID,
     })
+    let Render=withHistory?ScopedRenderMemo:ScopedRender
+
     const onChange = useCallback((activeKey) => {
         if (props.activeKey) {
             // 获取配置激活标签页
@@ -61,7 +63,7 @@ export default function (props: any) {
                     ...item,
                     key,
                     children: (
-                        <ScopedRender
+                        <Render
                             tag="layout-fit"
                             {...item}
                             store={props.store}
@@ -93,7 +95,7 @@ export default function (props: any) {
                     label:!rightMenu?label:<div onContextMenu={(e)=>onContextMenu(e,item)}>{label}</div>,
                     key: keyField ? item[keyField] : uuid(),
                     children: (
-                        <ScopedRender
+                        <Render
                             tag="layout-fit"
                             {...newAttr}
                         />

@@ -36,5 +36,5 @@ export default function (props: any) {
       </Popconfirm>
     )
   }
-  return <Button icon={IconRender} onClick={onClick} {...newProps}></Button>
+  return <Button icon={IconRender} onClick={onClick} {...newProps} ></Button>
 }

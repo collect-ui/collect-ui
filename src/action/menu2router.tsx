@@ -92,13 +92,32 @@ export default async function (
   }
   const fullList=[]
   const subList = []
-  menuList.filter(item=>item.is_index!=="1" && item.url).forEach(item=>{
+  const groupList = []
+  menuList.filter(item=>item.menu_type==="2" && item.url).forEach(item=>{
     if(item.router_group){// 带框架的路由
-      subList.push({
-        ...item,
-        path:item.url,
-        data:item.data
-      })
+      // const groupItem  = {
+      //   // ...item,
+      //   path:item.group_path,
+      //   api:item.group_api
+      // }
+      const group_path = item.group_path
+      let  g = groupList.find(g=>g.path===group_path)
+      if(!g){
+        g = {
+          path:group_path,
+          api:item.group_api,
+          children:[]
+        }
+        groupList.push(g)
+      }
+      g.children.push({...item,path:item.url,data:item.data})
+
+
+      // subList.push({
+      //   ...item,
+      //   path:item.url,
+      //   data:item.data
+      // })
     }else{// 全路由
       fullList.push({
         ...item,
@@ -110,22 +129,22 @@ export default async function (
   })
   const newRouter=[
     routerIndex,
-    ...fullList,
-    {
-      ...indexRouter,
-      path: indexRouter["group_path"],
-      data:indexRouter["group_data"],
-      api:indexRouter["group_api"],
-      children:[
-        {
-          ...indexRouter,
-          path:indexRouter["url"],
-          data:indexRouter["data"]
-        },
-        ...subList
-
-      ]
-    }
+    ...groupList
+    // {
+    //   ...indexRouter,
+    //   path: indexRouter["group_path"],
+    //   data:indexRouter["group_data"],
+    //   api:indexRouter["group_api"],
+    //   children:[
+    //     {
+    //       ...indexRouter,
+    //       path:indexRouter["url"],
+    //       data:indexRouter["data"]
+    //     },
+    //     ...subList
+    //
+    //   ]
+    // }
   ]
   store.setValue(to,newRouter)
   return getResult(true)
