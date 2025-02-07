@@ -78,10 +78,18 @@ export default async function (
     }
   }
   if (data) {
-    for (let key in data) {
-      const value = data[key]
-      formValue[key] = varValue(value, store, target)
+    if(typeof data === "object"){// 如果是一个字典对象
+      for (let key in data) {
+        const value = data[key]
+        formValue[key] = varValue(value, store, target)
+      }
+    }else{// 如果是一个字符串
+      const t  = varValue(data, store, target)
+      for(let key in t) {
+        formValue[key] = t[key]
+      }
     }
+
   }
 
   // 处理undefined 为null

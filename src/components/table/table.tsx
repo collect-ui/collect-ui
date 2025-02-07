@@ -7,6 +7,8 @@ import varName from "../../utils/varName"
 import handlerActions from "../../utils/handlerActions"
 import { App } from "antd"
 import getVisible from "../../utils/getVisible";
+import varValue from "../../utils/varValue";
+
 function Loading() {
   return <div>加载中...</div>
 }
@@ -35,7 +37,7 @@ export default function (props: any) {
   console.log("table render")
   const gridRef = useRef()
   const containerRef = useRef()
-  const { theme,selection, rowClick, rowClickAction, ...rest } = props
+  const { theme,selection, rowClick, cellChangedAction,dragAction,rowClickAction, ...rest } = props
   const store = props["store"]
   const rootStore = props["rootStore"]
   const useApp = App.useApp()
@@ -53,6 +55,7 @@ export default function (props: any) {
   const onSortChanged = useCallback((params) => {
     params.api.refreshCells({ force: true })
   }, [])
+  // 复选变化
   const onSelectionChanged = useCallback((event) => {
     // 设置复选框的绑定对象
     if (selection) {
@@ -61,6 +64,7 @@ export default function (props: any) {
       store.setValue(selectionName, selectedData)
     }
   }, [])
+  // 行点击事件
   const onRowClicked = useCallback((event) => {
     //设置行绑定对象
     if (rowClick) {
@@ -71,24 +75,79 @@ export default function (props: any) {
       handlerActions(rowClickAction, store, rootStore, useApp,{row:event.data},false,props.namespace)
     }
   }, [])
+  // 编辑模式结束
+  const onDragChanged = useCallback(async (event) => {
+    if (dragAction) {
+      const draggedNode = event.node;
+      const draggedDataOld = draggedNode.data;
+      let overIndex = event.overIndex;
+      // 获取原来的序号
+      function getOldIndex(rowData,item){
+        let index=-1
+        for(let i=0;i<rowData.length;i++){
+          let target = rowData[i]
+          let is_equal = true
+          // 判断所有的字段相等
+          // todo 这里可以优化，如果指定主键了化
+          for(let key in target){
+            if(target[key]!=item[key]){
+              is_equal = false
+              break;
+            }
+          }
+          // 如果相等跳出
+          if(is_equal){
+            index = i
+            break;
+          }
+        }
+        return index
 
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     if (gridRef.current && gridRef.current?.api) {
-  //       setTimeout(()=>{
-  //         gridRef.current?.api.sizeColumnsToFit();
-  //       },10)
-  //
-  //     }
-  //   };
-  //
-  //   window.addEventListener('resize', handleResize);
-  //
-  //   // Cleanup listener on component unmount
-  //   return () => {
-  //     window.removeEventListener('resize', handleResize);
-  //   };
-  // }, []);
+      }
+      // 从原位置移除拖拽行
+
+
+      const dataListName = props.rowData
+      // 从store 里面获取变量
+      const rowData = varValue(dataListName,store)
+      const oldIndex = getOldIndex(rowData,draggedDataOld);
+      const newRowData = [];
+      // 重新复制出来一份数据
+      // todo 以后改成配置
+      const field = 'order_index'
+      rowData.forEach(row=>{
+        newRowData.push({...row})
+      })
+      // 先删除
+      newRowData.splice(oldIndex, 1);
+      // 将拖拽行插入到新位置
+      const draggedData={}
+      for(let key in draggedDataOld ){
+        draggedData[key]=draggedDataOld[key]
+      }
+      if (overIndex<0){
+        overIndex=newRowData.length+oldIndex
+      }
+      newRowData.splice(overIndex, 0, draggedData);
+      newRowData.forEach((item,index)=>item[field]=(index+1)*10)
+      const result = await handlerActions(dragAction, store, rootStore, useApp, {rows: newRowData}, false, props.namespace)
+    }
+  }, [])
+  const onCellChanged = useCallback(async (event) => {
+    if (cellChangedAction) {
+      const result = await handlerActions(cellChangedAction, store, rootStore, useApp, {row: event.data}, false, props.namespace)
+      // 如果编辑失败，重新进入编辑模式
+      //@ts-ignore
+      if (result?.success === false) { // 假设 handlerActions 返回 false 表示失败
+        event.api.startEditingCell({
+          rowIndex: event.rowIndex,
+          colKey: event.column.getId(),
+        });
+      }
+    }
+  }, [])
+
+  // 处理页面变宽过后，表格适应页面，撑开
   useEffect(() => {
     const handleResize = () => {
       //@ts-ignore
@@ -109,6 +168,36 @@ export default function (props: any) {
     return () => {
       resizeObserver.disconnect();
     };
+  }, [])
+
+  useEffect(() => {
+    const container = containerRef.current;
+
+    const handleMouseLeave = (event) => {
+
+      //@ts-ignore
+      if (gridRef.current && gridRef.current.api && !container.contains(event.target)) {
+        //@ts-ignore
+        const editingCells = gridRef.current.api.getEditingCells();
+        if (editingCells.length > 0) {
+          // 阻止编辑模式关闭
+          //@ts-ignore
+          gridRef.current.api.stopEditing(); // false 表示不触发 onCellEditingStopped
+        }
+      }
+    };
+
+    if (container && cellChangedAction) {
+      //@ts-ignore
+      window.addEventListener('click', handleMouseLeave);
+    }
+
+    return () => {
+      if (container && cellChangedAction) {
+        //@ts-ignore
+        window.removeEventListener('click', handleMouseLeave);
+      }
+    };
   }, []);
 
 
@@ -116,6 +205,20 @@ export default function (props: any) {
   if(!show) {
     return null
   }
+
+  // 定义中文提示文本
+  const localeText = {
+    noRowsToShow: '暂无数据', // 将 "No rows to show" 改为 "暂无数据"
+    loadingOoo: '加载中...',
+    page: '页',
+    more: '更多',
+    to: '到',
+    of: '共',
+    next: '下一页',
+    last: '最后一页',
+    first: '第一页',
+    previous: '上一页',
+  };
 
   return (
 
@@ -132,6 +235,9 @@ export default function (props: any) {
           onSelectionChanged={onSelectionChanged}
           onSortChanged={onSortChanged}
           onRowClicked={onRowClicked}
+          onCellEditingStopped={onCellChanged}
+          onRowDragEnd={onDragChanged}
+          localeText={localeText}
           {...newRest}
         ></AgGridReact>
       </div>

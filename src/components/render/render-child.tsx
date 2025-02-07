@@ -35,37 +35,56 @@ function genStore(initStore,initStoreType): any {
       transferType[key] = types.optional(types.string, initStore[key])
     } else if (type === "object") {
       if(initStoreType && initStoreType[key]){
-        const tmp = getInitStoreType(initStoreType[key])
+        const storeType = initStoreType[key]
+        const tmp = getInitStoreType(storeType)
         if (tmp){
           transferType[key]=tmp
+
+        }else if(typeof(storeType)==="object"){
+          // 根据类型自定义 比如
+          // 1.这里的逻辑尚未成功，由于在表格中修改数据，必须定义action,导致修改不了
+          // 2.还有就是类型转换还是不成功，原始[{...}] 转frozen[]
+          // 开发模式下会报错，但是生成模式下能修改，直接不定类型可以用
+          /*
+          "dataList": {
+            "type": "array",
+            "properties": {
+              "name": {
+                "type":
+              },
+              "value": {
+                "type": "string"
+              }
+            }
+           }
+           *
+           */
+          const obj={}
+          for (let subKey in storeType["properties"]){
+             const subKeyValue = storeType["properties"][subKey]
+            if(subKeyValue["type"]=="string"){
+              obj[subKey] =  types.optional(types.string, "")
+            }else if(subKeyValue["type"]=="boolean"){
+              obj[subKey] =  types.optional(types.bool, false)
+            }else if(subKeyValue["type"]=="number"){
+              obj[subKey] =  types.optional(types.number, "")
+            }
+          }
+          const auto = types.model('_auto', obj).actions((self) => {return {}})
+          transferType[key] =  types.array(auto)
         }else{
-          console.error("注册自定义类型："+initStoreType[key])
-          console.error("但是没找到类型："+initStoreType[key])
+          console.error("注册自定义类型："+storeType)
+          console.error("但是没找到类型："+storeType)
         }
         continue
       }
       // 如果是数组的处理
       if (Array.isArray(initStore[key])) {
-        // let  customerType = null;
-        // if(initStoreType){
-        //   customerType = initStoreType[key]
-        // }
-        // if(!customerType){
+
           transferType[key] = types.optional(
               types.array(types.frozen()),
               initStore[key],
           )
-        // }else{// panelList 单独处理
-        //
-        //   const tmp = getInitStoreType(customerType)
-        //   if (tmp){
-        //     transferType[key]=tmp
-        //   }else{
-        //     console.error("注册自定义类型："+customerType)
-        //     console.error("但是没找到类型："+customerType)
-        //   }
-        // }
-
       } else {
         transferType[key] = types.optional(types.frozen(), initStore[key])
       }
