@@ -67,7 +67,22 @@ export default function(props:any){
     const routerList = props.store.router
     const useApp = App.useApp()
     if (router.length<=0){
-        return <div style={{padding:'40px'}}>{routerList.length}数据加载中...</div>
+        return <div
+            style={{
+                padding: '400px 0px 0px',
+                backgroundColor: '#f0f4f8', // 添加背景色
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', // 添加阴影
+                color: '#333', // 文字颜色
+                fontSize: '18px', // 字体大小
+                fontWeight: '500', // 字体粗细
+                textAlign: 'center', // 文字居中
+                border: '1px solid #e0e0e0', // 边框
+                transition: 'all 0.3s ease', // 添加过渡效果
+                height: "100%",
+            }}
+        >
+            路由数量【{routerList.length}】数据加载中...
+        </div>
     }
     const list = handlerRouter(router,data_home,props.store,props.rootStore,useApp)
     let  newRouter =null

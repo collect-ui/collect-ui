@@ -12,5 +12,10 @@
    display: inline-block;
    margin: 0px 4px;
  }
+  &.title-small{
+    font-weight: normal ;
+    font-size: 14px;
+    line-height: 1;
+  }
 }
 

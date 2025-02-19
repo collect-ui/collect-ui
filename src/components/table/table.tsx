@@ -37,7 +37,7 @@ export default function (props: any) {
   console.log("table render")
   const gridRef = useRef()
   const containerRef = useRef()
-  const { theme,selection, rowClick, cellChangedAction,dragAction,rowClickAction, ...rest } = props
+  const { onSelection,onDataChanged,theme,selection, rowClick, cellChangedAction,dragAction,rowClickAction, ...rest } = props
   const store = props["store"]
   const rootStore = props["rootStore"]
   const useApp = App.useApp()
@@ -62,6 +62,10 @@ export default function (props: any) {
       const selectedData = event.api.getSelectedRows()
       const selectionName = varName(selection)
       store.setValue(selectionName, selectedData)
+    }
+    if(onSelection){
+      const selectedData = event.api.getSelectedRows()
+      onSelection(selectedData)
     }
   }, [])
   // 行点击事件
@@ -145,7 +149,12 @@ export default function (props: any) {
         });
       }
     }
-  }, [])
+    if(onDataChanged){
+      onDataChanged(props.rowData)
+    }
+
+  }, [props.rowData])
+
 
   // 处理页面变宽过后，表格适应页面，撑开
   useEffect(() => {
@@ -176,7 +185,7 @@ export default function (props: any) {
     const handleMouseLeave = (event) => {
 
       //@ts-ignore
-      if (gridRef.current && gridRef.current.api && !container.contains(event.target)) {
+      if (gridRef.current && gridRef.current.api && (!container.contains(event.target)||event.target.classList.contains('ag-center-cols-viewport'))) {
         //@ts-ignore
         const editingCells = gridRef.current.api.getEditingCells();
         if (editingCells.length > 0) {
@@ -187,13 +196,13 @@ export default function (props: any) {
       }
     };
 
-    if (container && cellChangedAction) {
+    if (container && (cellChangedAction || onDataChanged)) {
       //@ts-ignore
       window.addEventListener('click', handleMouseLeave);
     }
 
     return () => {
-      if (container && cellChangedAction) {
+      if (container && (cellChangedAction || onDataChanged)) {
         //@ts-ignore
         window.removeEventListener('click', handleMouseLeave);
       }

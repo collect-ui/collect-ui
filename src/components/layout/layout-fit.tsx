@@ -8,6 +8,7 @@ import {
 
 import handlerActions from "../../utils/handlerActions"
 import {varValue} from "../../utils";
+import getVisible from "../../utils/getVisible";
 
 
 
@@ -31,6 +32,7 @@ export default function (props: any) {
     // window的监听事件
     windowKeyUpEvent,
       timer,
+      visible,
     ...rest
   } = props
   const useApp = App.useApp()
@@ -59,7 +61,7 @@ export default function (props: any) {
   const initAction = props["initAction"]
   useEffect(() => {
     if (initAction && store) {
-      handlerActions(initAction, store, props.rootStore, useApp,null,false,props.namespace)
+      handlerActions(initAction, store, props.rootStore, useApp,props._target,false,props.namespace)
     }
     if(windowKeyUpEvent){
       window.addEventListener('keyup', handleKeyUp);
@@ -76,7 +78,7 @@ export default function (props: any) {
     if(timer){
       if(timer_enable){
         const timer_id=setInterval(()=>{
-          handlerActions(timer.action, store, props.rootStore, useApp,null,false,props.namespace)
+          handlerActions(timer.action, store, props.rootStore, useApp,props._target,false,props.namespace)
         },timer.interval)
         return ()=>{
           clearInterval(timer_id)
@@ -86,12 +88,16 @@ export default function (props: any) {
   },[timer_enable])
 
   const bottomAlignClass = bottomAlign || "right"
-  const { title, ...newProps } = transferProp(rest, "layout-fit", useApp)
+  const { title,titleSize, ...newProps } = transferProp(rest, "layout-fit", useApp)
+  const show = getVisible(props)
+  if(!show) {
+    return null
+  }
   return (
     <div {...newProps}>
-      {title && (
+      {(title ||topRightRender) && (
         <div className="top-header">
-          <Title className="top-title">{title}</Title>
+          {title && <Title size={titleSize} className="top-title">{title}</Title>}
           {topRightRender && <div>{topRightRender}</div>}
         </div>
       )}

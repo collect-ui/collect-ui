@@ -17,6 +17,9 @@ function handlerVarValue(value,store,target){
       const arr = []
       for( let index in content ) {
         const subItem=content[index]
+        if (typeof(subItem)=="function"){
+          continue
+        }
         arr.push(handlerVarValue(subItem,store,target))
       }
       newObj[key]=arr

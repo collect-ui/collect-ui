@@ -109,7 +109,7 @@ const MyTree = ({
         }
       }
       if (selectAction) {
-        handlerActions(selectAction, rest.store, rest.rootStore, useApp,{row:e.node.__origin,selected:e.selected},false,rest["namespace"])
+        handlerActions(selectAction, rest.store, rest.rootStore, useApp,{node:e.node.__origin,row:e.node.__origin,selected:e.selected},false,rest["namespace"])
       }
     },
     [],
@@ -184,19 +184,28 @@ const MyTree = ({
          has_change_parent=true
          is_err_parent=true
        }
+      // 这个是修复都是根节点,移动
+      if(is_root(dragNode) && dropToGap && dropPosition!=0){
+        has_change_parent=false
+        is_err_parent=false
+      }
+
     }
     curent_level_list = parent_node?.children??treeData
     parent = getCopy(parent_node)
 
-
+    function is_root(node){
+      return !node[parent_id_field] || node[parent_id_field]=="0"
+    }
     // 处理都是根节点的问题
-    if(!parent[parent_id_field] && (!node[parent_id_field] || node[parent_id_field]=="0")){
+    if(!parent[parent_id_field] && is_root(node)){
 
       // 忽略
     }else{
       const parent_id = varValue(treeKey,rest.store,{item:parent})
       has_change_parent = parent_id!==dragNode[parent_id_field]
     }
+    // 这个是修复，当节点移动到某个空节点下面，导致判断是同层节点
     if(!node[children_field] && !dropToGap && dropPosition===1){
       has_change_parent=true
       parent=node.__origin
@@ -220,7 +229,10 @@ const MyTree = ({
     if(dropPosition===0 || is_err_parent){
       rows.splice(0, 0, target_item)
     }else{
-      const position =target_index+dropPosition
+      let position =target_index+dropPosition
+      if(position<0){
+        position=0
+      }
       rows.splice(position, 0, target_item)
     }
 
